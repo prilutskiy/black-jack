@@ -1,5 +1,5 @@
 #pragma once
-
+#include "resource.h"
 namespace BlackJackClient {
 
 	using namespace System;
@@ -10,7 +10,7 @@ namespace BlackJackClient {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// —водка дл€ Form1
+	/// Summary for MainForm
 	/// </summary>
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
@@ -19,13 +19,13 @@ namespace BlackJackClient {
 		{
 			InitializeComponent();
 			//
-			//TODO: добавьте код конструктора
+			//TODO: Add the constructor code here
 			//
 		}
 
 	protected:
 		/// <summary>
-		/// ќсвободить все используемые ресурсы.
+		/// Clean up any resources being used.
 		/// </summary>
 		~MainForm()
 		{
@@ -35,26 +35,39 @@ namespace BlackJackClient {
 			}
 		}
 
+	protected:
+
 	private:
 		/// <summary>
-		/// “ребуетс€ переменна€ конструктора.
+		/// Required designer variable.
 		/// </summary>
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
-		/// ќб€зательный метод дл€ поддержки конструктора - не измен€йте
-		/// содержимое данного метода при помощи редактора кода.
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->components = gcnew System::ComponentModel::Container();
-			this->Size = System::Drawing::Size(300,300);
-			this->Text = L"MainForm";
-			this->Padding = System::Windows::Forms::Padding(0);
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
+			this->SuspendLayout();
+			// 
+			// MainForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->ClientSize = System::Drawing::Size(380, 457);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
+			this->MaximizeBox = false;
+			this->Name = L"MainForm";
+			this->ShowIcon = false;
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Black Jack: game of cards";
+			this->ResumeLayout(false);
+
 		}
 #pragma endregion
 	};
 }
-
