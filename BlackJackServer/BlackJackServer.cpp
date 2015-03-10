@@ -3,7 +3,7 @@
 #include "stdafx.h"
 #include "MainForm.h"
 
-using namespace BlackJackServer;
+using namespace BlackJack::Server;
 
 [STAThreadAttribute]
 int main(array<System::String ^> ^args)
