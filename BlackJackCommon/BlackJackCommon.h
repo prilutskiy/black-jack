@@ -4,10 +4,12 @@
 
 using namespace System;
 
-namespace BlackJackCommon {
+namespace BlackJack{
+	namespace Common {
 
-	__interface IInterface
-	{
+		__interface IInterface
+		{
 
-	};
+		};
+	}
 }
