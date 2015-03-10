@@ -14,7 +14,7 @@
     <ProjectGuid>{7560CC30-E253-4048-B6E9-410B3D9E7CC4}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>BlackJackCommon</RootNamespace>
+    <RootNamespace>BlackJack::Common</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
