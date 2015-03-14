@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="ClientGameManager.cpp" />
     <ClCompile Include="MainForm.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -119,6 +120,7 @@
     <ClCompile Include="BlackJackClient.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClientGameManager.h" />
     <ClInclude Include="MainForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -135,6 +137,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlackJackCommon\BlackJackCommon.vcxproj">
+      <Project>{7560cc30-e253-4048-b6e9-410b3d9e7cc4}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

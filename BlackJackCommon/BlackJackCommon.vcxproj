@@ -76,13 +76,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BlackJackCommon.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="IBjGameManager.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="BlackJackCommon.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="IBjGameManager.cpp" />
+    <ClCompile Include="Player.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
