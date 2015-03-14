@@ -42,6 +42,9 @@
     <ClInclude Include="..\BlackJackClient\GameStage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PlayerType.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\BlackJackClient\GameStage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

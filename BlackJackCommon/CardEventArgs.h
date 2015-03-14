@@ -12,14 +12,16 @@ namespace BlackJack{
 			CardEventArgs() : EventArgs()
 			{
 			}
-			CardEventArgs(Player^ p, Card^ c)
+			CardEventArgs(Player^ p, Card^ c, Int32 cardScore)
 			{
 				this->Card = c;
 				this->Player = p;
+				this->CardScore = cardScore;
 			}
 		public:
 			initonly Player^ Player;
 			initonly Card^ Card;
+			initonly Int32 CardScore;
 		};
 	}
 }
