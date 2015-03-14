@@ -12,12 +12,13 @@ namespace BlackJack{
 		public ref class Player
 		{
 		public:
-			
+			String^ Username = "";
 			List<Card^>^ cards;
 			event EventHandler<CardEventArgs^>^ CardTaken;
 		public:
-			Player()
+			Player(String^ userName)
 			{
+				Username = userName;
 				cards = gcnew List<Card^>();
 			}
 			void TakeCard(int count)
