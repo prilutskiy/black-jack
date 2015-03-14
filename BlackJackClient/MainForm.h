@@ -1,61 +1,70 @@
 #pragma once
 
-namespace BlackJack{
-	namespace Client {
+namespace BlackJackClient {
 
-		using namespace System;
-		using namespace System::ComponentModel;
-		using namespace System::Collections;
-		using namespace System::Windows::Forms;
-		using namespace System::Data;
-		using namespace System::Drawing;
+	using namespace System;
+	using namespace System::ComponentModel;
+	using namespace System::Collections;
+	using namespace System::Windows::Forms;
+	using namespace System::Data;
+	using namespace System::Drawing;
 
-		/// <summary>
-		/// —водка дл€ Form1
-		/// </summary>
-		public ref class MainForm : public System::Windows::Forms::Form
+	/// <summary>
+	/// Summary for MainForm
+	/// </summary>
+	public ref class MainForm : public System::Windows::Forms::Form
+	{
+	public:
+		MainForm(void)
 		{
-		public:
-			MainForm(void)
-			{
-				InitializeComponent();
-				//
-				//TODO: добавьте код конструктора
-				//
-			}
+			InitializeComponent();
+			//
+			//TODO: Add the constructor code here
+			//
+		}
 
-		protected:
-			/// <summary>
-			/// ќсвободить все используемые ресурсы.
-			/// </summary>
-			~MainForm()
+	protected:
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		~MainForm()
+		{
+			if (components)
 			{
-				if (components)
-				{
-					delete components;
-				}
+				delete components;
 			}
+		}
 
-		private:
-			/// <summary>
-			/// “ребуетс€ переменна€ конструктора.
-			/// </summary>
-			System::ComponentModel::Container ^components;
+	private:
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
+		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
-			/// <summary>
-			/// ќб€зательный метод дл€ поддержки конструктора - не измен€йте
-			/// содержимое данного метода при помощи редактора кода.
-			/// </summary>
-			void InitializeComponent(void)
-			{
-				this->components = gcnew System::ComponentModel::Container();
-				this->Size = System::Drawing::Size(300, 300);
-				this->Text = L"MainForm";
-				this->Padding = System::Windows::Forms::Padding(0);
-				this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			}
+		/// <summary>
+		/// Required method for Designer support - do not modify
+		/// the contents of this method with the code editor.
+		/// </summary>
+		void InitializeComponent(void)
+		{
+			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
+			this->SuspendLayout();
+			// 
+			// MainForm
+			// 
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->ClientSize = System::Drawing::Size(380, 457);
+			this->FormBorderStyle = System::Windows::Forms::FormBorderStyle::Fixed3D;
+			this->MaximizeBox = false;
+			this->Name = L"MainForm";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
+			this->Text = L"Balck Jack";
+			this->ResumeLayout(false);
+
+		}
 #pragma endregion
-		};
-	}
+	};
 }
