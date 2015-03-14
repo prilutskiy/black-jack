@@ -14,7 +14,7 @@
     <ProjectGuid>{7560CC30-E253-4048-B6E9-410B3D9E7CC4}</ProjectGuid>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <Keyword>ManagedCProj</Keyword>
-    <RootNamespace>BlackJackCommon</RootNamespace>
+    <RootNamespace>BlackJack::Common</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -73,16 +73,31 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BlackJackCommon.h" />
+    <ClInclude Include="..\BlackJackClient\GameStage.h" />
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="CardEventArgs.h" />
+    <ClInclude Include="CardFactory.h" />
+    <ClInclude Include="CardSuit.h" />
+    <ClInclude Include="IBjGameManager.h" />
+    <ClInclude Include="Player.h" />
+    <ClInclude Include="PlayerType.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\BlackJackClient\GameStage.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
-    <ClCompile Include="BlackJackCommon.cpp" />
+    <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardEventArgs.cpp" />
+    <ClCompile Include="CardFactory.cpp" />
+    <ClCompile Include="CardSuit.cpp" />
+    <ClCompile Include="IBjGameManager.cpp" />
+    <ClCompile Include="Player.cpp" />
+    <ClCompile Include="PlayerType.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
