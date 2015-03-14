@@ -117,6 +117,8 @@ namespace BlackJack
 							Winner = userPlayer;
 					else if (userPlayer->CardScore > 21)
 						Winner = dealer;
+					else if (dealer->CardScore > 21)
+						Winner = userPlayer;
 					else if (userPlayer->CardScore > dealer->CardScore)
 						Winner = userPlayer;
 					else if (dealer->CardScore > userPlayer->CardScore)
@@ -151,9 +153,10 @@ namespace BlackJack
 				int prize = Bet;
 				if (Winner == nullptr)
 					return;
-				if (Winner->Username == "Draw")
+				if (Winner->Username == "Draw"){
+					GameOver(this, gcnew CardEventArgs(Winner, nullptr, Winner->CardScore));
 					return;
-
+				}
 				if (IsBlackJack(Winner))
 					doubleFactor *= 1.5;
 				if (Winner->PlayerType == PlayerType::Player)
