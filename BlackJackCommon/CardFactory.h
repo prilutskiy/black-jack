@@ -10,10 +10,12 @@ namespace BlackJack
 		{
 		public:
 			static Random^ rand = gcnew Random();
-			Card^ SpawnCard()
+			static Card^ SpawnCard()
 			{
 				int suit = rand->Next(1, 4);
 				int value = rand->Next(1, 13);
+				auto c = gcnew Card(suit, value);
+				return c;
 			}
 		};
 	}

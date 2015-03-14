@@ -4,7 +4,7 @@ namespace BlackJack
 {
 	namespace Common 
 	{
-		enum class CardSuit : System::Int32
+		public enum class CardSuit : System::Int32
 		{
 			NotSet = 0,
 			Spades = 1,
@@ -12,7 +12,7 @@ namespace BlackJack
 			Hearts = 3,
 			Diamonds = 4,
 		};
-		enum class CardValue : System::Int32
+		public enum class CardValue : System::Int32
 		{
 			NotSet = 0,
 			Ace = 1,
