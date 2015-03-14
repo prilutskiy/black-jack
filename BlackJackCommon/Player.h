@@ -16,9 +16,8 @@ namespace BlackJack{
 			List<Card^>^ cards;
 			event EventHandler<CardEventArgs^>^ CardTaken;
 		public:
-			Player(String^ userName)
+			Player()
 			{
-				Username = userName;
 				cards = gcnew List<Card^>();
 			}
 			void TakeCard(int count)

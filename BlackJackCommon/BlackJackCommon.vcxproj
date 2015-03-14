@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\BlackJackClient\GameStage.h" />
     <ClInclude Include="Card.h" />
     <ClInclude Include="CardEventArgs.h" />
     <ClInclude Include="CardFactory.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\BlackJackClient\GameStage.cpp" />
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Card.cpp" />
     <ClCompile Include="CardEventArgs.cpp" />

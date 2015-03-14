@@ -5,7 +5,10 @@ namespace BlackJack
 	namespace Client
 	{
 		public ref class ClientGameManager : IBjGameManager
-		{			
+		{	
+		public:
+			Player^ userPlayer;
+			Player^ dealer;	
 		public:
 			virtual void DoNothing()
 			{
@@ -16,8 +19,6 @@ namespace BlackJack
 				userPlayer = gcnew Player();
 				dealer = gcnew Player();
 			}
-			Player^ userPlayer;
-			Player^ dealer;
 			void StartGame()
 			{
 				dealer->TakeCard(2);
