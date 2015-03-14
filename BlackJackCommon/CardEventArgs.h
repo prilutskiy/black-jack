@@ -18,8 +18,8 @@ namespace BlackJack{
 				this->Player = p;
 			}
 		public:
-			Player^ Player;
-			Card^ Card;
+			initonly Player^ Player;
+			initonly Card^ Card;
 		};
 	}
 }

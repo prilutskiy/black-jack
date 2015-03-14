@@ -12,6 +12,7 @@ namespace BlackJack{
 		public ref class Player
 		{
 		public:
+			
 			List<Card^>^ cards;
 			event EventHandler<CardEventArgs^>^ CardTaken;
 		public:
