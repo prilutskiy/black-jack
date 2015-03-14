@@ -2,7 +2,6 @@
 #include "CardSuit.h"
 using namespace System;
 
-
 namespace BlackJack{
 	namespace Common {
 		public ref class Card

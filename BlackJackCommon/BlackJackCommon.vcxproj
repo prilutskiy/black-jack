@@ -77,6 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Card.h" />
+    <ClInclude Include="CardEventArgs.h" />
     <ClInclude Include="CardFactory.h" />
     <ClInclude Include="CardSuit.h" />
     <ClInclude Include="IBjGameManager.h" />
@@ -87,6 +88,7 @@
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
     <ClCompile Include="Card.cpp" />
+    <ClCompile Include="CardEventArgs.cpp" />
     <ClCompile Include="CardFactory.cpp" />
     <ClCompile Include="CardSuit.cpp" />
     <ClCompile Include="IBjGameManager.cpp" />
