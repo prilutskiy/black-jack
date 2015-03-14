@@ -18,6 +18,11 @@ namespace BlackJack
 			}
 			Player^ userPlayer;
 			Player^ dealer;
+			void StartGame()
+			{
+				dealer->TakeCard(2);
+				userPlayer->TakeCard(2);
+			}
 		};
 	}
 }
