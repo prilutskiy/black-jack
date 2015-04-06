@@ -1,33 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackCommon", "BlackJackCommon\BlackJackCommon.vcxproj", "{7560CC30-E253-4048-B6E9-410B3D9E7CC4}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackClient", "BlackJackClient\BlackJackClient.vcxproj", "{4F475462-3173-4984-9098-B8F07785F5B8}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BlackJackServer", "BlackJackServer\BlackJackServer.vcxproj", "{71618CC9-3C65-4A40-9959-93B6E4FAE946}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Win32 = Debug|Win32
-		Release|Win32 = Release|Win32
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7560CC30-E253-4048-B6E9-410B3D9E7CC4}.Debug|Win32.ActiveCfg = Debug|Win32
-		{7560CC30-E253-4048-B6E9-410B3D9E7CC4}.Debug|Win32.Build.0 = Debug|Win32
-		{7560CC30-E253-4048-B6E9-410B3D9E7CC4}.Release|Win32.ActiveCfg = Release|Win32
-		{7560CC30-E253-4048-B6E9-410B3D9E7CC4}.Release|Win32.Build.0 = Release|Win32
-		{4F475462-3173-4984-9098-B8F07785F5B8}.Debug|Win32.ActiveCfg = Debug|Win32
-		{4F475462-3173-4984-9098-B8F07785F5B8}.Debug|Win32.Build.0 = Debug|Win32
-		{4F475462-3173-4984-9098-B8F07785F5B8}.Release|Win32.ActiveCfg = Release|Win32
-		{4F475462-3173-4984-9098-B8F07785F5B8}.Release|Win32.Build.0 = Release|Win32
-		{71618CC9-3C65-4A40-9959-93B6E4FAE946}.Debug|Win32.ActiveCfg = Debug|Win32
-		{71618CC9-3C65-4A40-9959-93B6E4FAE946}.Debug|Win32.Build.0 = Debug|Win32
-		{71618CC9-3C65-4A40-9959-93B6E4FAE946}.Release|Win32.ActiveCfg = Release|Win32
-		{71618CC9-3C65-4A40-9959-93B6E4FAE946}.Release|Win32.Build.0 = Release|Win32
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
