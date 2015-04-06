@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
-    interface IBjGameManager
+    public interface IBjGameManager
     {
         void DoNothing();
     }

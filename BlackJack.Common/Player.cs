@@ -15,9 +15,15 @@ namespace BlackJack.Common
 
     public class Player
     {
+        public void ChangeCash(int value)
+        {
+            Cash += value;
+        }
         public PlayerType PlayerType { get; private set; }
         public Int32 Cash { get; private set; }
         public Int32 CardScore { get; private set; }
+
+        public String Username { get; private set; }
         public List<Card> Cards { get; private set; }
 
         public event EventHandler<CardEventArgs> CardTaken;
@@ -42,9 +48,12 @@ namespace BlackJack.Common
             }
         }
 
-        public Player()
+        public Player(PlayerType playerType, string username = "")
         {
+            this.PlayerType = playerType;
             Cards = new List<Card>();
+            Username = username;
+            Cash = 1000;
         }
 
         public void TakeCard(int count)
@@ -57,6 +66,12 @@ namespace BlackJack.Common
                 if (CardTaken != null)
                     CardTaken(this, new CardEventArgs(this, c, this.CardScore));
             }
+        }
+
+        public void Clear()
+        {
+            Cards.Clear();
+            CardScore = 0;
         }
     }
 }
