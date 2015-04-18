@@ -9,6 +9,10 @@ namespace BlackJack.Common
 {
     public interface IBjGameManager
     {
-        void DoNothing();
+        void Start();
+        void Hit();
+        void Stand();
+        void Double();
+        void Exit();
     }
 }

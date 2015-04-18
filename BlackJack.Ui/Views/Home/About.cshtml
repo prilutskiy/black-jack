@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+<link href="~/Content/baraja.css" rel="stylesheet" />
+<link href="~/Content/custom.css" rel="stylesheet" />
+<link href="~/Content/demo.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.baraja.js"></script>
+<script type="text/javascript">
+    var baraja;
+
+    function addCard(card) {
+        if (baraja != undefined)
+            baraja.add($('<li><img src="/Images/1.png" style="width: 100px; height: 125px"/></li>'));
+
+        var el = $('#baraja-el');
+        setTimeout(el.empty(), 1000);
+
+        el.append($('<li><img src="/Images/1.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/2.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/3.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/4.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/5.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/6.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/7.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/8.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/9.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/10.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/11.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/12.png" style="width: 100px; height: 125px"/></li>'));
+        el.append($('<li><img src="/Images/13.png" style="width: 100px; height: 125px"/></li>'));
+
+        baraja = el.baraja();
+        baraja.fan({
+            speed: 250,
+            easing: 'ease-out',
+            range: 20,
+            direction: 'right',
+            origin: { x: 50, y: 200 },
+            center: true,
+            translation: 150
+        });
+    }
+</script>
+<script type="text/javascript">
+
+    
+    function myMethod() {
+        alert("In myMethodExpectingReturn, calling .NET and expecting return value.");
+
+        var returnVal2 = jsobject.test("some argument");
+        alert("Got value from .NET: " + returnVal2);
+    }
+
+    function myMethodProvidingReturn(whatToReturn) {
+        var returnVal =  whatToReturn + "bar";
+        document.write("Returning '" + returnVal + "' to .NET.");
+
+        return returnVal;
+    }
+</script>
+<div class="row">
+    <div class="col-sm-3">
+        <div class="text-left" style="display: inline">
+            <img src="~/Images/1429055942_kpat.png" height="16" />
+            <div style="display: inline" class="h6">Bet &nbsp;</div>
+        </div>
+        <a class="label label-default">-</a>
+        <span class="label label-primary">100</span>
+        <a class="label label-default">+</a>
+    </div>
+    <div class="col-sm-6">
+        <span class="label label-warning">1000 $</span>
+    </div>
+    <div class="col-sm-3">
+        <div class="btn btn-xs btn-info pull-right" style="margin-top: 3px" id="backToLobby" 
+             onclick="myMethod();">
+            Back to lobby
+        </div>
+    </div>
+</div>
+<hr />
+
+<div class="text-center h4">Dealer</div>
+<div id="test" class="btn btn-primary" onclick="addCard();">Test</div>
+<div class="row">
+    <div>
+        <ul id="baraja-el" class="baraja-container">
+            <li><img src="~/Images/1.png" style="width: 100px; height: 125px" /></li>
+            <li>
+                <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+            </li>
+            <li>
+                <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+            </li>
+            <li>
+                <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+            </li>
+            <li>
+                <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+            </li>
+        </ul>
+    </div>
+</div>

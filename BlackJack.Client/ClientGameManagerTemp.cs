@@ -7,7 +7,7 @@ using BlackJack.Common;
 
 namespace BlackJack.Client
 {
-    class ClientGameManager : IBjGameManager
+    class ClientGameManagerTemp
     {
         #region Private members
         private void Clear()
@@ -112,7 +112,7 @@ namespace BlackJack.Client
         #endregion
 
         #region Public members
-        public ClientGameManager()
+        public ClientGameManagerTemp()
         {
             doubleFactor = 1.0;
             Winner = null;
@@ -236,5 +236,33 @@ namespace BlackJack.Client
             }
         }
         #endregion
+    }
+
+    class GameManager : IBjGameManager
+    {
+        public void Start()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Hit()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Stand()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Double()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Exit()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
