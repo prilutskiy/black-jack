@@ -141,14 +141,25 @@
 
 </style>
 
+<script>
+    $(document).ready(function() {
+        $('.body-content').removeAttr('onmousedown');
+        $('.body-content').removeAttr('onselectstart');
+        $('.body-content').removeAttr('oncontextmenu');
+        $('html').removeAttr('onmousedown');
+        $('html').removeAttr('onselectstart');
+        $('html').removeAttr('oncontextmenu');
+
+    })
+</script>
+
 <div class="card card-container">
-    <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
     <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
     <p id="profile-name" class="profile-name-card"></p>
     <form class="form-signin form-group">
-        <input type="email" id="inputEmail" class="form-control" placeholder="Login" required>
+        <input type="text" id="inputEmail" class="form-control" placeholder="Login" required>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>
     </form><!-- /form -->
 </div><!-- /card-container -->
 
