@@ -3,89 +3,114 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
+using System.Security.Permissions;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Awesomium.Core;
 using BlackJack.Common;
 
 namespace BlackJack.Client
 {
+    [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+    [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     public partial class MainWindow : Form
     {
-        private ClientGameManager gm = new ClientGameManager();
+        private GameManager gm = new GameManager();
+        
         public MainWindow()
         {
             InitializeComponent();
-            gm.UserPlayer.CardTaken += OnCardTaken;
-            gm.Dealer.CardTaken += OnCardTaken;
-            gm.GameOver += GmOnGameOver;
+            webView.DocumentReady += WebViewOnDocumentReady;
+        }
+        private JSValue test(object sender, JavascriptMethodEventArgs args)
+        {
+            var req = String.Empty;
+            foreach (var v in args.Arguments)
+                req += v.ToString() + " ";
+
+            MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            return "ACCEPTED" + req;
         }
 
-        private void OnCardTaken(object sender, CardEventArgs e)
+        private JSValue test2(object sender, JavascriptMethodEventArgs args)
         {
-            listBox1.Items.Add(String.Format("{0} takes {2}({4}) of {1}. {0}'s card score: {3}",
-                         e.Player.PlayerType == PlayerType.Dealer ? "Dealer" : "Player",
-                         e.Card.Suit.ToString(),
-                         e.Card.Value.ToString(),
-                         e.CardScore,
-                         e.Card.GetWeight()));
-            label3.Text = gm.Dealer.CardScore.ToString();
-            label4.Text = gm.UserPlayer.CardScore.ToString();
-            label5.Text = gm.UserPlayer.Cash.ToString();
+            var req = String.Empty;
+            foreach (var v in args.Arguments)
+                req += v.ToString() + " ";
+
+            MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+            return "ACCEPTED" + req;
+        }
+        private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
+        {
+            JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
+            Type t = this.GetType();
+            var pubMethods = t.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Instance);
+            foreach (var method in pubMethods)
+            {
+                bool checkReturnType = (method.ReturnType == typeof (JSValue));
+                var parameters = method.GetParameters();
+                bool checkParameters = parameters.Length == 2 && parameters[0].ParameterType == typeof (Object) && typeof(EventArgs).IsAssignableFrom((parameters[1].ParameterType));
+                if (checkReturnType && checkParameters)
+                {
+                    var methodRef = (JavascriptMethodHandler)Delegate.CreateDelegate(typeof(JavascriptMethodHandler), this, method);
+                    jsobject.Bind(methodRef);
+                }
+            }
+        }
+        
+
+        public void Test(String message)
+        {
+            MessageBox.Show(message, "Hello, imma from JS!!!");
         }
 
-        private void GmOnGameOver(object sender, CardEventArgs e)
+        #region UI Event Handlers
+        private void Redraw()
         {
-            MessageBox.Show(String.Format("{0} won the game with {1} points",
-                e.Player.PlayerType == PlayerType.NotSet && e.Player.Username == "Draw" ? "Draw" : e.Player.PlayerType == PlayerType.Dealer ? "Dealer" : "Player",
-                     e.CardScore));
-            label5.Text = gm.UserPlayer.Cash.ToString();
+            List<PictureBox> dealerCardsPbList = null;
+            List<PictureBox> playerCardsPbList = null;
+            int currentBet = -1;
+
+
         }
 
         private void newGameButon_Click(object sender, EventArgs e)
         {
-            listBox1.Items.Clear();
-            gm.StartGame();
+            gm.Start();
+            Redraw();
+        }
+
+        private void exitGameButton_Click(object sender, EventArgs e)
+        {
+            gm.Exit();
+            Redraw();
         }
 
         private void hitButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                gm.Hit();
-            }
-            catch (InvalidOperationException ex)
-            {
-                listBox1.Items.Add(ex.Message);
-            }
+            gm.Hit();
+            Redraw();
         }
 
         private void doubleButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                gm.DoubleBet();
-            }
-            catch (InvalidOperationException ex)
-            {
-                listBox1.Items.Add(ex.Message);
-            }
+            gm.Double();
+            Redraw();
         }
 
         private void standButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                gm.Stand();
-            }
-            catch (InvalidOperationException ex)
-            {
-                listBox1.Items.Add(ex.Message);
-            }
+            gm.Stand();
+            Redraw();
         }
-
-
-
+        #endregion
     }
 }
