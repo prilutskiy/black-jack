@@ -3,6 +3,7 @@ var baraja_player;
 
 
 $(document).ready(function () {
+    $('form').removeAttr('novalidate');
     $('#startButton').on('click', function () {
         var gameTable = $('#gameTableHidden');
         var container = $('#gameTable');
