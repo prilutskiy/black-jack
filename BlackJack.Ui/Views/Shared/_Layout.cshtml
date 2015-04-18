@@ -7,11 +7,13 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/bootstrap.superhero.min.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" />
-        @Scripts.Render("~/bundles/modernizr")
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="~/Scripts/bootstrap-notify.min.js"></script>
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -65,12 +67,6 @@
         </div>
     </div>
     <div class="container body-content">
-        @*<div class="row">
-                <div class="col-lg-1"></div>
-                <ul class="pager">
-                    <li class="previous"><a href="#">← Back</a></li>
-                </ul>
-            </div>*@
         @RenderBody()
     </div>
 

@@ -20,6 +20,7 @@ namespace BlackJack.Client
     [System.Runtime.InteropServices.ComVisibleAttribute(true)]
     public partial class MainWindow : Form
     {
+        #region Initialization
         private GameManager gm = new GameManager();
         
         public MainWindow()
@@ -27,6 +28,25 @@ namespace BlackJack.Client
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
         }
+        private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
+        {
+            JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
+            Type t = this.GetType();
+            var pubMethods = t.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Instance);
+            foreach (var method in pubMethods)
+            {
+                bool checkReturnType = (method.ReturnType == typeof(JSValue));
+                var parameters = method.GetParameters();
+                bool checkParameters = parameters.Length == 2 && parameters[0].ParameterType == typeof(Object) && typeof(EventArgs).IsAssignableFrom((parameters[1].ParameterType));
+                if (checkReturnType && checkParameters)
+                {
+                    var methodRef = (JavascriptMethodHandler)Delegate.CreateDelegate(typeof(JavascriptMethodHandler), this, method);
+                    jsobject.Bind(methodRef);
+                }
+            }
+        }
+        #endregion
+
         private JSValue test(object sender, JavascriptMethodEventArgs args)
         {
             var req = String.Empty;
@@ -35,7 +55,7 @@ namespace BlackJack.Client
 
             MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
-            return "ACCEPTED" + req;
+            return "ACCEPTED: " + req;
         }
 
         private JSValue test2(object sender, JavascriptMethodEventArgs args)
@@ -48,30 +68,6 @@ namespace BlackJack.Client
 
             return "ACCEPTED" + req;
         }
-        private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
-        {
-            JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
-            Type t = this.GetType();
-            var pubMethods = t.GetMethods(BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Instance);
-            foreach (var method in pubMethods)
-            {
-                bool checkReturnType = (method.ReturnType == typeof (JSValue));
-                var parameters = method.GetParameters();
-                bool checkParameters = parameters.Length == 2 && parameters[0].ParameterType == typeof (Object) && typeof(EventArgs).IsAssignableFrom((parameters[1].ParameterType));
-                if (checkReturnType && checkParameters)
-                {
-                    var methodRef = (JavascriptMethodHandler)Delegate.CreateDelegate(typeof(JavascriptMethodHandler), this, method);
-                    jsobject.Bind(methodRef);
-                }
-            }
-        }
-        
-
-        public void Test(String message)
-        {
-            MessageBox.Show(message, "Hello, imma from JS!!!");
-        }
-
         #region UI Event Handlers
         private void Redraw()
         {
