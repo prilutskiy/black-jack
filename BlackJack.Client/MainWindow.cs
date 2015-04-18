@@ -21,7 +21,7 @@ namespace BlackJack.Client
     public partial class MainWindow : Form
     {
         #region Initialization
-        private GameManager gm = new GameManager();
+        private ClientGameManager gm = new ClientGameManager();
         
         public MainWindow()
         {
@@ -57,7 +57,6 @@ namespace BlackJack.Client
 
             return "ACCEPTED: " + req;
         }
-
         private JSValue test2(object sender, JavascriptMethodEventArgs args)
         {
             var req = String.Empty;
@@ -68,45 +67,76 @@ namespace BlackJack.Client
 
             return "ACCEPTED" + req;
         }
+
         #region UI Event Handlers
-        private void Redraw()
+        private void Redraw(GameState state)
         {
-            List<PictureBox> dealerCardsPbList = null;
-            List<PictureBox> playerCardsPbList = null;
-            int currentBet = -1;
-
-
+            if (state.Exception != null)
+            {
+                var viewItem = new ListViewItem("");
+                viewItem.SubItems.Add("");
+                viewItem.SubItems.Add("");
+                viewItem.SubItems.Add("");
+                viewItem.SubItems.Add("");
+                viewItem.SubItems.Add("");
+                viewItem.SubItems.Add(state.Exception.Message);
+                listView1.Items.Add(viewItem);
+                return;
+            }
+            var item = new ListViewItem(state.Player.CardScore.ToString());
+            item.SubItems.Add(state.Dealer.CardScore.ToString());
+            item.SubItems.Add(state.GameIsOver.ToString());
+            item.SubItems.Add(state.Bet.ToString());
+            item.SubItems.Add(state.Player.Cash.ToString());
+            item.SubItems.Add(state.Winner == null ? "" : state.Winner.PlayerType.ToString());
+            listView1.Items.Add(item);
         }
 
         private void newGameButon_Click(object sender, EventArgs e)
         {
-            gm.Start();
-            Redraw();
+            var state = gm.Start();
+            Redraw(state);
         }
 
         private void exitGameButton_Click(object sender, EventArgs e)
         {
-            gm.Exit();
-            Redraw();
+            var state = gm.Terminate();
+            Redraw(state);
         }
 
         private void hitButton_Click(object sender, EventArgs e)
         {
-            gm.Hit();
-            Redraw();
+            var state = gm.Hit();
+            Redraw(state);
         }
 
         private void doubleButton_Click(object sender, EventArgs e)
         {
-            gm.Double();
-            Redraw();
+            var state = gm.Double();
+            Redraw(state);
         }
 
         private void standButton_Click(object sender, EventArgs e)
         {
-            gm.Stand();
-            Redraw();
+            var state = gm.Stand();
+            Redraw(state);
+        }
+        private void increaseBet_Click(object sender, EventArgs e)
+        {
+            var state = gm.IncreaseBet(100);
+            Redraw(state);
+        }
+        private void decreaseBet_Click(object sender, EventArgs e)
+        {
+            var state = gm.DecreaseBet(100);
+            Redraw(state);
         }
         #endregion
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            listView1.Items.Clear();
+        }
+
     }
 }

@@ -11,6 +11,7 @@ namespace BlackJack.Common
         NotSet = 0,
         Player = 1,
         Dealer = 2,
+        Draw = 3,
     }
 
     public class Player

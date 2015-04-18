@@ -7,7 +7,7 @@ using BlackJack.Common;
 
 namespace BlackJack.Client
 {
-    class ClientGameManagerTemp
+    class ClientGameManager : IBjGameManager
     {
         #region Private members
         private void Clear()
@@ -27,7 +27,7 @@ namespace BlackJack.Client
         private bool isRunning;
         private static Player CreateDraftPlayer()
         {
-            var p = new Player(PlayerType.NotSet, "Draw");
+            var p = new Player(PlayerType.Draw, "Draw");
             return p;
         }
         private void CalculateWinner()
@@ -35,13 +35,22 @@ namespace BlackJack.Client
             if (!EndGame)
             {
                 if (IsBlackJack(Dealer) && IsBlackJack(UserPlayer))
+                {
                     Winner = CreateDraftPlayer();
+                    EndGame = true;
+                }
                 else
                 {
                     if (IsBlackJack(Dealer))
+                    {
                         Winner = Dealer;
+                        EndGame = true;
+                    }
                     if (IsBlackJack(UserPlayer))
+                    {
                         Winner = UserPlayer;
+                        EndGame = true;
+                    }
                 }
             }
             else
@@ -96,7 +105,6 @@ namespace BlackJack.Client
                 return;
             if (Winner.Username == "Draw")
             {
-                GameOver(this, new CardEventArgs(Winner, null, Winner.CardScore));
                 return;
             }
             if (IsBlackJack(Winner))
@@ -105,87 +113,13 @@ namespace BlackJack.Client
                 UserPlayer.ChangeCash((int)(prize * doubleFactor));
             else
                 UserPlayer.ChangeCash(-((int)(prize * doubleFactor)));
-            if (GameOver != null)
-                GameOver(this, new CardEventArgs(Winner, null, Winner.CardScore));
             isRunning = false;
         }
-        #endregion
+        private Int32 Bet { get; set; }
 
-        #region Public members
-        public ClientGameManagerTemp()
-        {
-            doubleFactor = 1.0;
-            Winner = null;
-            UserPlayer = new Player(PlayerType.Player);
-            Dealer = new Player(PlayerType.Dealer);
-            Bet = 100;
-        }
-
-        public void IncreaseBet(int value)
-        {
-            Bet += value;
-        }
-        public void DecreaseBet(int value)
-        {
-            Bet -= value;
-        }
-        public Int32 Bet { get; private set; }
-        public event EventHandler<CardEventArgs> GameOver;
-        public void DoNothing()
-        {
-            throw new NotImplementedException();
-        }
-        public Player UserPlayer;
-        public Player Dealer;
-
-        public void TerminateGame()
-        {
-            Clear();
-        }
-        public void StartGame()
-        {
-            Clear();
-            isRunning = true;
-            Dealer.TakeCard(2);
-
-            UserPlayer.TakeCard(2);
-            CalculateWinner();
-        }
-
-        public bool TryDoubleBet()
-        {
-            try
-            {
-                DoubleBet();
-                return true;
-            }
-            catch (InvalidOperationException)
-            {
-                return false;
-            }
-        }
-        public void DoubleBet()
-        {
-            if (!isRunning)
-                throw new InvalidOperationException("Game is not running yet");
-            if (EndGame)
-                throw new InvalidOperationException("Game is over");
-            if (!canDouble)
-                throw new InvalidOperationException("Cannot double after any card has been hit");
-            doubleFactor = 2.0;
-            EndGame = true;
-            UserPlayer.TakeCard(1);
-            if (UserPlayer.CardScore > 21)
-            {
-                CalculateWinner();
-                return;
-            }
-            while (Dealer.CardScore < 16)
-                Dealer.TakeCard(1);
-            CalculateWinner();
-        }
-
-        public bool TryStand()
+        private Player UserPlayer;
+        private Player Dealer;
+        private bool TryStand()
         {
             try
             {
@@ -197,19 +131,19 @@ namespace BlackJack.Client
                 return false;
             }
         }
-        public void Stand()
+        private bool TryDoubleBet()
         {
-            if (!isRunning)
-                throw new InvalidOperationException("Game is not running yet");
-            if (EndGame)
-                throw new InvalidOperationException("Game is over");
-            EndGame = true;
-            while (Dealer.CardScore < 16)
-                Dealer.TakeCard(1);
-            CalculateWinner();
+            try
+            {
+                Double();
+                return true;
+            }
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
         }
-
-        public bool TryHit()
+        private bool TryHit()
         {
             try
             {
@@ -221,12 +155,91 @@ namespace BlackJack.Client
                 return false;
             }
         }
-        public void Hit()
+        #endregion
+
+        #region Public members
+        public ClientGameManager()
+        {
+            doubleFactor = 1.0;
+            Winner = null;
+            UserPlayer = new Player(PlayerType.Player);
+            Dealer = new Player(PlayerType.Dealer);
+            Bet = 100;
+        }
+
+        public GameState IncreaseBet(int value)
+        {
+            if (isRunning)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is already running. You cannot change your initial bet."));
+            if (EndGame)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+            Bet += value;
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+        }
+        public GameState DecreaseBet(int value)
+        {
+            if (Bet - value < 1)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Your bet cannot be less then 1 point."));
+            if (isRunning)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is already running. You cannot change your initial bet."));
+            if (EndGame)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+            Bet -= value;
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+        }
+
+        public GameState Start()
+        {
+            Clear();
+            isRunning = true;
+            Dealer.TakeCard(2);
+
+            UserPlayer.TakeCard(2);
+            CalculateWinner();
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+        }
+
+        public GameState Double()
         {
             if (!isRunning)
-                throw new InvalidOperationException("Game is not running yet");
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
             if (EndGame)
-                throw new InvalidOperationException("Game is over");
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+            if (!canDouble)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Cannot double after any card has been hit"));
+            doubleFactor = 2.0;
+            EndGame = true;
+            UserPlayer.TakeCard(1);
+            if (UserPlayer.CardScore > 21)
+            {
+                CalculateWinner();
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            }
+            while (Dealer.CardScore < 16)
+                Dealer.TakeCard(1);
+            CalculateWinner();
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+        }
+
+        public GameState Stand()
+        {
+            if (!isRunning)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+            if (EndGame)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+            EndGame = true;
+            while (Dealer.CardScore < 16)
+                Dealer.TakeCard(1);
+            CalculateWinner();
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+        }
+
+        public GameState Hit()
+        {
+            if (!isRunning)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+            if (EndGame)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
             UserPlayer.TakeCard(1);
             canDouble = false;
             if (UserPlayer.CardScore >= 21)
@@ -234,35 +247,14 @@ namespace BlackJack.Client
                 EndGame = true;
                 CalculateWinner();
             }
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+        }
+        public GameState Terminate()
+        {
+            Clear();
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
         }
         #endregion
     }
 
-    class GameManager : IBjGameManager
-    {
-        public void Start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Hit()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Stand()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Double()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Exit()
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
