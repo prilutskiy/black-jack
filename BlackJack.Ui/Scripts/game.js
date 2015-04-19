@@ -17,6 +17,11 @@ function startGame() {
     redraw(jqState);
 }
 
+function hit() {
+    var response = jsobject.hitJs();
+    var jqState = $.parseJSON(response);
+    redraw(jqState);
+}
 
 function redraw(jqState) {
     $('#playerCardScore').text(jqState.Player.CardScore);
@@ -27,8 +32,8 @@ function redraw(jqState) {
     var playerHand = $('#player-el');
 
     dealerHand.empty();
-    for (var i = 0; i < jqState.Dealer.Cards.length; i++) {
-        if (i === jqState.Dealer.Cards.length - 1) {
+    for (var i = jqState.Dealer.Cards.length - 1; i >=0 ; i--) {
+        if (i === 0) {
             dealerHand.append($('<li><img src="/Images/Cards/back.png" style="width: 100px; height: 125px"/></li>'));
             continue;
         }
@@ -36,7 +41,7 @@ function redraw(jqState) {
     }
 
     playerHand.empty();
-    for (var i = 0; i < jqState.Player.Cards.length; i++)
+    for (var i = jqState.Player.Cards.length - 1; i >= 0; i--)
         playerHand.append($('<li><img src="' + jqState.Player.Cards[i].CardImgPath + '" style="width: 100px; height: 125px"/></li>'));
 
     baraja_dealer = dealerHand.baraja();

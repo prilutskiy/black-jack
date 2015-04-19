@@ -50,28 +50,7 @@ namespace BlackJack.Client
             }
         }
         #endregion
-
-        private JSValue test(object sender, JavascriptMethodEventArgs args)
-        {
-            var req = String.Empty;
-            foreach (var v in args.Arguments)
-                req += v.ToString() + " ";
-
-            MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
-            return "ACCEPTED: " + req;
-        }
-        private JSValue test2(object sender, JavascriptMethodEventArgs args)
-        {
-            var req = String.Empty;
-            foreach (var v in args.Arguments)
-                req += v.ToString() + " ";
-
-            MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
-            return "ACCEPTED" + req;
-        }
-
+        
         #region Forms UI Event Handlers
         private void Redraw(GameState state)
         {
@@ -141,21 +120,30 @@ namespace BlackJack.Client
         private JSValue newGameJs(object sender, JavascriptMethodEventArgs e)
          {
             var state = gm.Start();
+            var json = GameStateToJson(state);
+            return json;
+        }
+
+        private static string GameStateToJson(GameState state)
+        {
             var stream = new MemoryStream();
-            var ser = new DataContractJsonSerializer(typeof(GameState));
+            var ser = new DataContractJsonSerializer(typeof (GameState));
             ser.WriteObject(stream, state);
             stream.Position = 0;
             var sr = new StreamReader(stream);
             var json = sr.ReadToEnd();
             return json;
         }
+
         private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
         {
             throw new NotImplementedException();
         }
         private JSValue hitJs(object sender, JavascriptMethodEventArgs e)
         {
-            throw new NotImplementedException();
+            var state = gm.Hit();
+            var json = GameStateToJson(state);
+            return json;
         }
         private JSValue doubleJs(object sender, JavascriptMethodEventArgs e)
         {
