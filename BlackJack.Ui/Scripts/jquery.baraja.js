@@ -314,54 +314,54 @@ jQuery.fn.reverse = [].reverse;
 			} );
 
 		},
-		_move2front : function( $item ) {
+		//_move2front : function( $item ) {
 
-			this.isAnimating = true;
+		//	this.isAnimating = true;
 
-			var self = this,
-				isTop = Number( $item.css( 'z-index' ) ) === this.itemZIndexMin + this.itemsCount - 1,
-				callback = isTop ? function() { self.isAnimating = false; } : function() { return false; },
-				$item = isTop ? null : $item;
+		//	var self = this,
+		//		isTop = Number( $item.css( 'z-index' ) ) === this.itemZIndexMin + this.itemsCount - 1,
+		//		callback = isTop ? function() { self.isAnimating = false; } : function() { return false; },
+		//		$item = isTop ? null : $item;
 
-			// if it's the one with higher z-index, just close the baraja
-			if( !this.closed ) {
+		//	// if it's the one with higher z-index, just close the baraja
+		//	if( !this.closed ) {
 
-				this._close( callback, $item );
+		//		this._close( callback, $item );
 
-			}
-			else {
+		//	}
+		//	else {
 
-				this._fan();
+		//		this._fan();
 
-			}
+		//	}
 
-			if( isTop ) {
-				return false;
-			}
+		//	if( isTop ) {
+		//		return false;
+		//	}
 
-			this._resetTransition( $item );
-			this._setOrigin( $item, 50, 50 );
+		//	this._resetTransition( $item );
+		//	this._setOrigin( $item, 50, 50 );
 
-			$item.css( {
-				opacity : 0,
-				transform : 'scale(2) translate(100px) rotate(20deg)'
-			} );
+		//	$item.css( {
+		//		opacity : 0,
+		//		transform : 'scale(2) translate(100px) rotate(20deg)'
+		//	} );
 
-			this._updateStack( $item, 'prev' );
+		//	this._updateStack( $item, 'prev' );
 
-			setTimeout( function() {
+		//	setTimeout( function() {
 
-				self._setTransition( $item, 'all', self.options.speed, 'ease-in' );
-				self._applyTransition( $item, { transform : 'none', opacity : 1 }, function() {
+		//		self._setTransition( $item, 'all', self.options.speed, 'ease-in' );
+		//		self._applyTransition( $item, { transform : 'none', opacity : 1 }, function() {
 
-					$item.off( self.transEndEventName );
-					self.isAnimating = false;
+		//			$item.off( self.transEndEventName );
+		//			self.isAnimating = false;
 
-				} );
+		//		} );
 
-			}, this.options.speed / 2 );
+		//	}, this.options.speed / 2 );
 
-		},
+		//},
 		_close : function( callback, $item ) {
 
 			var self = this,

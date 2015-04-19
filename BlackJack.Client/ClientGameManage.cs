@@ -10,6 +10,8 @@ namespace BlackJack.Client
     class ClientGameManager : IBjGameManager
     {
         #region Private members
+
+        private bool isAuthenticated;
         private void Clear()
         {
             EndGame = false;
@@ -162,84 +164,97 @@ namespace BlackJack.Client
         {
             doubleFactor = 1.0;
             Winner = null;
-            UserPlayer = new Player(PlayerType.Player);
+            UserPlayer = null;
             Dealer = new Player(PlayerType.Dealer);
-            Bet = 100;
+            Bet = 100;isAuthenticated = false;
+            isAuthenticated = false;
         }
 
-        public GameState IncreaseBet(int value)
+        public GameState IncreaseBet(int value = 50)
         {
-            if (isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is already running. You cannot change your initial bet."));
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
+            if (!canDouble)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is already running. You cannot change your bet.");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over. You can change bets when the game starts.");
             Bet += value;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-        public GameState DecreaseBet(int value)
+        public GameState DecreaseBet(int value = 50)
         {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
             if (Bet - value < 1)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Your bet cannot be less then 1 point."));
-            if (isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is already running. You cannot change your initial bet."));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Your bet cannot be less then 1$.");
+            if (!canDouble)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is already running. You cannot change your bet.");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over. You can change bets when the game starts.");
             Bet -= value;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Start()
         {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
             Clear();
             isRunning = true;
             Dealer.TakeCard(2);
 
             UserPlayer.TakeCard(2);
             CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Double()
         {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
             if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
             if (!canDouble)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Cannot double after any card has been hit"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Cannot double after any card has been hit");
             doubleFactor = 2.0;
             EndGame = true;
             UserPlayer.TakeCard(1);
             if (UserPlayer.CardScore > 21)
             {
                 CalculateWinner();
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
             }
             while (Dealer.CardScore < 16)
                 Dealer.TakeCard(1);
             CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Stand()
         {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
             if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
             EndGame = true;
             while (Dealer.CardScore < 16)
                 Dealer.TakeCard(1);
             CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Hit()
         {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
             if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
             UserPlayer.TakeCard(1);
             canDouble = false;
             if (UserPlayer.CardScore >= 21)
@@ -247,13 +262,31 @@ namespace BlackJack.Client
                 EndGame = true;
                 CalculateWinner();
             }
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
         public GameState Terminate()
         {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
             Clear();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            UserPlayer = null;
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
+
+        public GameState Login(string username, string pass)
+        {
+            var result = username.ToLower() == "admin" && pass.ToLower() == "admin";
+            isAuthenticated = result;
+            if (isAuthenticated)
+                UserPlayer = new Player(PlayerType.Player, username);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, result ? null : "Username or password is incorrect", "auth", result ? "Login successful" : null);
+        }
+
+        public GameState GetState()
+        {
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+        }
+
         #endregion
     }
 

@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Json;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Awesomium.Core;
 using BlackJack.Common;
+using Newtonsoft.Json;
 
 namespace BlackJack.Client
 {
@@ -22,12 +25,14 @@ namespace BlackJack.Client
     {
         #region Initialization
         private ClientGameManager gm = new ClientGameManager();
-        
+
         public MainWindow()
         {
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
+            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"pages\index.html"));
         }
+
         private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
         {
             JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
@@ -47,96 +52,79 @@ namespace BlackJack.Client
         }
         #endregion
 
-        private JSValue test(object sender, JavascriptMethodEventArgs args)
-        {
-            var req = String.Empty;
-            foreach (var v in args.Arguments)
-                req += v.ToString() + " ";
-
-            MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
-            return "ACCEPTED: " + req;
-        }
-        private JSValue test2(object sender, JavascriptMethodEventArgs args)
-        {
-            var req = String.Empty;
-            foreach (var v in args.Arguments)
-                req += v.ToString() + " ";
-
-            MessageBox.Show("Arguments:\n" + req, "Hello from js", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-
-            return "ACCEPTED" + req;
-        }
-
-        #region UI Event Handlers
-        private void Redraw(GameState state)
-        {
-            if (state.Exception != null)
-            {
-                var viewItem = new ListViewItem("");
-                viewItem.SubItems.Add("");
-                viewItem.SubItems.Add("");
-                viewItem.SubItems.Add("");
-                viewItem.SubItems.Add("");
-                viewItem.SubItems.Add("");
-                viewItem.SubItems.Add(state.Exception.Message);
-                listView1.Items.Add(viewItem);
-                return;
-            }
-            var item = new ListViewItem(state.Player.CardScore.ToString());
-            item.SubItems.Add(state.Dealer.CardScore.ToString());
-            item.SubItems.Add(state.GameIsOver.ToString());
-            item.SubItems.Add(state.Bet.ToString());
-            item.SubItems.Add(state.Player.Cash.ToString());
-            item.SubItems.Add(state.Winner == null ? "" : state.Winner.PlayerType.ToString());
-            listView1.Items.Add(item);
-        }
-
-        private void newGameButon_Click(object sender, EventArgs e)
+        #region HTML UI Event Handlers
+        private JSValue newGameJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.Start();
-            Redraw(state);
+            var json = GameStateToJson(state);
+            return json;
         }
-
-        private void exitGameButton_Click(object sender, EventArgs e)
+        private static string GameStateToJson(GameState state)
+        {
+            var stream = new MemoryStream();
+            var ser = new DataContractJsonSerializer(typeof(GameState));
+            ser.WriteObject(stream, state);
+            stream.Position = 0;
+            var sr = new StreamReader(stream);
+            var json = sr.ReadToEnd();
+            return json;
+        }
+        private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.Terminate();
-            Redraw(state);
+            var json = GameStateToJson(state);
+            return json;
         }
-
-        private void hitButton_Click(object sender, EventArgs e)
+        private JSValue hitJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.Hit();
-            Redraw(state);
+            var json = GameStateToJson(state);
+            return json;
         }
-
-        private void doubleButton_Click(object sender, EventArgs e)
+        private JSValue doubleJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.Double();
-            Redraw(state);
+            var json = GameStateToJson(state);
+            return json;
         }
-
-        private void standButton_Click(object sender, EventArgs e)
+        private JSValue standJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.Stand();
-            Redraw(state);
+            var json = GameStateToJson(state);
+            return json;
         }
-        private void increaseBet_Click(object sender, EventArgs e)
+        private JSValue increaseBetJs(object sender, JavascriptMethodEventArgs e)
         {
-            var state = gm.IncreaseBet(100);
-            Redraw(state);
+            var state = gm.IncreaseBet();
+            var json = GameStateToJson(state);
+            return json;
         }
-        private void decreaseBet_Click(object sender, EventArgs e)
+        private JSValue decreaseBetJs(object sender, JavascriptMethodEventArgs e)
         {
-            var state = gm.DecreaseBet(100);
-            Redraw(state);
+            var state = gm.DecreaseBet();
+            var json = GameStateToJson(state);
+            return json;
         }
+
+        private JSValue logInJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var username = e.Arguments.FirstOrDefault() == null ? "" : e.Arguments.FirstOrDefault().ToString();
+            var pass = e.Arguments.ElementAtOrDefault(1) == null ? "" : e.Arguments.ElementAtOrDefault(1).ToString();
+            var state = gm.Login(username, pass);
+            var json = GameStateToJson(state);
+            return json;
+        }
+
+        private JSValue getStateJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var state = gm.GetState();
+            var json = GameStateToJson(state);
+            return json;
+        }
+
         #endregion
 
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            listView1.Items.Clear();
-        }
+
 
     }
 }

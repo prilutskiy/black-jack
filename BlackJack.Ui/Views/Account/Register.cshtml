@@ -1,9 +1,4 @@
-﻿@model BlackJack.Ui.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
-
-<style>
+﻿<style>
     /*
  * Specific styles of signin component
  */
@@ -12,7 +7,6 @@
  */
     body, html {
         height: 100%;
-        background-repeat: no-repeat;
     }
 
     .card-container.card {
@@ -83,7 +77,7 @@
         box-sizing: border-box;
     }
 
-    .form-signin #inputEmail,
+    .form-signin #inputlogin,
     .form-signin #inputPassword {
         direction: ltr;
         height: 44px;
@@ -152,17 +146,26 @@
 
     })
 </script>
-
-<div class="card card-container">
-    <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
-    <p id="profile-name" class="profile-name-card"></p>
-    <form class="form-signin form-group">
-        <input type="text" id="inputEmail" class="form-control" placeholder="Login" required>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <button class="btn btn-lg btn-primary btn-block btn-signin">Sign in</button>
-    </form><!-- /form -->
-</div><!-- /card-container -->
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+<script src="~/Scripts/game.js"></script>
+<div class="row">
+    <div class="col-sm-3">
+        <a href="#" class="label label-info" onclick="window.location.href='../'">
+            <i class="fa icon-arrow-left"></i>
+            &nbsp;&nbsp;<b>Back to welcome screen</b>
+        </a>
+        
+    </div>
+</div>
+<div class="row">
+    <div class="card card-container" style="margin-top: 70px; background-color: rgba(54, 142, 158, 0.52)">
+        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+        <p id="profile-name" class="profile-name-card"></p>
+        <div class="form-signin form-group">
+            <input type="text" id="inputlogin" class="form-control" placeholder="Login" required>
+            <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <button class="btn btn-lg  btn-block btn-signin" onclick="logIn();">
+                Sign in
+            </button>
+        </div><!-- /form -->
+    </div><!-- /card-container -->
+</div>

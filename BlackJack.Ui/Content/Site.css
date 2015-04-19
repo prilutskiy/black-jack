@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #fff url(../images/bg.jpg);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -19,17 +20,51 @@ textarea {
 .label-as-badge {
     border-radius: 1em;
 }
+
 div[data-notify="container"] {
     margin-top: 100px !important;
-      width: 27%;
+    width: 27%;
 }
 
 .alert-success {
-      background-color: rgba(92, 184, 92, 0.7);
+    background-color: rgba(92, 184, 92, 0.7);
 }
 
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-} 
+.alert-info {
+    background-color: rgba(49, 112, 143, 0.7);
+}
+
+.alert-warning {
+    background-color: rgba(138, 109, 59, 0.7);
+}
+
+.alert-danger {
+    background-color: rgba(169, 68, 66, 0.7);
+}
+.modal-dialog {
+    margin-top: 25%;
+}
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-footer {
+      text-align: center;
+}
+.modal-header {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.modal-footer {
+  background-color: rgba(0, 0, 0, 0.5) !important;
+    padding-top: 5px;
+  padding-bottom: 5px;
+}
+.bootstrap-dialog-message {
+    color: #ffffff;
+    text-align: center;
+    font-size: 16px !important;
+    font-weight: 300;
+}
+.bootstrap-dialog-title {
+    text-align: center;
+}
