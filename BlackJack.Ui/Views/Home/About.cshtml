@@ -8,6 +8,7 @@
 <script src="~/Scripts/game.js"></script>
 
 
+
 <div id="gameTableHidden" class="hidden">
     <div class="row">
         <div class="col-sm-3">
@@ -18,9 +19,9 @@
                         <b>Bet &nbsp;</b>
                     </div>
                 </div>
-                <a class="label label-default">-</a>
+                <a class="label label-default" onclick="decreaseBet();">-</a>
                 <span class="label label-primary" id="bet">100</span>
-                <a class="label label-default">+</a>
+                <a class="label label-default" onclick="increaseBet();">+</a>
             </div>
         </div>
         <div class="col-sm-6">
@@ -39,17 +40,17 @@
             <div class="col-sm-12">
                 <div class="text-left text-center h6">
                     <b>Dealer cards </b>
-                    @*<sup class="label label-info label-as-badge h6">
+                    <sup class="label label-info label-as-badge h6 hidden">
                         <b id="dealerCardScore">0</b>
-                    </sup>*@
+                    </sup>
                 </div>
                 <ul id="dealer-el" class="baraja-container" style="height: 150px">
-                    <li><img src="~/Images/1.png" style="width: 100px; height: 125px" /></li>
+                    <li><img src="~/Images/1.png" style="width: 100px; height: 125px"/></li>
                     <li>
-                        <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+                        <img src="~/Images/1.png" style="width: 100px; height: 125px"/>
                     </li>
                     <li>
-                        <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+                        <img src="~/Images/1.png" style="width: 100px; height: 125px"/>
                     </li>
                     <li>
                 </ul>
@@ -62,12 +63,12 @@
                     </sup>
                 </div>
                 <ul id="player-el" class="baraja-container" style="height: 150px">
-                    <li><img src="~/Images/1.png" style="width: 100px; height: 125px" /></li>
+                    <li><img src="~/Images/1.png" style="width: 100px; height: 125px"/></li>
                     <li>
-                        <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+                        <img src="~/Images/1.png" style="width: 100px; height: 125px"/>
                     </li>
                     <li>
-                        <img src="~/Images/1.png" style="width: 100px; height: 125px" />
+                        <img src="~/Images/1.png" style="width: 100px; height: 125px"/>
                     </li>
                     <li>
                 </ul>
@@ -77,14 +78,32 @@
     </div>
 
     <div class="row" id="actionButtons">
-        <div class="col-sm-5 col-sm-offset-3">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-5">
             <div class="col-sm-12">
-                <div class=" btn-group-justified" style="margin-left: 15px">
-                    <a href="#" class="btn btn-success btn-sm" style="width: 33%;" onclick="hit();"><i class="fa icon-plus"></i> <b> &nbsp;&nbsp;Hit</b></a>
-                    <a href="#" class="btn btn-info btn-sm disabled " style="width: 33%;"><i class="fa icon-dollar"></i> <b>&nbsp;&nbsp;Double</b></a>
-                    <a href="#" class="btn btn-danger btn-sm" style="width: 33%;"><i class="fa icon-stop"></i> <b>&nbsp;&nbsp;Stand</b></a>
+                <div id="gameActions" class="btn-group-justified " style="margin-left: 15px">
+                    <a href="#" class="btn btn-success btn-sm"
+                       style="width: 33%;"
+                       onclick=" hit(); ">
+                        <i class="fa icon-plus"></i> <b> &nbsp;&nbsp;Hit</b>
+                    </a>
+                    <a id="doubleButton" href="#" class="btn btn-info btn-sm"
+                       style="width: 33%;" 
+                       onclick="doubleBet();">
+                        <i class="fa icon-dollar"></i> <b>&nbsp;&nbsp;Double</b>
+                    </a>
+                    <a href="#" class="btn btn-danger btn-sm"
+                       style="width: 33%;" 
+                       onclick="stand();">
+                        <i class="fa icon-stop"></i> <b>&nbsp;&nbsp;Stand</b>
+                    </a>
                 </div>
-
+                <div id="beforeGameActions" class=" btn-group-justified hidden" style="margin-left: 15px">
+                    <a class="btn btn-block btn-success" style="margin-top: 100%;"
+                       onclick="restart();">
+                        <b>Want more!</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

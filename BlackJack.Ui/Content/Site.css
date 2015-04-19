@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background: #fff url(../images/bg.jpg);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -19,17 +20,12 @@ textarea {
 .label-as-badge {
     border-radius: 1em;
 }
+
 div[data-notify="container"] {
     margin-top: 100px !important;
-      width: 27%;
+    width: 27%;
 }
 
 .alert-success {
-      background-color: rgba(92, 184, 92, 0.7);
+    background-color: rgba(92, 184, 92, 0.7);
 }
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-} 

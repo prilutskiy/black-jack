@@ -167,25 +167,25 @@ namespace BlackJack.Client
             Bet = 100;
         }
 
-        public GameState IncreaseBet(int value)
+        public GameState IncreaseBet(int value = 50)
         {
-            if (isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is already running. You cannot change your initial bet."));
+            if (!canDouble)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is already running. You cannot change your bet.");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over. You can change bets when the game starts.");
             Bet += value;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-        public GameState DecreaseBet(int value)
+        public GameState DecreaseBet(int value = 50)
         {
             if (Bet - value < 1)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Your bet cannot be less then 1 point."));
-            if (isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is already running. You cannot change your initial bet."));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Your bet cannot be less then 1$.");
+            if (!canDouble)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is already running. You cannot change your bet.");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over. You can change bets when the game starts.");
             Bet -= value;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Start()
@@ -196,50 +196,50 @@ namespace BlackJack.Client
 
             UserPlayer.TakeCard(2);
             CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Double()
         {
             if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
             if (!canDouble)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Cannot double after any card has been hit"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Cannot double after any card has been hit");
             doubleFactor = 2.0;
             EndGame = true;
             UserPlayer.TakeCard(1);
             if (UserPlayer.CardScore > 21)
             {
                 CalculateWinner();
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
             }
             while (Dealer.CardScore < 16)
                 Dealer.TakeCard(1);
             CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Stand()
         {
             if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
             EndGame = true;
             while (Dealer.CardScore < 16)
                 Dealer.TakeCard(1);
             CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
 
         public GameState Hit()
         {
             if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is not running yet"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
             if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, new InvalidOperationException("Game is over"));
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
             UserPlayer.TakeCard(1);
             canDouble = false;
             if (UserPlayer.CardScore >= 21)
@@ -247,12 +247,12 @@ namespace BlackJack.Client
                 EndGame = true;
                 CalculateWinner();
             }
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
         public GameState Terminate()
         {
             Clear();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, null);
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
         #endregion
     }

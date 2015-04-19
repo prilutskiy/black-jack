@@ -5,21 +5,25 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-
+ 
 namespace BlackJack.Common
 {
     [DataContract]
     public class GameState
     {
-        public GameState(Player player, Player dealer, bool gameIsOver, Player winner, int bet, Exception ex)
+        public GameState(Player player, Player dealer, bool gameIsOver, Player winner, int bet, double doubleFactor, String exMsg)
         {
             Player = player;
             Dealer = dealer;
             GameIsOver = gameIsOver;
             Winner = winner;
             Bet = bet;
-            Exception = ex;
+            ErrorMessage = exMsg;
+            DoubleFactor = doubleFactor;
         }
+
+        [DataMember]
+        public Double DoubleFactor { get; set; }
         [DataMember]
         public Player Player { get; private set; }
         [DataMember]
@@ -31,6 +35,6 @@ namespace BlackJack.Common
         [DataMember]
         public Int32 Bet { get; private set; }
         [DataMember]
-        public Exception Exception { get; set; }
+        public String ErrorMessage { get; set; }
     }
 }
