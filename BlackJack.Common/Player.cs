@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
+    [DataContract]
     public enum PlayerType
     {
         NotSet = 0,
@@ -14,22 +16,23 @@ namespace BlackJack.Common
         Draw = 3,
     }
 
+    [DataContract]
     public class Player
     {
         public void ChangeCash(int value)
         {
             Cash += value;
         }
+        [DataMember]
         public PlayerType PlayerType { get; private set; }
+        [DataMember]
         public Int32 Cash { get; private set; }
+        [DataMember]
         public Int32 CardScore { get; private set; }
-
+        [DataMember]
         public String Username { get; private set; }
+        [DataMember]
         public List<Card> Cards { get; private set; }
-
-        public event EventHandler<CardEventArgs> CardTaken;
-        public event EventHandler<CardEventArgs> HandCompleted;
-
         private void RecalculateCardScore()
         {
             var aceCount = 0;
@@ -48,7 +51,6 @@ namespace BlackJack.Common
                 CardScore -= 10;
             }
         }
-
         public Player(PlayerType playerType, string username = "")
         {
             this.PlayerType = playerType;
@@ -56,7 +58,6 @@ namespace BlackJack.Common
             Username = username;
             Cash = 1000;
         }
-
         public void TakeCard(int count)
         {
             for (int i = 0; i < count; i++)
@@ -64,11 +65,8 @@ namespace BlackJack.Common
                 var c = CardFactory.SpawnCard();
                 Cards.Add(c);
                 RecalculateCardScore();
-                if (CardTaken != null)
-                    CardTaken(this, new CardEventArgs(this, c, this.CardScore));
             }
         }
-
         public void Clear()
         {
             Cards.Clear();

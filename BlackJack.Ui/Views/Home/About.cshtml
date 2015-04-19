@@ -8,40 +8,40 @@
 <script src="~/Scripts/game.js"></script>
 
 
-<div class="row">
-    <div class="col-sm-3">
-        <div class="col-sm-12">
-            <div class="text-left" style="display: inline">
-                <img src="~/Images/1429055942_kpat.png" height="16" />
-                <div style="display: inline" class="h6">
-                    <b>Bet &nbsp;</b>
-                </div>
-            </div>
-            <a class="label label-default">-</a>
-            <span class="label label-primary">100</span>
-            <a class="label label-default">+</a>
-        </div>
-    </div>
-    <div class="col-sm-6">
-        <div class="text-center h4"><b>Cash: <d class="text-success ">1000$</d></b></div>
-    </div>
-    <div class="col-sm-3">
-        <div class="btn btn-xs btn-info pull-right" style="margin-top: 3px" id="backToLobby"
-             onclick="myMethod();">
-            Back to lobby
-        </div>
-    </div>
-</div>
-
 <div id="gameTableHidden" class="hidden">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="col-sm-12">
+                <div class="text-left" style="display: inline">
+                    <img src="~/Images/1429055942_kpat.png" height="16" />
+                    <div style="display: inline" class="h6">
+                        <b>Bet &nbsp;</b>
+                    </div>
+                </div>
+                <a class="label label-default">-</a>
+                <span class="label label-primary" id="bet">100</span>
+                <a class="label label-default">+</a>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="text-center h4"><b>Cash: <d class="text-success" id="cash">1000$</d></b></div>
+        </div>
+        <div class="col-sm-3">
+            <div class="btn btn-xs btn-info pull-right" style="margin-top: 3px" id="backToLobby"
+                 onclick="myMethod();">
+                Back to lobby
+            </div>
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-sm-4  col-sm-offset-3">
             <div class="col-sm-12">
                 <div class="text-left text-center h6">
                     <b>Dealer cards </b>
-                    <sup class="label label-info label-as-badge h6">
-                        <b>15 </b>
-                    </sup>
+                    @*<sup class="label label-info label-as-badge h6">
+                        <b id="dealerCardScore">0</b>
+                    </sup>*@
                 </div>
                 <ul id="dealer-el" class="baraja-container" style="height: 150px">
                     <li><img src="~/Images/1.png" style="width: 100px; height: 125px" /></li>
@@ -58,7 +58,7 @@
                 <div class="text-left text-center h6">
                     <b>Player cards </b>
                     <sup class="label label-info label-as-badge h6">
-                        <b>15 </b>
+                        <b id="playerCardScore">0</b>
                     </sup>
                 </div>
                 <ul id="player-el" class="baraja-container" style="height: 150px">
@@ -93,7 +93,10 @@
 <div id="gameTable">
     <div class="row" id="startButton">
         <div class="col-sm-4 col-sm-offset-4">
-            <a class="btn btn-block btn-success" style="margin-top: 100%; border-radius: 5px"><b>Start game!</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i></a>
+            <a class="btn btn-block btn-success" style="margin-top: 100%; border-radius: 5px"
+               onclick="startGame();">
+                <b>Start game!</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
+            </a>
         </div>
     </div>
 </div>

@@ -4,8 +4,10 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Json;
 using System.Security.Permissions;
 using System.Text;
 using System.Threading;
@@ -13,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Awesomium.Core;
 using BlackJack.Common;
+using Newtonsoft.Json;
 
 namespace BlackJack.Client
 {
@@ -28,6 +31,7 @@ namespace BlackJack.Client
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
         }
+
         private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
         {
             JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
@@ -68,7 +72,7 @@ namespace BlackJack.Client
             return "ACCEPTED" + req;
         }
 
-        #region UI Event Handlers
+        #region Forms UI Event Handlers
         private void Redraw(GameState state)
         {
             if (state.Exception != null)
@@ -130,6 +134,44 @@ namespace BlackJack.Client
         {
             var state = gm.DecreaseBet(100);
             Redraw(state);
+        }
+        #endregion
+
+        #region HTML UI Event Handlers
+        private JSValue newGameJs(object sender, JavascriptMethodEventArgs e)
+         {
+            var state = gm.Start();
+            var stream = new MemoryStream();
+            var ser = new DataContractJsonSerializer(typeof(GameState));
+            ser.WriteObject(stream, state);
+            stream.Position = 0;
+            var sr = new StreamReader(stream);
+            var json = sr.ReadToEnd();
+            return json;
+        }
+        private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private JSValue hitJs(object sender, JavascriptMethodEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private JSValue doubleJs(object sender, JavascriptMethodEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private JSValue standJs(object sender, JavascriptMethodEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private JSValue increaseBetJs(object sender, JavascriptMethodEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+        private JSValue decreaseBetJs(object sender, JavascriptMethodEventArgs e)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 

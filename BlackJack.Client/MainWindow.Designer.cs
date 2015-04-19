@@ -207,6 +207,7 @@
             this.debugPanel.Name = "debugPanel";
             this.debugPanel.Size = new System.Drawing.Size(876, 576);
             this.debugPanel.TabIndex = 5;
+            this.debugPanel.Visible = false;
             // 
             // MainWindow
             // 

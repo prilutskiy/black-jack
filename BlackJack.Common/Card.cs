@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
+    [DataContract]
     public enum CardSuit : int
     {
         NotSet = 0,
@@ -15,6 +17,7 @@ namespace BlackJack.Common
         Diamonds = 4,
     }
 
+    [DataContract]
     public enum CardValue : int
     {
         NotSet = 0,
@@ -32,18 +35,22 @@ namespace BlackJack.Common
         Queen = 12,
         King = 13,
     }
+    [DataContract]
     public class Card
     {
         public Card(int suit, int value)
         {
             this.Suit = (CardSuit) suit;
             this.Value = (CardValue) value;
-            cardImgPath = String.Format("\\{0}\\{1}.png", suit, value);
+            CardImgPath = String.Format("/Images/Cards/{0}/{1}.png", suit, value);
         }
 
+        [DataMember]
         public CardSuit Suit { get; private set; }
+        [DataMember]
         public CardValue Value { get; private set; }
-        private String cardImgPath = String.Empty;        
+        [DataMember]
+        public String CardImgPath { get; private set; }
     }
 
 
