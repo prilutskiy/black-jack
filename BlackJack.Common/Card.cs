@@ -42,7 +42,7 @@ namespace BlackJack.Common
         {
             this.Suit = (CardSuit) suit;
             this.Value = (CardValue) value;
-            CardImgPath = String.Format("/Images/Cards/{0}/{1}.png", suit, value);
+            CardImgPath = String.Format("Images/Cards/{0}/{1}.png", suit, value);
         }
 
         [DataMember]

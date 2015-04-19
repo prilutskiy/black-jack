@@ -30,7 +30,7 @@ namespace BlackJack.Common
         [DataMember]
         public Int32 CardScore { get; private set; }
         [DataMember]
-        public String Username { get; private set; }
+        public String Username { get; internal set; }
         [DataMember]
         public List<Card> Cards { get; private set; }
         private void RecalculateCardScore()

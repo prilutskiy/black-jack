@@ -29,17 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.webView = new Awesomium.Windows.Forms.WebControl(this.components);
             this.SuspendLayout();
             // 
             // webView
             // 
-            this.webView.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("webView.BackgroundImage")));
             this.webView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.webView.Location = new System.Drawing.Point(0, 0);
             this.webView.Size = new System.Drawing.Size(900, 600);
-            this.webView.Source = new System.Uri("http://localhost:32105/", System.UriKind.Absolute);
+            this.webView.Source = new System.Uri("about:error", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             // 
             // MainWindow
@@ -62,9 +60,6 @@
         #endregion
 
         private Awesomium.Windows.Forms.WebControl webView;
-
-
-
 
     }
 }

@@ -11,7 +11,7 @@ namespace BlackJack.Common
     [DataContract]
     public class GameState
     {
-        public GameState(Player player, Player dealer, bool gameIsOver, Player winner, int bet, double doubleFactor, String exMsg)
+        public GameState(Player player, Player dealer, bool gameIsOver, Player winner, int bet, double doubleFactor, String exMsg, string appStage = "game", string msg = null)
         {
             Player = player;
             Dealer = dealer;
@@ -20,8 +20,14 @@ namespace BlackJack.Common
             Bet = bet;
             ErrorMessage = exMsg;
             DoubleFactor = doubleFactor;
+            AppStage = appStage;
+            Message = msg;
         }
 
+        [DataMember]
+        public String Message { get; set; }
+        [DataMember]
+        public String AppStage { get; set; }
         [DataMember]
         public Double DoubleFactor { get; set; }
         [DataMember]

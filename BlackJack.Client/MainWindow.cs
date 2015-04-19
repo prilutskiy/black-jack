@@ -30,6 +30,7 @@ namespace BlackJack.Client
         {
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
+            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"pages\index.html"));
         }
 
         private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
@@ -105,8 +106,24 @@ namespace BlackJack.Client
             return json;
         }
 
+        private JSValue logInJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var username = e.Arguments.FirstOrDefault() == null ? "" : e.Arguments.FirstOrDefault().ToString();
+            var pass = e.Arguments.ElementAtOrDefault(1) == null ? "" : e.Arguments.ElementAtOrDefault(1).ToString();
+            var state = gm.Login(username, pass);
+            var json = GameStateToJson(state);
+            return json;
+        }
+
+        private JSValue getStateJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var state = gm.GetState();
+            var json = GameStateToJson(state);
+            return json;
+        }
 
         #endregion
+
 
 
     }

@@ -1,6 +1,7 @@
-﻿$(document).ready(function () {
-    $('form').removeAttr('novalidate');
+﻿var CurrentUser = "undefined";
 
+$(document).ready(function () {
+    $('form').removeAttr('novalidate');
 
 
 });
