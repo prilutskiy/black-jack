@@ -9,6 +9,11 @@ namespace BlackJack.Common
 {
     public interface IBjGameManager
     {
+        /// <summary>
+        /// Ctor statements must be placed in here or sort of
+        /// </summary>
+        /// <returns></returns>
+        GameState Initialize();
         GameState IncreaseBet(int value);
         GameState DecreaseBet(int value);
         GameState Start();

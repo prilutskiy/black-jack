@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BlackJack.Common;
 
 namespace BlackJack.Client
@@ -162,12 +158,18 @@ namespace BlackJack.Client
         #region Public members
         public ClientGameManager()
         {
+            Initialize();
+        }
+
+        public GameState Initialize()
+        {
             doubleFactor = 1.0;
             Winner = null;
             UserPlayer = null;
             Dealer = new Player(PlayerType.Dealer);
-            Bet = 100;isAuthenticated = false;
+            Bet = 100; isAuthenticated = false;
             isAuthenticated = false;
+            return new GameState(UserPlayer, Dealer, EndGame,Winner,Bet,doubleFactor, null);
         }
 
         public GameState IncreaseBet(int value = 50)
