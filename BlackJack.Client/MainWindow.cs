@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Security.Permissions;
@@ -123,6 +124,16 @@ namespace BlackJack.Client
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TcpClient client = new TcpClient();
+            client.Connect("127.0.0.1", 777);
+            var method = MethodInfo.GetCurrentMethod() as MethodInfo;
+            var signature = method.ToMethodSignature();
+            client.Client.Send(signature.ToByteArray());
+            client.Close();
+        }
 
 
 
