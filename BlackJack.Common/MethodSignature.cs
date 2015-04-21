@@ -17,7 +17,7 @@ namespace BlackJack.Common
         {
         }
 
-        public MethodSignature(string methodName, List<Type> parameterTypes, object returnType)
+        public MethodSignature(string methodName, List<Type> parameterTypes, Type returnType)
         {
             if (methodName == null)
                 throw new NullReferenceException();
@@ -49,10 +49,19 @@ namespace BlackJack.Common
         /// <summary>
         /// Return type of the method
         /// </summary>
-        public Object ReturnType 
+        public Type ReturnType 
         { 
             get; 
             set; 
+        }
+
+        public override string ToString()
+        {
+            string parameters = "";
+            for (int i = 0; i < ParametersTypes.Count; i++)
+                parameters += String.Format("{0}: {1}\n", i + 1, ParametersTypes[i].ToString());
+
+            return String.Format("Method name: {0}\nReturn type: {1}\nParameters types: {2}",Name,ReturnType.ToString(), parameters);
         }
     }
 }

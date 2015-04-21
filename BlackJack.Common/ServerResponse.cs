@@ -16,13 +16,15 @@ namespace BlackJack.Common
             
         }
 
-        public ServerResponse(GameState state, bool callSuccessful)
+        public ServerResponse(GameState state, bool callSuccessful, string msg = "Hello!")
         {
             GameState = state;
             MethodCallSucceed = callSuccessful;
+            Message = msg;
         }
         public GameState GameState { get; set; }
         public Boolean MethodCallSucceed { get; set; }
+        public String Message { get; set; }
     }
 
 }

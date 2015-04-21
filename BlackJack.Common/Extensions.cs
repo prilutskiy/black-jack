@@ -12,7 +12,6 @@ namespace BlackJack.Common
 {
     public static class Extensions
     {
-        public static readonly String HandshakePhrase = "Handshake";
         public static bool TryRunOverNetwork(this MethodInfo method, Socket socket)
         {
             if (!socket.Connected)
@@ -47,7 +46,7 @@ namespace BlackJack.Common
             }
         }
 
-        public static byte[] ToByteArray(this MethodSignature signature)
+        public static byte[] ToByteArray(this Object signature)
         {
             using (var stream = new MemoryStream())
             {
@@ -67,33 +66,13 @@ namespace BlackJack.Common
                 return obj;
             }
         }
-
-        public static bool SendHandshake(this Socket socket)
+        public static MethodCallRequest ToMethodCallRequest(this byte[] bytes)
         {
-            try
+            using (var stream = new MemoryStream(bytes))
             {
-                var bytes = BitConverter.GetBytes((Int64)(HandshakePhrase.GetHashCode()));
-                socket.Send(bytes);
-                return true;
-            }
-            catch (SocketException ex)
-            {
-                return false;
-            }
-        }
-
-        public static bool ReceiveHandshake(this Socket socket)
-        {
-            try
-            {
-                var bytes = new byte[8];
-                var length = socket.Receive(bytes);
-                var handshakeHashcode = Convert.ToInt64(bytes);
-                return handshakeHashcode.Equals((Int64) (HandshakePhrase.GetHashCode()));
-            }
-            catch (SocketException ex)
-            {
-                return false;
+                var ser = new BinaryFormatter();
+                var obj = ser.Deserialize(stream) as MethodCallRequest;
+                return obj;
             }
         }
     }

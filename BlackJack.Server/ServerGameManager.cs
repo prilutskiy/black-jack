@@ -53,5 +53,11 @@ namespace BlackJack.Server
         {
             throw new NotImplementedException();
         }
+
+        public object CallMethodByRequest(MethodCallRequest methodCallRequest)
+        {
+            //throw new NotImplementedException();
+            return null;
+        }
     }
 }
