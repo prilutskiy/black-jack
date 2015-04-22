@@ -16,5 +16,13 @@ namespace BlackJack.Server
         {
             InitializeComponent();
         }
+
+        public void AddMessageToEventLog(String msg)
+        {
+            var item = new ListViewItem();
+            item.SubItems.Add(DateTime.Now.ToString());
+            item.SubItems.Add(msg);
+            serverLogListView.Items.Add(item);
+        }
     }
 }
