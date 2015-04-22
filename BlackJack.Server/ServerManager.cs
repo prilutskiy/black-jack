@@ -12,6 +12,11 @@ using BlackJack.Common;
 
 namespace BlackJack.Server
 {
+    public class ServerEventArgs : EventArgs
+    {
+        public String Message { get; set; }
+        public Socket ClientSocket { get; set; }
+    }
     /// <summary>
     /// Must be instantiated in different from form thread for user experience improvement
     /// </summary>  
@@ -26,6 +31,7 @@ namespace BlackJack.Server
         public void Start()
         {
             serverThread.Start();
+            WriteLog("Server started", null);
         }
 
         private Thread serverThread;
@@ -33,12 +39,13 @@ namespace BlackJack.Server
         private int maxConnections = 2;
         private TcpClient server;
         private IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 777);
-        List<Thread> runningThreads = new List<Thread>(); 
+        List<Thread> runningThreads = new List<Thread>();
+        public event EventHandler<ServerEventArgs> ServerStateChanged;
         private void StartListening()
         {
             server = new TcpClient(endPoint);
             server.Client.Listen(maxConnections);
-
+            WriteLog("Listening started", null);
             while (true)
             {
                 var incoming = server.Client.Accept();
@@ -67,9 +74,10 @@ namespace BlackJack.Server
         }
         public void ProcessClientConnection(object clientObj)
         {
+            var clientSocket = clientObj as Socket;
             try
             {
-                var clientSocket = clientObj as Socket;
+                WriteLog("Client connected", clientSocket);
                 var client = new Connection(clientSocket);
                 client.SendHandshake();
                 var gm = new ServerGameManager();
@@ -92,13 +100,11 @@ namespace BlackJack.Server
             }
             catch (SerializationException ex)
             {
-                MessageBox.Show(ex.Message);
-                //TODO: handling exception
+                WriteLog(ex.Message, clientSocket);
             }
             catch (SocketException ex)
-            { 
-                MessageBox.Show(ex.Message);
-                //TODO: handling exception
+            {
+                WriteLog(ex.Message, clientSocket);
             }
             finally
             {
@@ -117,6 +123,11 @@ namespace BlackJack.Server
             throw new NotImplementedException();
         }
 
+        private void WriteLog(string msg, Socket clientSocket)
+        {
+            if (ServerStateChanged != null)
+                ServerStateChanged(this, new ServerEventArgs{Message = msg, ClientSocket = clientSocket});
+        }
         public void Dispose()
         {
             StopListening();
