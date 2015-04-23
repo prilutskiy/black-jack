@@ -181,6 +181,7 @@
             message: $('#waiting').html(),
             buttons: []
         });
+        //infinite loop, waiting while server is ready to start the game
     }
     function triggerSettingsModal() {
         BootstrapDialog.show({
@@ -208,7 +209,7 @@
                     label: 'Sign in',
                     cssClass: 'btn btn-sm btn-success',
                     action: function (dialog) {
-                        if (!trySignin()) {
+                        if (!getAuthState()) {
                             dialog.close();
                             triggerErrorModal(redirectPage);
                         } else {
@@ -227,29 +228,78 @@
         });
 
     }
-    function trySignin() {
-        return true;
+    function triggerLeaderboardModal() {
+        BootstrapDialog.show({
+            closable: true,
+            title: 'Leaderboard',
+            message: '<b class="text-center text-warning">Table with players here</b>',
+            buttons: [
+            {
+                label: 'OK',
+                cssClass: 'btn btn-sm btn-success',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+
+    function getAuthState() {
+        return false;
     }
 
     function showLeaderboards() {
-        if (CurrentUser === 'undefined')
-            triggerSignInModal();
+        var state = getAuthState();
+        if (!state)
+            triggerSignInModal('leaderboard');
+        else
+            triggerLeaderboardModal();
     }
 
     function startClassic() {
-        if (CurrentUser === 'undefined')
-            triggerSignInModal();
+        var state = getAuthState();
+        if (!state)
+            triggerSignInModal('classic');
+        else
+            triggerWaitingModal('classic');
     }
 
     function startDuel() {
-        if (CurrentUser === 'undefined')
-            triggerSignInModal();
+        var state = getAuthState();
+        if (!state)
+            triggerSignInModal('duel');
+        else
+            triggerWaitingModal('duel');
     }
+
+    $(document).ready(function () {
+        var state = getAuthState();
+        if (state) {
+            $('#profileBtn').replaceWith($('#logoutBtn'));
+        } else {
+            $('#profileBtn').replaceWith($('#loginBtn'));
+        }
+    });
 </script>
 </head>
 
 <body>
 <div class="hidden">
+
+    <div id="loginBtn">
+        <div class="btn btn-sm btn-info pull-right" style="border-radius: 5px;" id="currentUser" rel="tooltip"
+             onclick='triggerSignInModal() '>
+            Sign in&nbsp;&nbsp;
+            <i class="fa icon-signin"></i>
+        </div>
+    </div>
+    <div id="logoutBtn">
+        <div class="btn btn-sm btn-warning pull-right" style="border-radius: 5px;" id="currentUser" rel="tooltip"
+             onclick='signOut();'>
+            Sign out&nbsp;&nbsp;
+            <i class="fa icon-signout"></i>
+        </div>
+    </div>
     <div class="row" id="signinModal">
         <div class="card card-container" style="background-color: rgba(54, 142, 158, 0.52)">
             <img id="profile-img" class="profile-img-card" src="images/avatar.png" style="margin-top: -10px; margin-bottom: -50px;"/>
@@ -263,13 +313,16 @@
     <div id="waiting">
         <h3 id="waitingText">Waiting for a player...</h3>
     </div>
-    <div id="settings">
-        <div class="form-group has-success" style ="text-align:center">
-            <label class="control-label h5"><b>Server address</b></label>
-            <input type="text" class="form-control" id="serverAddress" style="margin-left: 130px">
-            <label class="control-label h5"><b>Server port</b></label>
-            <input type="text" class="form-control" id="serverPort" style="margin-left: 130px">
-        </div>
+    <div class="row" id="settings">
+        <div class="card card-container" style="background-color: rgba(54, 142, 158, 0.52)">
+            <p id="profile-name" class="profile-name-card text-success">Connection settings</p>
+            <div class="form-signin form-group" style="margin-top: -30px; ">
+                <label class="control-label h5"><b>Server address</b></label>
+                <input type="text" class="form-control" id="serverAddress" value="127.0.0.1">
+                <label class="control-label h5"><b>Server port</b></label>
+                <input type="text" class="form-control" id="serverPort" style="margin-bottom: -40px" value="777">
+            </div><!-- /form -->
+        </div><!-- /card-container -->
     </div>
 </div>
 
@@ -282,11 +335,7 @@
         <div class="col-sm-6">
         </div>
         <div class="col-sm-3">
-            <div class="btn btn-sm btn-info pull-right" style="border-radius: 5px;" id="currentUser" rel="tooltip"
-                 onclick=' triggerSignInModal() '>
-                Log in&nbsp;&nbsp;
-                <i class="fa icon-signin"></i>
-            </div>
+            <div id="profileBtn"></div>
         </div>
     </div>
     <div class="row" style="margin-top: 15px">
