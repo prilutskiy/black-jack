@@ -42,5 +42,7 @@ namespace BlackJack.Common
         public Int32 Bet { get; private set; }
         [DataMember]
         public String ErrorMessage { get; set; }
+        [DataMember]
+        public List<KeyValuePair<string, int>> Leaderboard { get; set; }
     }
 }

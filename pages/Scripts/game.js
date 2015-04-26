@@ -1,32 +1,23 @@
 ﻿var baraja_dealer;
 var baraja_player;
 
-function logOut() {
-    jsobject.exitGameJs();
+function leave() {
+    jsobject.leaveGameJs();
     window.location.href = 'index.html';
 }
-
 function logIn() {
     var user = $('#inputlogin').val();
     var pass = $('#inputPassword').val();
     var response = jsobject.logInJs(user, pass);
     var jqState = $.parseJSON(response);
-
-    redraw(jqState);
+    alert(response);
+    return jqState.jqState.ErrorMessage == null;
 }
 
 function startGame() {
     var response = jsobject.newGameJs();
     var jqState = $.parseJSON(response);
-
-
-    var gameTable = $('#gameTableHidden');
-    var container = $('#gameTable');
-    if (gameTable.hasClass('hidden') && !container.hasClass('hidden')) {
-        container.replaceWith(gameTable);
-        gameTable.removeClass('hidden');
-    }
-
+    
     redraw(jqState, true);
 }
 
@@ -173,10 +164,11 @@ function redraw(jqState, newGame) {
         }
     }
     else if (jqState.AppStage == "auth") {
-        if (jqState.ErrorMessage != null) {
-            sendPopup('warning', 'Oops!', jqState.ErrorMessage);
-        } else {
-            window.location.href = 'game.html';
-        }
+        alert('deprecated action');
+        //if (jqState.ErrorMessage != null) {
+        //    sendPopup('warning', 'Oops!', jqState.ErrorMessage);
+        //} else {
+        //    window.location.href = 'game.html';
+        //}
     }
 }

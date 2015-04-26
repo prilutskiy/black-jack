@@ -29,38 +29,39 @@
 
 
     <script>
-    $(document).ready(function () {
-        var response = jsobject.getStateJs();
-        var jqState = $.parseJSON(response);
+        $(document).ready(function () {
+            var response = jsobject.getStateJs();
+            var jqState = $.parseJSON(response);
 
-        $('#currentUser').text(jqState.Player.Username);
-        sendPopup('success', 'Welcome, ' + jqState.Player.Username + '!', 'Login successful.');
-    });
-    function logoutConfirm() {
-        BootstrapDialog.show({
-            closable: false,
-            title: 'Confirmation',
-            message: 'Do you really want to leave? Unsaved game progress will be lost. Forever.',
-            buttons: [{
-                label: 'Yes, leave',
-                cssClass: 'btn btn-sm btn-success',
-                action: function () {
-                    logOut();
-                }
-            }, {
-                label: 'No',
-                cssClass: 'btn btn-sm btn-danger',
-                action: function (dialog) {
-                    dialog.close();
-                }
-            }]
+            $('#currentUser').text(jqState.Player.Username);
+            sendPopup('success', 'Welcome, ' + jqState.Player.Username + '!', 'Login successful.');
+            startGame();
         });
-    }
+        function logoutConfirm() {
+            BootstrapDialog.show({
+                closable: false,
+                title: 'Confirmation',
+                message: 'Do you really want to leave? Unsaved game progress will be lost. Forever.',
+                buttons: [{
+                    label: 'Yes, leave',
+                    cssClass: 'btn btn-sm btn-success',
+                    action: function () {
+                        leave();
+                    }
+                }, {
+                    label: 'No',
+                    cssClass: 'btn btn-sm btn-danger',
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
+        }
     </script>
 </head>
 <body style='overflow:hidden'>
     <div class="container body-content" onmousedown=' return false;' onselectstart='return false;' oncontextmenu='return false;'>
-        <div id="gameTableHidden" class="hidden">
+        <div>
             <div class="row">
                 <div class="col-sm-3">
                     <div class="col-sm-12">
@@ -75,13 +76,14 @@
                         <a class="label label-default" onclick="increaseBet();">+</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="text-center h4"><b>Cash: <d class="text-success" id="cash">1000$</d></b></div>
                 </div>
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="btn btn-xs btn-danger pull-right" style="margin-top: 3px; margin-left: 10px; margin-right: 10px" id="logout"
                          onclick=" logoutConfirm(); ">
-                        Log out
+                        Back to menu &nbsp;&nbsp;
+                        <i class="fa icon-th-list"></i>
                     </div>
                     <div class="btn btn-xs btn-success pull-right" style="margin-top: 3px; margin-left: 10px; margin-right: 10px" id="currentUser"
                          onclick="">
@@ -134,8 +136,8 @@
                                 <i class="fa icon-stop"></i> <b>&nbsp;&nbsp;Stand</b>
                             </a>
                         </div>
-                        <div id="beforeGameActions" class=" btn-group-justified hidden" style="margin-left: 15px">
-                            <a class="btn btn-block btn-success" style="margin-top: 100%;"
+                        <div id="beforeGameActions" class="btn-group-justified hidden" style="margin-left: 15px">
+                            <a class="btn btn-block btn-success btn-sm" style="margin-top: 100%;"
                                onclick="restart();">
                                 <b>Want more!</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
                             </a>

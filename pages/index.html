@@ -168,6 +168,7 @@
                 label: 'OK',
                 cssClass: 'btn btn-sm btn-success',
                 action: function (dialog) {
+                    reflectAuthChanges();
                     dialog.close();
                     triggerSignInModal(redirectPage);
                 }
@@ -182,6 +183,13 @@
             buttons: []
         });
         //infinite loop, waiting while server is ready to start the game
+        setTimeout(function () {
+            if (redirectPage === 'classic') {
+                window.location.href = 'game.html';
+            } else if (redirectPage === 'duel') {
+                window.location.href = 'game.html';
+            } 
+        }, 1000);
     }
     function triggerSettingsModal() {
         BootstrapDialog.show({
@@ -199,40 +207,79 @@
             }]
         });
     }
+    
     function triggerSignInModal(redirectPage) {
+        reflectAuthChanges();
+        var msgBody = $('#signinModal');
+        var html = msgBody.html();
+        msgBody.remove();
         BootstrapDialog.show({
             closable: false,
             title: 'Sign in',
-            message: $('#signinModal').html(),
+            message: html,
             buttons: [
                 {
                     label: 'Sign in',
                     cssClass: 'btn btn-sm btn-success',
                     action: function (dialog) {
-                        if (!getAuthState()) {
+                        logIn();
+                        reflectAuthChanges();
+                        var authResult = getAuthState();
+                        if (!authResult) {
                             dialog.close();
                             triggerErrorModal(redirectPage);
                         } else {
                             dialog.close();
-                            triggerWaitingModal(redirectPage);
+                            if (redirectPage != null) {
+                                if (redirectPage === 'leaderboard') {
+                                    triggerLeaderboardModal();
+                                } else {
+                                    triggerWaitingModal(redirectPage);
+                                }
+                            }
+                            
                         }
+                        var cont = $('<div id="signinModal"></div>');
+                        var obj = $(html);
+                        obj.css('margin-top', '0px');
+                        obj.css('margin-bottom', '0px');
+                        cont.append(obj);
+                        $('#hidden').append(cont);
                     }
                 }, {
                     label: 'Cancel',
                     cssClass: 'btn btn-sm btn-danger',
                     action: function (dialog) {
                         dialog.close();
+                        var cont = $('<div id="signinModal"></div>');
+                        var obj = $(html);
+                        obj.css('margin-top', '0px');
+                        obj.css('margin-bottom', '0px');
+                        cont.append(obj);
+                        $('#hidden').append(cont);
                     }
                 }
             ]
         });
-
-    }
+    } 
     function triggerLeaderboardModal() {
+        var table = $('<table class="table table-striped table-hover"></div>');
+        table.css('margin-right', '50px');
+        var thead = $('<thead><tr class="warning"><th class="text-center">Username</th><th class="text-center">Score</th></tr></thead>');
+        var tbody = $('<tbody></tbody>');
+        var response = jsobject.getLeaderboardJs();
+        var leaders = $.parseJSON(response).Leaderboard;
+        for (var i = 0; i < leaders.length; i++) {
+            var row = $('<tr class="info"><td>' + leaders[i].key + '</td><td>' + leaders[i].value + '</td></tr>');
+            tbody.append(row);
+        }
+        table.append(thead);
+        table.append(tbody);
+
         BootstrapDialog.show({
             closable: true,
             title: 'Leaderboard',
-            message: '<b class="text-center text-warning">Table with players here</b>',
+            message: table,
             buttons: [
             {
                 label: 'OK',
@@ -244,9 +291,6 @@
         });
     }
 
-    function getAuthState() {
-        return false;
-    }
 
     function showLeaderboards() {
         var state = getAuthState();
@@ -271,42 +315,46 @@
         else
             triggerWaitingModal('duel');
     }
-
-    $(document).ready(function () {
+    function reflectAuthChanges() {
         var state = getAuthState();
+        var btn = $('#profileBtn');
+        var btnText = $('#profileBtnText');
+        var btnIcon = $('#profileBtnIcon');
         if (state) {
-            $('#profileBtn').replaceWith($('#logoutBtn'));
+            btn.removeClass('btn-info');
+            btn.addClass('btn-warning');
+            btn.attr('onclick', 'logOut();');
+
+            btnText.text('Sign out');
+
+            btnIcon.removeClass('icon-signin');
+            btnIcon.addClass('icon-signout');
         } else {
-            $('#profileBtn').replaceWith($('#loginBtn'));
+            btn.removeClass('btn-warning');
+            btn.addClass('btn-info');
+            btn.attr('onclick', 'triggerSignInModal();');
+
+            btnText.text('Sign in');
+
+            btnIcon.removeClass('icon-signout');
+            btnIcon.addClass('icon-signin');
         }
+    }
+    $(document).ready(function () {
+        reflectAuthChanges();
     });
 </script>
 </head>
 
 <body>
-<div class="hidden">
-
-    <div id="loginBtn">
-        <div class="btn btn-sm btn-info pull-right" style="border-radius: 5px;" id="currentUser" rel="tooltip"
-             onclick='triggerSignInModal() '>
-            Sign in&nbsp;&nbsp;
-            <i class="fa icon-signin"></i>
-        </div>
-    </div>
-    <div id="logoutBtn">
-        <div class="btn btn-sm btn-warning pull-right" style="border-radius: 5px;" id="currentUser" rel="tooltip"
-             onclick='signOut();'>
-            Sign out&nbsp;&nbsp;
-            <i class="fa icon-signout"></i>
-        </div>
-    </div>
+<div class="hidden" id="hidden">
     <div class="row" id="signinModal">
         <div class="card card-container" style="background-color: rgba(54, 142, 158, 0.52)">
             <img id="profile-img" class="profile-img-card" src="images/avatar.png" style="margin-top: -10px; margin-bottom: -50px;"/>
             <p id="profile-name" class="profile-name-card"></p>
             <div class="form-signin form-group">
-                <input type="text" id="inputlogin" class="form-control" placeholder="Login" value="admin" required>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" value="admin" required style="margin-bottom: -30px">
+                <input type="text" id="inputlogin" class="form-control" placeholder="Login">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" style="margin-bottom: -30px">
             </div><!-- /form -->
         </div><!-- /card-container -->
     </div>
@@ -335,7 +383,13 @@
         <div class="col-sm-6">
         </div>
         <div class="col-sm-3">
-            <div id="profileBtn"></div>
+            <div>
+                <div class="btn btn-sm btn-info pull-right" style="border-radius: 5px;" id="profileBtn" rel="tooltip"
+                     onclick='triggerSignInModal()'>
+                    <span id="profileBtnText">Sign in</span>&nbsp;&nbsp;
+                    <i class="fa icon-signin" id="profileBtnIcon"></i>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row" style="margin-top: 15px">
@@ -353,7 +407,7 @@
         <div class="col-sm-4">
             <div id="gameTable">
                 <a class="btn btn-block btn-success" style="border-radius: 5px"
-                   onclick="startDuel()">
+                   onclick="startDuel();">
                     <b>Duel mode</b>&nbsp;&nbsp;<i class="fa icon-globe"></i>
                 </a>
                 <a class="btn btn-block btn-warning" style="border-radius: 5px"
@@ -364,13 +418,13 @@
                    onclick="showLeaderboards()">
                     <b>Leaderboards</b>&nbsp;&nbsp;<i class="fa icon-group"></i>
                 </a>
-                <img src="Images/Cards.png" style="margin: auto; display: block; height: 95px"/>
+                <img src="Images/Cards.png" style="margin: auto; display: block; height: 130px"/>
                 <a class="btn btn-block btn-default" style="border-radius: 5px;"
                    onclick="triggerSettingsModal()">
                     <b>Settings</b>&nbsp;&nbsp;<i class="fa icon-gears"></i>
                 </a>
                 <a class="btn btn-block btn-danger" style="border-radius: 5px"
-                   onclick="">
+                   onclick="jsobject.exitGameJs()">
                     <b>Exit</b>&nbsp;&nbsp;<i class="fa icon-signout"></i>
                 </a>
             </div>
