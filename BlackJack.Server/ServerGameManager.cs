@@ -9,7 +9,14 @@ namespace BlackJack.Server
 {
     class ServerGameManager : IBjGameManager
     {
-        public GameState Initialize()
+        public ServerGameManager(Player player1, Player player2)
+        {
+            player1.GameFound = true;
+            player2.GameFound = true;
+            Initialize(player1, player2);
+        }
+
+        public GameState Initialize(Player player1, Player player2)
         {
             throw new NotImplementedException();
         }
@@ -29,6 +36,11 @@ namespace BlackJack.Server
             throw new NotImplementedException();
         }
 
+        public GameState Stop()
+        {
+            throw new NotImplementedException();
+        }
+
         public GameState Double()
         {
             throw new NotImplementedException();
@@ -44,20 +56,29 @@ namespace BlackJack.Server
             throw new NotImplementedException();
         }
 
-        public GameState Terminate()
-        {
-            throw new NotImplementedException();
-        }
-
         public GameState Login(string username, string pass)
         {
             throw new NotImplementedException();
         }
 
-        public object CallMethodByRequest(MethodCallRequest methodCallRequest)
+        public GameState Logoff()
         {
-            //throw new NotImplementedException();
-            return null;
+            throw new NotImplementedException();
+        }
+
+        public GameState GetState()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool IsAuthenticated()
+        {
+            throw new NotImplementedException();
+        }
+
+        public GameState GetLeaderboard()
+        {
+            throw new NotImplementedException();
         }
     }
 }

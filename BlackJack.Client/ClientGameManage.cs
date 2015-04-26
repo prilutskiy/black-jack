@@ -128,12 +128,18 @@ namespace BlackJack.Client
         #region Public members
         public ClientGameManager()
         {
+            Initialize();
+        }
+
+        public GameState Initialize(Player player, Player opponent)
+        {
             doubleFactor = 1.0;
             Winner = null;
             UserPlayer = null;
             Dealer = null;
             Bet = 100;
             isAuthenticated = false;
+            return new GameState(UserPlayer,Dealer,EndGame,Winner,Bet,doubleFactor,null);
         }
         public GameState IncreaseBet(int value = 50)
         {
@@ -260,7 +266,6 @@ namespace BlackJack.Client
         {
             return isAuthenticated;
         }
-
         public GameState GetLeaderboard()
         {
             var dict = new Dictionary<string, int>();

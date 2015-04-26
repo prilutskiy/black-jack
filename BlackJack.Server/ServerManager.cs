@@ -11,6 +11,7 @@ namespace BlackJack.Server
 {
     internal class ServerManager : IDisposable
     {
+        #region Private members
         private readonly IPlayerFactory playerFactory = new StubPlayerFactory();
         private readonly IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 777);
         private readonly int maxConnections = 10;
@@ -47,9 +48,9 @@ namespace BlackJack.Server
                 runningThreads.Clear();
             }
         }
-        private bool CheckCredentials(object cred)
+        private bool CheckCredentials(Credentials cred)
         {
-            throw new NotImplementedException();
+            return true;
         }
         private void WriteLog(string msg, Socket clientSocket)
         {
@@ -60,6 +61,7 @@ namespace BlackJack.Server
         {
             Dispose();
         }
+        #endregion
 
         public event EventHandler<ServerEventArgs> ServerStateChanged;
         public ServerManager()
@@ -78,7 +80,6 @@ namespace BlackJack.Server
             if (serverThread != null && serverThread.ThreadState != ThreadState.Aborted)
                 serverThread.Abort();
         }
-
         public void ProcessClientConnection(object clientObj)
         {
             var clientSocket = clientObj as Socket;
@@ -86,21 +87,68 @@ namespace BlackJack.Server
             {
                 WriteLog("Client connected", clientSocket);
                 var client = new Connection(clientSocket);
-                client.SendHandshake();
-
-                var gm = new ServerGameManager();
+                if (!client.SendHandshake()) throw new InvalidOperationException("Handshake error");
+                //THREAD-UNSAFE
+                Untrusted.Add(client);
+                //if reached here - ok
                 while (true)
                 {
-                    //check whether user is authenticated with each iteration
-                    var methodCallRequest = client.ReceiveMethodCallRequest();
-                    //requested method call here. return some 'state' element. fill it with 
-                    //some kind of exception, if requested method call is not permitted due to auth state
-                    var requestedMethodResult = gm.CallMethodByRequest(methodCallRequest);
-                    var response = new ServerResponse {Message = "Hello!"};
-                    client.SendResponse(response);
-                    //
-                    if (methodCallRequest.Signature.Name == "Terminate")
-                        break;
+                    var request = client.ReceiveRequest();
+                    ServerResponse response;
+                    switch (request.RequestType)
+                    {
+                        case ServerMessageType.NotSet:
+                            throw new InvalidOperationException("Message type not set");
+                        case ServerMessageType.Auth:
+                            var creds = request.Credentials;
+                            var result = CheckCredentials(creds);
+
+                            response = new ServerResponse
+                            {
+                                ResponseType = ServerMessageType.Auth,
+                                AuthSucceed = result
+                            };
+
+                            client.SendResponse(response);
+                            //THREAD-UNSAFE
+                            if (result)
+                            {
+                                client.PlayerInstance = playerFactory.LoadFromDataStorage(creds.Username);
+                                Untrusted.Remove(client);
+                                Trusted.Add(client);
+                            }
+                            
+                            break;
+                        case ServerMessageType.StartGame:
+                            //THREAD-UNSAFE
+                            if (Untrusted.Contains(client)) //if not authenticated
+                            {
+                                response = new ServerResponse
+                                {
+                                    ResponseType = ServerMessageType.Error,
+                                    ErrorMessage = "Access denied. Please, authorize"
+                                };
+                                client.SendResponse(response);
+                            }
+                            else
+                            {
+                                var gameType = request.GameType;
+                                OnStartGameRequest(client.PlayerInstance, gameType);
+                                response = new ServerResponse
+                                {
+                                    ResponseType = ServerMessageType.StartGame,
+                                    MatchState = MatchState.Waiting
+                                };
+                                client.SendResponse(response);
+                            }
+                            break;
+                        case ServerMessageType.InGame:
+                            break;
+                        case ServerMessageType.Leaderboard:
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
                 }
             }
             catch (SerializationException ex)
@@ -123,5 +171,50 @@ namespace BlackJack.Server
             }
         }
 
+        public readonly Queue<Player> DuelQueue = new Queue<Player>();
+        public readonly Queue<Player> ClassicQueue = new Queue<Player>();
+        public readonly List<ServerGameManager> DuelGames = new List<ServerGameManager>();
+        public readonly List<ServerGameManager> ClassicGames = new List<ServerGameManager>();
+
+        public readonly List<Connection> Untrusted = new List<Connection>();
+        public readonly List<Connection> Trusted = new List<Connection>();
+
+        void OnStartGameRequest(Player player, GameType type)
+        {
+            //if authenticated
+            if (type == GameType.Classic)
+            {
+                ClassicQueue.Enqueue(player);
+            }
+            else if (type == GameType.Duel)
+            {
+                DuelQueue.Enqueue(player);
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
+            ProcessQueues();
+        }
+
+        void ProcessQueues()
+        {
+            lock (ClassicQueue)
+                while (ClassicQueue.Count > 1)
+                {
+                    var player1 = ClassicQueue.Dequeue();
+                    var player2 = playerFactory.Create(PlayerType.Dealer, "Dealer");
+                    var game = new ServerGameManager(player1, player2);
+                    ClassicGames.Add(game);
+                }
+            lock(DuelQueue)
+                while (DuelQueue.Count/2 > 1)
+                {
+                    var player1 = DuelQueue.Dequeue();
+                    var player2 = DuelQueue.Dequeue();
+                    var game = new ServerGameManager(player1, player2);
+                    DuelGames.Add(game);
+                }
+        }
     }
 }

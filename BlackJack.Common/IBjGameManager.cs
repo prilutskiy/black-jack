@@ -13,14 +13,18 @@ namespace BlackJack.Common
         /// Ctor statements must be placed in here or sort of
         /// </summary>
         /// <returns></returns>
-        GameState Initialize();
+        GameState Initialize(Player player, Player opponent);
         GameState IncreaseBet(int value);
         GameState DecreaseBet(int value);
         GameState Start();
+        GameState Stop();
         GameState Double();
         GameState Stand();
         GameState Hit();
-        GameState Stop();
         GameState Login(string username , string pass);
+        GameState Logoff();
+        GameState GetState();
+        bool IsAuthenticated();
+        GameState GetLeaderboard();
     }
 }

@@ -2,29 +2,28 @@
 
 namespace BlackJack.Common
 {
-    public enum ServerResponseType
+    public enum MatchState
     {
         NotSet,
-        GameState,
-        NetworkRelated,
+        Waiting,
+        GameFound
     }
     [Serializable]
     public class ServerResponse
     {
-        public ServerResponse()
-        {
-            
-        }
+        public ServerMessageType ResponseType { get; set; }
 
-        public ServerResponse(GameState state, bool callSuccessful, string msg = "Hello!")
-        {
-            GameState = state;
-            MethodCallSucceed = callSuccessful;
-            Message = msg;
-        }
-        public GameState GameState { get; set; }
-        public Boolean MethodCallSucceed { get; set; }
-        public String Message { get; set; }
+        #region Auth
+        public Boolean AuthSucceed { get; set; }
+        #endregion
+
+        #region Error
+        public String ErrorMessage { get; set; }
+        #endregion
+
+        #region Start game
+        public MatchState MatchState { get; set; }
+        #endregion
     }
 
 }

@@ -17,31 +17,9 @@ namespace BlackJack.Common
                 throw new InvalidOperationException("Socket is not connected");
         }
 
+        public Player PlayerInstance { get; set; }
         public Socket Socket { get; private set; }
 
-        public MethodCallRequest ReceiveMethodCallRequest()
-        {
-            var buffer = new byte[10240];
-            var methodCallRequest = Socket.Receive(buffer);
-            return buffer.ToMethodCallRequest();
-        }
-
-        public void SendMethodCallRequest(MethodCallRequest req)
-        {
-            Socket.Send(req.ToByteArray());
-        }
-
-        public void SendResponse(ServerResponse response)
-        {
-            Socket.Send(response.ToByteArray());
-        }
-
-        public ServerResponse ReceiveResponse()
-        {
-            var buffer = new byte[10240];
-            var serverResponse = Socket.Receive(buffer);
-            return buffer.ToServerResponse();
-        }
         public  bool SendHandshake()
         {
             try
@@ -79,6 +57,16 @@ namespace BlackJack.Common
         ~Connection()
         {
             Dispose();   
+        }
+
+        public ServerRequest ReceiveRequest()
+        {
+            return null;
+        }
+
+        public void SendResponse(ServerResponse response)
+        {
+            
         }
     }
 }

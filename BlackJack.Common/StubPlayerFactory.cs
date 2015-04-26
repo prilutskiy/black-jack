@@ -26,5 +26,10 @@ namespace BlackJack.Common
                     throw new InvalidEnumArgumentException("type");
             }
         }
+
+        public Player LoadFromDataStorage(string username)
+        {
+            return Create(PlayerType.Player, username);
+        }
     }
 }
