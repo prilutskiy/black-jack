@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Security.Permissions;
@@ -31,9 +30,15 @@ namespace BlackJack.Client
         {
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
-            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"pages\index.html"));
+            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
         }
 
+        private bool initialLoad = true;
+
+        private JSValue isInitialLoadJs(object sender, JavascriptMethodEventArgs e)
+        {
+            return initialLoad.ToString();
+        }
         private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
         {
             JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
@@ -54,6 +59,11 @@ namespace BlackJack.Client
         #endregion
 
         #region HTML UI Event Handlers
+        private JSValue getAuthStateJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var authState = gm.IsAuthenticated();
+            return authState.ToString();
+        }
         private JSValue newGameJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.Start();
@@ -72,7 +82,12 @@ namespace BlackJack.Client
         }
         private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
         {
-            var state = gm.Terminate();
+            Application.Exit();
+            return null;
+        } 
+        private JSValue leaveGameJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var state = gm.Stop();
             var json = GameStateToJson(state);
             return json;
         }
@@ -106,7 +121,6 @@ namespace BlackJack.Client
             var json = GameStateToJson(state);
             return json;
         }
-
         private JSValue logInJs(object sender, JavascriptMethodEventArgs e)
         {
             var username = e.Arguments.FirstOrDefault() == null ? "" : e.Arguments.FirstOrDefault().ToString();
@@ -115,27 +129,25 @@ namespace BlackJack.Client
             var json = GameStateToJson(state);
             return json;
         }
-
+        private JSValue logOutJs(object sender, JavascriptMethodEventArgs e)
+        {
+            var state = gm.Logoff();
+            var json = GameStateToJson(state);
+            return json;
+        }
         private JSValue getStateJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.GetState();
             var json = GameStateToJson(state);
             return json;
         }
-
-        #endregion
-
-        private void button1_Click(object sender, EventArgs e)
+        private JSValue getLeaderboardJs(object sender, JavascriptMethodEventArgs e)
         {
-            TcpClient client = new TcpClient();
-            client.Connect("127.0.0.1", 777);
-            var method = MethodInfo.GetCurrentMethod() as MethodInfo;
-            var signature = method.ToMethodSignature();
-            client.Client.Send(signature.ToByteArray());
-            client.Close();
+            var state = gm.GetLeaderboard();
+            if (state.AppStage != "leaderboard") throw new InvalidOperationException();
+            var json = GameStateToJson(state);
+            return json;
         }
-
-
-
+        #endregion
     }
 }

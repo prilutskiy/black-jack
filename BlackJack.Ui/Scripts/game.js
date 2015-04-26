@@ -3,16 +3,7 @@ var baraja_player;
 
 function logOut() {
     jsobject.exitGameJs();
-    window.location.href = '../Home/Index';
-}
-
-function logIn() {
-    var user = $('#inputlogin').val();
-    var pass = $('#inputPassword').val();
-    var response = jsobject.logInJs(user, pass);
-    var jqState = $.parseJSON(response);
-
-    redraw(jqState);
+    window.location.href = 'index.html';
 }
 
 function startGame() {
@@ -171,10 +162,6 @@ function redraw(jqState, newGame) {
         }
     }
     else if (jqState.AppStage == "auth") {
-        if (jqState.ErrorMessage != null) {
-            sendPopup('warning', 'Oops!', jqState.ErrorMessage);
-        } else {
-            window.location.href = '../Home/About';
-        }
+        alert('deprecated action');
     }
 }

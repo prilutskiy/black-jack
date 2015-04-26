@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using BlackJack.Common;
 
 namespace BlackJack.Client
@@ -13,8 +17,10 @@ namespace BlackJack.Client
             EndGame = false;
             doubleFactor = 1.0;
             Winner = null;
-            Dealer.Clear();
-            UserPlayer.Clear();
+            if (Dealer != null)
+                Dealer.Clear();
+            if (UserPlayer != null)
+                UserPlayer.Clear();
             canDouble = true;
             isRunning = false;
         }
@@ -117,60 +123,18 @@ namespace BlackJack.Client
 
         private Player UserPlayer;
         private Player Dealer;
-        private bool TryStand()
-        {
-            try
-            {
-                Stand();
-                return true;
-            }
-            catch (InvalidOperationException)
-            {
-                return false;
-            }
-        }
-        private bool TryDoubleBet()
-        {
-            try
-            {
-                Double();
-                return true;
-            }
-            catch (InvalidOperationException)
-            {
-                return false;
-            }
-        }
-        private bool TryHit()
-        {
-            try
-            {
-                Hit();
-                return true;
-            }
-            catch (InvalidOperationException)
-            {
-                return false;
-            }
-        }
         #endregion
 
         #region Public members
         public ClientGameManager()
         {
-            Initialize();
-        }
-        public GameState Initialize()
-        {
             doubleFactor = 1.0;
             Winner = null;
             UserPlayer = null;
-            Dealer = new Player(PlayerType.Dealer);
-            Bet = 100; isAuthenticated = false;
+            Dealer = null;
+            Bet = 100;
             isAuthenticated = false;
-            return new GameState(UserPlayer, Dealer, EndGame,Winner,Bet,doubleFactor, null);
         }
-
         public GameState IncreaseBet(int value = 50)
         {
             if (!isAuthenticated)
@@ -205,6 +169,13 @@ namespace BlackJack.Client
 
             UserPlayer.TakeCard(2);
             CalculateWinner();
+            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+        }
+        public GameState Stop()
+        {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
+            Clear();
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
         public GameState Double()
@@ -261,28 +232,48 @@ namespace BlackJack.Client
             }
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-        public GameState Terminate()
-        {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            Clear();
-            UserPlayer = null;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
-        }
         public GameState Login(string username, string pass)
         {
             var result = username.ToLower() == "admin" && pass.ToLower() == "admin";
             isAuthenticated = result;
             if (isAuthenticated)
+            {
                 UserPlayer = new Player(PlayerType.Player, username);
+                Dealer = new Player(PlayerType.Dealer);
+            }
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, result ? null : "Username or password is incorrect", "auth", result ? "Login successful" : null);
+        }
+        public GameState Logoff()
+        {
+            if (!isAuthenticated)
+                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
+            isAuthenticated = false;
+            UserPlayer = null;
+            Dealer = null;
+            return Stop();
         }
         public GameState GetState()
         {
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
+        public bool IsAuthenticated()
+        {
+            return isAuthenticated;
+        }
 
+        public GameState GetLeaderboard()
+        {
+            var dict = new Dictionary<string, int>();
+            dict.Add("Admin", 5400);
+            dict.Add("John Doe", 3000);
+            var state = new GameState(null, null, false, null, -1, -1, null, "leaderboard")
+            {
+                Leaderboard = dict.OrderByDescending(a => a.Value).ToList()
+            };
+            return state;
+        }
         #endregion
+
     }
 
 }

@@ -4,177 +4,148 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Jack</title>
-	
-	
+
+
     <link href="Content/bootstrap.superhero.min.css" rel="stylesheet" />
     <link href="Content/bootstrap-dialog.min.css" rel="stylesheet" />
     <link href="Content/animate.css" rel="stylesheet" />
     <link href="Content/font-awesome.min.css" rel="stylesheet" />
     <link href="Content/Site.css" rel="stylesheet" />
-	
-	<script src="Scripts/modernizr-2.6.2.js"></script>
-	
-	<script src="Scripts/jquery-1.10.2.min.js"></script>
-	<script src="Scripts/bootstrap.min.js"></script>
-	<script src="Scripts/bootstrap-notify.min.js"></script>
-	<script src="Scripts/bootstrap-dialog.min.js"></script>
-	<script src="Scripts/main.js"></script>
-	
-	<link href="Content/baraja.css" rel="stylesheet" />
-	<link href="Content/custom.css" rel="stylesheet" />
-	<link href="Content/demo.css" rel="stylesheet" />
-	<script src="Scripts/jquery.baraja.js"></script>
-	<script src="Scripts/game.js"></script>
-	
+
+    <script src="Scripts/modernizr-2.6.2.js"></script>
+
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap-notify.min.js"></script>
+    <script src="Scripts/bootstrap-dialog.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+    <link href="Content/baraja.css" rel="stylesheet" />
+    <link href="Content/custom.css" rel="stylesheet" />
+    <link href="Content/demo.css" rel="stylesheet" />
+    <script src="Scripts/jquery.baraja.js"></script>
+    <script src="Scripts/game.js"></script>
 
 
-<script>
-    $(document).ready(function () {
-        var response = jsobject.getStateJs();
-        var jqState = $.parseJSON(response);
 
-        $('#currentUser').text(jqState.Player.Username);
-        sendPopup('success', 'Welcome, ' + jqState.Player.Username + '!', 'Login successful.');
-    });
-    function logoutConfirm() {
-        BootstrapDialog.show({
-            closable: false,
-            title: 'Confirmation',
-            message: 'Do you really want to leave? Unsaved game progress will be lost. Forever.',
-            buttons: [{
-                label: 'Yes, leave',
-                cssClass: 'btn btn-sm btn-success',
-                action: function () {
-                    logOut();
-                }
-            }, {
-                label: 'No',
-                cssClass: 'btn btn-sm btn-danger',
-                action: function (dialog) {
-                    dialog.close();
-                }
-            }]
+    <script>
+        $(document).ready(function () {
+            var response = jsobject.getStateJs();
+            var jqState = $.parseJSON(response);
+
+            $('#currentUser').text(jqState.Player.Username);
+            sendPopup('success', 'Welcome, ' + jqState.Player.Username + '!', 'Login successful.');
+            startGame();
         });
-    }
-</script>
+        function logoutConfirm() {
+            BootstrapDialog.show({
+                closable: false,
+                title: 'Confirmation',
+                message: 'Do you really want to leave? Unsaved game progress will be lost. Forever.',
+                buttons: [{
+                    label: 'Yes, leave',
+                    cssClass: 'btn btn-sm btn-success',
+                    action: function () {
+                        leave();
+                    }
+                }, {
+                    label: 'No',
+                    cssClass: 'btn btn-sm btn-danger',
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
+            });
+        }
+    </script>
 </head>
-<body  style='overflow:hidden'>
-    <div class="container body-content" onmousedown=' return false;' onselectstart='return false;'oncontextmenu='return false;' >     
-
-
-<div id="gameTableHidden" class="hidden">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="col-sm-12">
-                <div class="text-left" style="display: inline">
-                    <img src="Images/1429055942_kpat.png" height="16" />
-                    <div style="display: inline" class="h6">
-                        <b>Bet &nbsp;</b>
+<body style='overflow:hidden'>
+    <div class="container body-content" onmousedown=' return false;' onselectstart='return false;' oncontextmenu='return false;'>
+        <div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="col-sm-12">
+                        <div class="text-left" style="display: inline">
+                            <img src="Images/1429055942_kpat.png" height="16" />
+                            <div style="display: inline" class="h6">
+                                <b>Bet &nbsp;</b>
+                            </div>
+                        </div>
+                        <a class="label label-default" onclick="decreaseBet();">-</a>
+                        <span class="label label-primary" id="bet">100</span>
+                        <a class="label label-default" onclick="increaseBet();">+</a>
                     </div>
                 </div>
-                <a class="label label-default" onclick="decreaseBet();">-</a>
-                <span class="label label-primary" id="bet">100</span>
-                <a class="label label-default" onclick="increaseBet();">+</a>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="text-center h4"><b>Cash: <d class="text-success" id="cash">1000$</d></b></div>
-        </div>
-        <div class="col-sm-3">
-            <div class="btn btn-xs btn-danger pull-right" style="margin-top: 3px; margin-left: 10px; margin-right: 10px" id="logout"
-                 onclick=" logoutConfirm(); ">
-                Log out
-            </div>
-            <div class="btn btn-xs btn-success pull-right" style="margin-top: 3px; margin-left: 10px; margin-right: 10px" id="currentUser"
-                 onclick="">
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-4  col-sm-offset-3">
-            <div class="col-sm-12">
-                <div class="text-left text-center h6">
-                    <b>Dealer cards </b>
-                    <sup class="label label-info label-as-badge h6 hidden">
-                        <b id="dealerCardScore">0</b>
-                    </sup>
+                <div class="col-sm-5">
+                    <div class="text-center h4"><b>Cash: <d class="text-success" id="cash">1000$</d></b></div>
                 </div>
-                <ul id="dealer-el" class="baraja-container" style="height: 150px">             
-                </ul>
-            </div>
-            <div class="col-sm-12">
-                <div class="text-left text-center h6">
-                    <b>Player cards </b>
-                    <sup class="label label-info label-as-badge h6">
-                        <b id="playerCardScore">0</b>
-                    </sup>
+                <div class="col-sm-4">
+                    <div class="btn btn-xs btn-danger pull-right" style="margin-top: 3px; margin-left: 10px; margin-right: 10px" id="logout"
+                         onclick=" logoutConfirm(); ">
+                        Back to menu &nbsp;&nbsp;
+                        <i class="fa icon-th-list"></i>
+                    </div>
+                    <div class="btn btn-xs btn-success pull-right" style="margin-top: 3px; margin-left: 10px; margin-right: 10px" id="currentUser"
+                         onclick="">
+                    </div>
                 </div>
-                <ul id="player-el" class="baraja-container" style="height: 150px">                 
-                </ul>
             </div>
 
-        </div>
-    </div>
+            <div class="row">
+                <div class="col-sm-4  col-sm-offset-3">
+                    <div class="col-sm-12">
+                        <div class="text-left text-center h6">
+                            <b>Dealer cards </b>
+                            <sup class="label label-info label-as-badge h6 hidden">
+                                <b id="dealerCardScore">0</b>
+                            </sup>
+                        </div>
+                        <ul id="dealer-el" class="baraja-container" style="height: 150px"></ul>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="text-left text-center h6">
+                            <b>Player cards </b>
+                            <sup class="label label-info label-as-badge h6">
+                                <b id="playerCardScore">0</b>
+                            </sup>
+                        </div>
+                        <ul id="player-el" class="baraja-container" style="height: 150px"></ul>
+                    </div>
 
-    <div class="row" id="actionButtons">
-        <div class="col-sm-3"></div>
-        <div class="col-sm-5">
-            <div class="col-sm-12">
-                <div id="gameActions" class="btn-group-justified " style="margin-left: 15px">
-                    <a href="#" class="btn btn-success btn-sm"
-                       style="width: 33%;"
-                       onclick=" hit(); ">
-                        <i class="fa icon-plus"></i> <b> &nbsp;&nbsp;Hit</b>
-                    </a>
-                    <a id="doubleButton" href="#" class="btn btn-info btn-sm"
-                       style="width: 33%;" 
-                       onclick="doubleBet();">
-                        <i class="fa icon-dollar"></i> <b>&nbsp;&nbsp;Double</b>
-                    </a>
-                    <a href="#" class="btn btn-danger btn-sm"
-                       style="width: 33%;" 
-                       onclick="stand();">
-                        <i class="fa icon-stop"></i> <b>&nbsp;&nbsp;Stand</b>
-                    </a>
                 </div>
-                <div id="beforeGameActions" class=" btn-group-justified hidden" style="margin-left: 15px">
-                    <a class="btn btn-block btn-success" style="margin-top: 100%;"
-                       onclick="restart();">
-                        <b>Want more!</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
-                    </a>
+            </div>
+
+            <div class="row" id="actionButtons">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-5">
+                    <div class="col-sm-12">
+                        <div id="gameActions" class="btn-group-justified " style="margin-left: 15px">
+                            <a href="#" class="btn btn-success btn-sm"
+                               style="width: 33%;"
+                               onclick=" hit(); ">
+                                <i class="fa icon-plus"></i> <b> &nbsp;&nbsp;Hit</b>
+                            </a>
+                            <a id="doubleButton" href="#" class="btn btn-info btn-sm"
+                               style="width: 33%;"
+                               onclick="doubleBet();">
+                                <i class="fa icon-dollar"></i> <b>&nbsp;&nbsp;Double</b>
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm"
+                               style="width: 33%;"
+                               onclick="stand();">
+                                <i class="fa icon-stop"></i> <b>&nbsp;&nbsp;Stand</b>
+                            </a>
+                        </div>
+                        <div id="beforeGameActions" class="btn-group-justified hidden" style="margin-left: 15px">
+                            <a class="btn btn-block btn-success btn-sm" style="margin-top: 100%;"
+                               onclick="restart();">
+                                <b>Want more!</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-
-<div id="gameTable">
-    <div class="row" id="startButton">
-        <div class="col-sm-4 col-sm-offset-4">
-            <a class="btn btn-block btn-success" style="margin-top: 60%; border-radius: 5px"
-               onclick="">
-                <b>Duel mode</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
-            </a>
-            <a class="btn btn-block btn-warning" style="border-radius: 5px"
-               onclick="startGame()">
-                <b>Training mode</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
-            </a>
-            <a class="btn btn-block btn-info" style="border-radius: 5px"
-               onclick="">
-                <b>Leaderboards</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
-            </a>
-            <a class="btn btn-block btn-default" style="border-radius: 5px; margin-top: 10%"
-               onclick="">
-                <b>Settings</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
-            </a>
-            <a class="btn btn-block btn-danger" style="border-radius: 5px"
-               onclick="">
-                <b>Exit</b>&nbsp;&nbsp;<i class="fa icon-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-</div>
     </div>
 
 
