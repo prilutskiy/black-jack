@@ -16,8 +16,8 @@ namespace BlackJack.Common
             Card c;
             while (true)
             {
-                int suit = rand.Next(1, 4);
-                int value = rand.Next(1, 13);
+                int suit = rand.Next(1, 5);
+                int value = rand.Next(1, 14);
                 c = new Card(suit, value);
                 if (!AlreadySpawned.Contains(c))
                     break;

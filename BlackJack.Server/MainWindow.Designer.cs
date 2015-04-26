@@ -76,6 +76,8 @@
             this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.startServerBtn = new System.Windows.Forms.Button();
+            this.ipColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -336,7 +338,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 52);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedTabPage = this.serverLogTab;
-            this.tabControl.Size = new System.Drawing.Size(707, 379);
+            this.tabControl.Size = new System.Drawing.Size(707, 349);
             this.tabControl.TabIndex = 2;
             this.tabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.serverLogTab});
@@ -345,14 +347,15 @@
             // 
             this.serverLogTab.Controls.Add(this.serverLogListView);
             this.serverLogTab.Name = "serverLogTab";
-            this.serverLogTab.Size = new System.Drawing.Size(638, 373);
+            this.serverLogTab.Size = new System.Drawing.Size(638, 343);
             this.serverLogTab.Text = "Server log";
             // 
             // serverLogListView
             // 
             this.serverLogListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.timeColumn,
-            this.messageColumn});
+            this.messageColumn,
+            this.ipColumn});
             this.serverLogListView.FullRowSelect = true;
             this.serverLogListView.GridLines = true;
             this.serverLogListView.Location = new System.Drawing.Point(3, 3);
@@ -474,11 +477,26 @@
             this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.helpToolStripButton.Text = "He&lp";
             // 
+            // startServerBtn
+            // 
+            this.startServerBtn.Location = new System.Drawing.Point(12, 407);
+            this.startServerBtn.Name = "startServerBtn";
+            this.startServerBtn.Size = new System.Drawing.Size(683, 23);
+            this.startServerBtn.TabIndex = 4;
+            this.startServerBtn.Text = "Start server";
+            this.startServerBtn.UseVisualStyleBackColor = true;
+            // 
+            // ipColumn
+            // 
+            this.ipColumn.Text = "Address";
+            this.ipColumn.Width = 91;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 456);
+            this.Controls.Add(this.startServerBtn);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip1);
@@ -548,6 +566,8 @@
         private System.Windows.Forms.ToolStripButton pasteToolStripButton;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
+        private System.Windows.Forms.Button startServerBtn;
+        private System.Windows.Forms.ColumnHeader ipColumn;
     }
 }
 
