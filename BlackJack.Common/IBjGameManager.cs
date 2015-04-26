@@ -15,7 +15,7 @@ namespace BlackJack.Common
         GameState Double();
         GameState Stand();
         GameState Hit();
-        GameState Terminate();
+        GameState Stop();
         GameState Login(string username , string pass);
     }
 }
