@@ -160,7 +160,6 @@ namespace BlackJack.Client
         {
             Initialize();
         }
-
         public GameState Initialize()
         {
             doubleFactor = 1.0;
@@ -196,7 +195,6 @@ namespace BlackJack.Client
             Bet -= value;
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-
         public GameState Start()
         {
             if (!isAuthenticated)
@@ -209,7 +207,6 @@ namespace BlackJack.Client
             CalculateWinner();
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-
         public GameState Double()
         {
             if (!isAuthenticated)
@@ -233,7 +230,6 @@ namespace BlackJack.Client
             CalculateWinner();
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-
         public GameState Stand()
         {
             if (!isAuthenticated)
@@ -248,7 +244,6 @@ namespace BlackJack.Client
             CalculateWinner();
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-
         public GameState Hit()
         {
             if (!isAuthenticated)
@@ -274,7 +269,6 @@ namespace BlackJack.Client
             UserPlayer = null;
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-
         public GameState Login(string username, string pass)
         {
             var result = username.ToLower() == "admin" && pass.ToLower() == "admin";
@@ -283,7 +277,6 @@ namespace BlackJack.Client
                 UserPlayer = new Player(PlayerType.Player, username);
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, result ? null : "Username or password is incorrect", "auth", result ? "Login successful" : null);
         }
-
         public GameState GetState()
         {
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
