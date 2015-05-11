@@ -340,8 +340,21 @@
             btnIcon.addClass('icon-signin');
         }
     }
+    function checkConnection()
+    {
+        var serverAlive = jsobject.connectJs();
+        if (!(serverAlive === 'True'))
+            {
+                 BootstrapDialog.show({
+                    closable: false,
+                    title: 'Information',
+                    message: 'Game server is down for maintenance.'
+                });
+            }
+    }
     $(document).ready(function () {
         reflectAuthChanges();
+        
     });
 </script>
 </head>

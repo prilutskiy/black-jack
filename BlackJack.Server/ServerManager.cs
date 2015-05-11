@@ -121,14 +121,28 @@ namespace BlackJack.Server
                             };
 
                             client.SendResponse(response);
-                            //THREAD-UNSAFE
                             if (result)
                             {
                                 client.PlayerInstance = playerFactory.LoadFromDataStorage(creds.Username);
-                                Untrusted.Remove(client);
-                                Trusted.Add(client);
+                                lock (Untrusted)
+                                    Untrusted.Remove(client);
+                                lock (Trusted)
+                                    Trusted.Add(client);
                             }
                             
+                            break;
+                        case ServerMessageType.Deauth:
+                            lock (Trusted)
+                                Trusted.Remove(client);
+                            lock (Untrusted)
+                                    Untrusted.Add(client);
+                            response = new ServerResponse
+                            {
+                                ResponseType = ServerMessageType.Auth,
+                                AuthSucceed = true
+                            };
+
+                            client.SendResponse(response);
                             break;
                         case ServerMessageType.StartGame:
                             //THREAD-UNSAFE

@@ -27,26 +27,26 @@ namespace BlackJack.Client
         #region Initialization
 
         private ClientGameManager gm;
-
+        private bool connected = false;
         public MainWindow()
         {
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
             webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
+        }
 
+        private void Connect()
+        {
             var tcp = new TcpClient();
             tcp.Connect("127.0.0.1", 777);
             var connection = new Connection(tcp.Client);
             var result = connection.ReceiveHandshake();
             gm = new ClientGameManager(connection);
+            connected = true;
         }
 
         private bool initialLoad = true;
 
-        private JSValue isInitialLoadJs(object sender, JavascriptMethodEventArgs e)
-        {
-            return initialLoad.ToString();
-        }
         private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
         {
             JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
@@ -67,6 +67,25 @@ namespace BlackJack.Client
         #endregion
 
         #region HTML UI Event Handlers
+
+        private JSValue connectJs(object sender, JavascriptMethodEventArgs args)
+        {
+            if (!initialLoad) return true.ToString();
+            initialLoad = false;
+            if (!connected)
+            {
+                try
+                {
+                    Connect();
+                }
+                catch (SocketException ex)
+                {
+                    //MessageBox.Show(ex.Message, "Connection unavailible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false.ToString();
+                }
+            }
+                    return true.ToString();
+        }
         private JSValue getAuthStateJs(object sender, JavascriptMethodEventArgs e)
         {
             var authState = gm.IsAuthenticated();
@@ -134,8 +153,8 @@ namespace BlackJack.Client
             var username = e.Arguments.FirstOrDefault() == null ? "" : e.Arguments.FirstOrDefault().ToString();
             var pass = e.Arguments.ElementAtOrDefault(1) == null ? "" : e.Arguments.ElementAtOrDefault(1).ToString();
             var state = gm.Login(username, pass);
-            var json = GameStateToJson(state);
-            return json;
+            //var json = GameStateToJson(state);
+            return "STUB";
         }
         private JSValue logOutJs(object sender, JavascriptMethodEventArgs e)
         {
@@ -157,5 +176,11 @@ namespace BlackJack.Client
             return json;
         }
         #endregion
+
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            webView.ExecuteJavascript("checkConnection();");
+        }
+
     }
 }

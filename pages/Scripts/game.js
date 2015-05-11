@@ -5,14 +5,6 @@ function leave() {
     jsobject.leaveGameJs();
     window.location.href = 'index.html';
 }
-function logIn() {
-    var user = $('#inputlogin').val();
-    var pass = $('#inputPassword').val();
-    var response = jsobject.logInJs(user, pass);
-    var jqState = $.parseJSON(response);
-    alert(response);
-    return jqState.jqState.ErrorMessage == null;
-}
 
 function startGame() {
     var response = jsobject.newGameJs();

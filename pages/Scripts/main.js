@@ -16,7 +16,8 @@ function logIn() {
     var pass = $('#inputPassword').val();
     alert(user + ' : ' + pass);
     var response = jsobject.logInJs(user, pass);
-    var jqState = $.parseJSON(response);
+    alert(response);
+    //var jqState = $.parseJSON(response);
 }
 
 function logOut() {
