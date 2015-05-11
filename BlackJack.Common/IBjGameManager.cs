@@ -13,7 +13,7 @@ namespace BlackJack.Common
         /// Ctor statements must be placed in here or sort of
         /// </summary>
         /// <returns></returns>
-        GameState Initialize(Player player, Player opponent);
+        GameState Initialize();
         GameState IncreaseBet(int value);
         GameState DecreaseBet(int value);
         GameState Start();

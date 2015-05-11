@@ -11,12 +11,9 @@ namespace BlackJack.Server
     {
         public ServerGameManager(Player player1, Player player2)
         {
-            player1.GameFound = true;
-            player2.GameFound = true;
-            Initialize(player1, player2);
         }
 
-        public GameState Initialize(Player player1, Player player2)
+        public GameState Initialize()
         {
             throw new NotImplementedException();
         }

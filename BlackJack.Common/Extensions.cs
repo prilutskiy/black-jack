@@ -23,7 +23,7 @@ namespace BlackJack.Common
             var buffer = new byte[10240];
             var length = socket.Receive(buffer);
             var response = buffer.ToServerResponse();
-            return response != null && response.MethodCallSucceed;
+            return response != null /*&& response.MethodCallSucceed*/;
         }
 
         public static MethodSignature ToMethodSignature(this MethodInfo methodInfo)

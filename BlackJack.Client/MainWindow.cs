@@ -82,7 +82,7 @@ namespace BlackJack.Client
         }
         private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
         {
-            Application.Exit();
+            this.Close();
             return null;
         } 
         private JSValue leaveGameJs(object sender, JavascriptMethodEventArgs e)

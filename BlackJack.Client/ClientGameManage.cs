@@ -131,7 +131,7 @@ namespace BlackJack.Client
             Initialize();
         }
 
-        public GameState Initialize(Player player, Player opponent)
+        public GameState Initialize()
         {
             doubleFactor = 1.0;
             Winner = null;
