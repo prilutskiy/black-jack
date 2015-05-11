@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Security.Permissions;
@@ -24,13 +25,20 @@ namespace BlackJack.Client
     public partial class MainWindow : Form
     {
         #region Initialization
-        private ClientGameManager gm = new ClientGameManager();
+
+        private ClientGameManager gm;
 
         public MainWindow()
         {
             InitializeComponent();
             webView.DocumentReady += WebViewOnDocumentReady;
             webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
+
+            var tcp = new TcpClient();
+            tcp.Connect("127.0.0.1", 777);
+            var connection = new Connection(tcp.Client);
+            var result = connection.ReceiveHandshake();
+            gm = new ClientGameManager(connection);
         }
 
         private bool initialLoad = true;

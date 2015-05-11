@@ -65,6 +65,7 @@
             this.serverLogListView = new System.Windows.Forms.ListView();
             this.timeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.messageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ipColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -77,7 +78,6 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.startServerBtn = new System.Windows.Forms.Button();
-            this.ipColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -376,6 +376,11 @@
             this.messageColumn.Text = "Message";
             this.messageColumn.Width = 409;
             // 
+            // ipColumn
+            // 
+            this.ipColumn.Text = "Address";
+            this.ipColumn.Width = 91;
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -485,11 +490,7 @@
             this.startServerBtn.TabIndex = 4;
             this.startServerBtn.Text = "Start server";
             this.startServerBtn.UseVisualStyleBackColor = true;
-            // 
-            // ipColumn
-            // 
-            this.ipColumn.Text = "Address";
-            this.ipColumn.Width = 91;
+            this.startServerBtn.Click += new System.EventHandler(this.startServerBtn_Click);
             // 
             // MainWindow
             // 

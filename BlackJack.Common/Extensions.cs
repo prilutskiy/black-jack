@@ -45,13 +45,35 @@ namespace BlackJack.Common
                 return obj;
             }
         }
+        public static T ConvertValue<T>(object value)
+        {
+            return (T)Convert.ChangeType(value, typeof(T));
+        }
 
-        public static byte[] ToByteArray(this Object signature)
+        public static ServerRequest RequestToObject(this byte[] bytes)
+        {
+            using (var stream = new MemoryStream(bytes))
+            {
+                var ser = new BinaryFormatter();
+                var obj = ser.Deserialize(stream) as ServerRequest;
+                return obj;
+            }
+        }
+        public static ServerResponse ResponseToObject(this byte[] bytes)
+        {
+            using (var stream = new MemoryStream(bytes))
+            {
+                var ser = new BinaryFormatter();
+                var obj = ser.Deserialize(stream) as ServerResponse;
+                return obj;
+            }
+        }
+        public static byte[] ToByteArray(this Object obj)
         {
             using (var stream = new MemoryStream())
             {
                 var ser = new BinaryFormatter();
-                ser.Serialize(stream, signature);
+                ser.Serialize(stream, obj);
                 var bytes = stream.ToArray();
                 return bytes;
             }

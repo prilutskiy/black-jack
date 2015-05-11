@@ -11,6 +11,7 @@ namespace BlackJack.Common
     [Serializable]
     public class ServerResponse
     {
+        public GameState GameState { get; set; }
         public ServerMessageType ResponseType { get; set; }
 
         #region Auth
@@ -23,6 +24,8 @@ namespace BlackJack.Common
 
         #region Start game
         public MatchState MatchState { get; set; }
+        public bool IsAuthenticated { get; set; }
+
         #endregion
     }
 

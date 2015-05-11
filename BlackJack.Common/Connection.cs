@@ -61,12 +61,26 @@ namespace BlackJack.Common
 
         public ServerRequest ReceiveRequest()
         {
-            return null;
+            var buffer = new byte[2048];
+            Socket.Receive(buffer);
+            return buffer.RequestToObject();
         }
 
         public void SendResponse(ServerResponse response)
         {
-            
+            Socket.Send(response.ToByteArray());
+        }
+
+        public void SendRequest(ServerRequest request)
+        {
+            Socket.Send(request.ToByteArray());
+        }
+
+        public ServerResponse GetResponse()
+        {
+            var buffer = new byte[1024];
+            Socket.Receive(buffer);
+            return buffer.ResponseToObject();
         }
     }
 }

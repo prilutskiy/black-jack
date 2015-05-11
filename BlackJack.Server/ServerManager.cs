@@ -88,8 +88,9 @@ namespace BlackJack.Server
                 WriteLog("Client connected", clientSocket);
                 var client = new Connection(clientSocket);
                 if (!client.SendHandshake()) throw new InvalidOperationException("Handshake error");
-                //THREAD-UNSAFE
-                Untrusted.Add(client);
+                
+                lock(Untrusted)
+                    Untrusted.Add(client);
                 //if reached here - ok
                 while (true)
                 {
@@ -99,10 +100,20 @@ namespace BlackJack.Server
                     {
                         case ServerMessageType.NotSet:
                             throw new InvalidOperationException("Message type not set");
+                        case ServerMessageType.CheckAuth:
+                            bool isAuth;
+                            lock (Trusted)
+                                isAuth = Trusted.Contains(client);
+                            client.SendResponse(new ServerResponse
+                            {
+                                IsAuthenticated = isAuth, 
+                                ResponseType = ServerMessageType.CheckAuth
+                            });
+                            break;
                         case ServerMessageType.Auth:
                             var creds = request.Credentials;
                             var result = CheckCredentials(creds);
-
+                            
                             response = new ServerResponse
                             {
                                 ResponseType = ServerMessageType.Auth,

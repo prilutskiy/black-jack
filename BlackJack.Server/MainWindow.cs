@@ -39,7 +39,9 @@ namespace BlackJack.Server
             var item = new ListViewItem();
             item.SubItems.Add(DateTime.Now.ToString());
             item.SubItems.Add(args.Message);
-            serverLogListView.Items.Add(item);
+
+            Action crossThreadAction = () => serverLogListView.Items.Add(item);
+            serverLogListView.Invoke(crossThreadAction);
         }
     }
 }

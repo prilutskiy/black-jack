@@ -6,7 +6,9 @@ namespace BlackJack.Common
         StartGame,
         InGame,
         Auth,
+        Deauth,
         Leaderboard,
-        Error
+        Error,
+        CheckAuth
     }
 }
