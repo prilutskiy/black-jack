@@ -132,6 +132,7 @@ namespace BlackJack.Server
             Initialize();
             UserPlayer = p1;
             Dealer = p2;
+            isAuthenticated = true;
         }
         public GameState Initialize()
         {
@@ -167,7 +168,7 @@ namespace BlackJack.Server
             Bet -= value;
             return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
         }
-        public GameState Start()
+        public GameState Start(GameType gameType)
         {
             if (!isAuthenticated)
                 return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");

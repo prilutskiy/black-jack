@@ -2,30 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
     public static class Extensions
     {
-        public static bool TryRunOverNetwork(this MethodInfo method, Socket socket)
-        {
-            if (!socket.Connected)
-                return false;
-            var signature = method.ToMethodSignature();
-            //send request
-            socket.Send(signature.ToByteArray());
-            //get & validate response
-            var buffer = new byte[10240];
-            var length = socket.Receive(buffer);
-            var response = buffer.ToServerResponse();
-            return response != null /*&& response.MethodCallSucceed*/;
-        }
-
         public static MethodSignature ToMethodSignature(this MethodInfo methodInfo)
         {
             var name = methodInfo.Name;
@@ -45,9 +28,10 @@ namespace BlackJack.Common
                 return obj;
             }
         }
+
         public static T ConvertValue<T>(object value)
         {
-            return (T)Convert.ChangeType(value, typeof(T));
+            return (T) Convert.ChangeType(value, typeof (T));
         }
 
         public static ServerRequest RequestToObject(this byte[] bytes)
@@ -59,6 +43,7 @@ namespace BlackJack.Common
                 return obj;
             }
         }
+
         public static ServerResponse ResponseToObject(this byte[] bytes)
         {
             using (var stream = new MemoryStream(bytes))
@@ -68,6 +53,7 @@ namespace BlackJack.Common
                 return obj;
             }
         }
+
         public static byte[] ToByteArray(this Object obj)
         {
             using (var stream = new MemoryStream())
@@ -88,6 +74,7 @@ namespace BlackJack.Common
                 return obj;
             }
         }
+
         public static MethodCallRequest ToMethodCallRequest(this byte[] bytes)
         {
             using (var stream = new MemoryStream(bytes))

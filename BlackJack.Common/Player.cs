@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
+    [Serializable]
     [DataContract]
     public enum PlayerType
     {
@@ -15,7 +16,7 @@ namespace BlackJack.Common
         Dealer = 2,
         Draw = 3,
     }
-
+    [Serializable]
     [DataContract]
     public class Player
     {

@@ -16,7 +16,7 @@ namespace BlackJack.Common
         GameState Initialize();
         GameState IncreaseBet(int value);
         GameState DecreaseBet(int value);
-        GameState Start();
+        GameState Start(GameType gameType);
         GameState Stop();
         GameState Double();
         GameState Stand();

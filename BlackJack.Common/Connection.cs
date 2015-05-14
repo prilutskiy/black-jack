@@ -61,7 +61,7 @@ namespace BlackJack.Common
 
         public ServerRequest ReceiveRequest()
         {
-            var buffer = new byte[2048];
+            var buffer = new byte[4096];
             Socket.Receive(buffer);
             return buffer.RequestToObject();
         }
@@ -78,7 +78,7 @@ namespace BlackJack.Common
 
         public ServerResponse GetResponse()
         {
-            var buffer = new byte[1024];
+            var buffer = new byte[4096];
             Socket.Receive(buffer);
             return buffer.ResponseToObject();
         }

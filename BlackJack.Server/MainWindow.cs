@@ -36,9 +36,9 @@ namespace BlackJack.Server
 
         public void AddMessageToEventLog(object sender, ServerEventArgs args)
         {
-            var item = new ListViewItem();
-            item.SubItems.Add(DateTime.Now.ToString());
+            var item = new ListViewItem(DateTime.Now.ToString());
             item.SubItems.Add(args.Message);
+            
 
             Action crossThreadAction = () => serverLogListView.Items.Add(item);
             serverLogListView.Invoke(crossThreadAction);

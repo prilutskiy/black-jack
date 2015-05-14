@@ -182,14 +182,15 @@
             message: $('#waiting').html(),
             buttons: []
         });
-        //infinite loop, waiting while server is ready to start the game
-        setTimeout(function () {
-            if (redirectPage === 'classic') {
-                window.location.href = 'game.html';
-            } else if (redirectPage === 'duel') {
-                window.location.href = 'game.html';
-            } 
-        }, 1000);
+        //infinite loop, waiting while server is ready to start the game		
+        var intervalId = setInterval(function(){
+			var isReady = jsobject.isGameReadyJs();			
+			if (isReady){
+				jsobject.newGameJs();
+				clearInterval(intervalId);
+				window.location.href = 'game.html';
+			}			
+		}, 500);
     }
     function triggerSettingsModal() {
         BootstrapDialog.show({

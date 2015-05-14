@@ -20,6 +20,7 @@ namespace BlackJack.Common
             Arguments = new List<object>();
             Arguments.AddRange(args);
         }
+
         public MethodSignature Signature { get; set; }
         public List<Object> Arguments { get; set; }
         public override string ToString()

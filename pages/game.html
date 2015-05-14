@@ -30,12 +30,13 @@
 
     <script>
         $(document).ready(function () {
-            var response = jsobject.getStateJs();
-            var jqState = $.parseJSON(response);
-
-            $('#currentUser').text(jqState.Player.Username);
-            sendPopup('success', 'Welcome, ' + jqState.Player.Username + '!', 'Login successful.');
-            startGame();
+            var response = jsobject.getAuthInfoJs();
+			var jqState = response;
+            $('#currentUser').text(jqState);
+            sendPopup('success', 'Welcome, ' + jqState + '!', 'Login successful.');
+			var resp = jsobject.getStateJs();
+			var state = $.parseJSON(resp);
+			redraw(state);
         });
         function logoutConfirm() {
             BootstrapDialog.show({

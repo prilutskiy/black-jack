@@ -31,6 +31,12 @@ namespace BlackJack.Client
         public MainWindow()
         {
             InitializeComponent();
+#if DEBUG
+            refreshBtn.Visible = true;
+#else
+            refreshBtn.Visible = false;
+#endif
+
             webView.DocumentReady += WebViewOnDocumentReady;
             webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
         }
@@ -93,7 +99,7 @@ namespace BlackJack.Client
         }
         private JSValue newGameJs(object sender, JavascriptMethodEventArgs e)
         {
-            var state = gm.Start();
+            var state = gm.Start(GameType.Classic);
             var json = GameStateToJson(state);
             return json;
         }
@@ -168,6 +174,19 @@ namespace BlackJack.Client
             var json = GameStateToJson(state);
             return json;
         }
+
+        private JSValue getAuthInfoJs(object sender, JavascriptMethodEventArgs e)
+        {
+            gm.Connection.SendRequest(new ServerRequest() {RequestType = ServerMessageType.AuthInfo});
+            var resp = gm.Connection.GetResponse().Username;
+            return resp;
+        }
+        private JSValue isGameReadyJs(object sender, JavascriptMethodEventArgs e)
+        {
+            gm.Connection.SendRequest(new ServerRequest() {RequestType = ServerMessageType.IsGameReady});
+            bool isReady = gm.Connection.GetResponse().IsReady;
+            return isReady.ToString();
+        }
         private JSValue getLeaderboardJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.GetLeaderboard();
@@ -180,6 +199,11 @@ namespace BlackJack.Client
         private void MainWindow_Shown(object sender, EventArgs e)
         {
             webView.ExecuteJavascript("checkConnection();");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            webView.Reload(true);
         }
 
     }

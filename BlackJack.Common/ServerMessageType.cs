@@ -9,6 +9,8 @@ namespace BlackJack.Common
         Deauth,
         Leaderboard,
         Error,
-        CheckAuth
+        CheckAuth,
+        IsGameReady,
+        AuthInfo
     }
 }

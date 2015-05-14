@@ -17,7 +17,7 @@ namespace BlackJack.Client
         {
             Connection = connection;
         }
-        private Connection Connection { get; set; }
+        public Connection Connection { get; set; }
         private GameType GameType = GameType.NotSet;
         private ServerResponse InvokeRemote(MethodInfo methodInfo, List<object> args, ServerRequest request)
         {
@@ -26,6 +26,7 @@ namespace BlackJack.Client
                 Arguments = args,
                 Signature = methodInfo.ToMethodSignature()
             };
+            request.RequestedMethod = methodRequest;
             Connection.SendRequest(request);
             ServerResponse response = Connection.GetResponse();
             return response;
@@ -62,13 +63,14 @@ namespace BlackJack.Client
             return response.GameState;
         }
 
-        public GameState Start()
+        public GameState Start(GameType gameType = GameType.NotSet)
         {
+            GameType = gameType;
             var args = new List<object>();
             var req = new ServerRequest()
             {
-                GameType = GameType,
-                RequestType = ServerMessageType.InGame
+                GameType = gameType,
+                RequestType = ServerMessageType.StartGame
             };
             var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
             var response = InvokeRemote(methodInfo, args, req);
@@ -191,6 +193,7 @@ namespace BlackJack.Client
             var response = InvokeRemote(methodInfo, args, req);
             return response.GameState;
         }
+
     }
 
 }

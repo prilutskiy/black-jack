@@ -16,6 +16,8 @@ namespace BlackJack.Common
 
         #region Auth
         public Boolean AuthSucceed { get; set; }
+        public bool IsAuthenticated { get; set; }
+        public String Username { get; set; }
         #endregion
 
         #region Error
@@ -24,7 +26,7 @@ namespace BlackJack.Common
 
         #region Start game
         public MatchState MatchState { get; set; }
-        public bool IsAuthenticated { get; set; }
+        public bool IsReady { get; set; }
 
         #endregion
     }

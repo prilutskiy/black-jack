@@ -95,11 +95,16 @@ namespace BlackJack.Server
                 while (true)
                 {
                     var request = client.ReceiveRequest();
+
                     ServerResponse response;
                     switch (request.RequestType)
                     {
                         case ServerMessageType.NotSet:
                             throw new InvalidOperationException("Message type not set");
+                        case ServerMessageType.AuthInfo:
+                            var resp = new ServerResponse() {Username = client.PlayerInstance.Username};
+                            client.SendResponse(resp);
+                            break;
                         case ServerMessageType.CheckAuth:
                             bool isAuth;
                             lock (Trusted)
@@ -145,29 +150,52 @@ namespace BlackJack.Server
                             client.SendResponse(response);
                             break;
                         case ServerMessageType.StartGame:
-                            //THREAD-UNSAFE
-                            if (Untrusted.Contains(client)) //if not authenticated
-                            {
-                                response = new ServerResponse
+                            lock(Untrusted)
+                                if (Untrusted.Contains(client)) //if not authenticated
                                 {
-                                    ResponseType = ServerMessageType.Error,
-                                    ErrorMessage = "Access denied. Please, authorize"
-                                };
-                                client.SendResponse(response);
-                            }
-                            else
-                            {
-                                var gameType = request.GameType;
-                                OnStartGameRequest(client.PlayerInstance, gameType);
-                                response = new ServerResponse
+                                    response = new ServerResponse
+                                    {
+                                        ResponseType = ServerMessageType.Error,
+                                        ErrorMessage = "Access denied. Please, authorize"
+                                    };
+                                    client.SendResponse(response);
+                                }
+                                else
                                 {
-                                    ResponseType = ServerMessageType.StartGame,
-                                    MatchState = MatchState.Waiting
-                                };
-                                client.SendResponse(response);
-                            }
+                                    var gameType = request.GameType;
+                                    OnStartGameRequest(client.PlayerInstance, gameType);
+                                    var g = GetGameByConnection(client);
+                                    g.Stop();
+                                    g.Start(gameType);
+                                    response = new ServerResponse
+                                    {
+                                        ResponseType = ServerMessageType.StartGame,
+                                        MatchState = IsGameReady(client.PlayerInstance) ? MatchState.GameFound : MatchState.Waiting,
+                                        GameState = IsGameReady(client.PlayerInstance) ? GetGameByConnection(client).GetState() : null
+                                    };
+                                    client.SendResponse(response);
+                                }
+                            break;
+                        case ServerMessageType.IsGameReady:
+                            var isReady = IsGameReady(client.PlayerInstance);
+                            response = new ServerResponse()
+                            {
+                                IsReady = isReady
+                            };
+                            client.SendResponse(response);
                             break;
                         case ServerMessageType.InGame:
+
+                            IBjGameManager game = GetGameByConnection(client);
+                            var gameState = ProcessInGameRequest(game, request);
+                            response = new ServerResponse();
+                            if (gameState is bool)
+                                response.IsAuthenticated = (bool) gameState;
+                            else if (gameState is GameState)
+                                response.GameState = gameState as GameState;
+                            else
+                                throw new InvalidOperationException();
+                            client.SendResponse(response);
                             break;
                         case ServerMessageType.Leaderboard:
                             break;
@@ -196,14 +224,35 @@ namespace BlackJack.Server
             }
         }
 
+
+        private Object ProcessInGameRequest(IBjGameManager game, ServerRequest request)
+        {
+            var requestedMethod = request.RequestedMethod;
+            var localMethod = game.GetType().GetMethod(requestedMethod.Signature.Name);
+            var result = localMethod.Invoke(game, requestedMethod.Arguments.ToArray());
+            return result;
+        }
+
         public readonly Queue<Player> DuelQueue = new Queue<Player>();
         public readonly Queue<Player> ClassicQueue = new Queue<Player>();
+
         public readonly List<ServerGameManager> DuelGames = new List<ServerGameManager>();
-        public readonly List<ServerGameManager> ClassicGames = new List<ServerGameManager>();
+        public readonly List<Tuple<Player, Player, ServerGameManager>> ClassicGames = new List<Tuple<Player, Player, ServerGameManager>>();
 
         public readonly List<Connection> Untrusted = new List<Connection>();
         public readonly List<Connection> Trusted = new List<Connection>();
 
+        private bool IsGameReady(Player p)
+        {
+            bool result = true;
+            lock (DuelQueue)
+                if (DuelQueue.Contains(p))
+                    result &= false;
+            lock (ClassicQueue)
+                if (ClassicQueue.Contains(p))
+                    result &= false;
+            return result;
+        }
         void OnStartGameRequest(Player player, GameType type)
         {
             //if authenticated
@@ -225,21 +274,29 @@ namespace BlackJack.Server
         void ProcessQueues()
         {
             lock (ClassicQueue)
-                while (ClassicQueue.Count > 1)
+                while (ClassicQueue.Count > 0)
                 {
                     var player1 = ClassicQueue.Dequeue();
                     var player2 = playerFactory.Create(PlayerType.Dealer, "Dealer");
                     var game = new ServerGameManager(player1, player2);
-                    ClassicGames.Add(game);
+                    var pair = new Tuple<Player, Player, ServerGameManager>(player1, null, game);
+                    if (!ClassicGames.Any(t => t.Item1 == player1))
+                        ClassicGames.Add(pair);
                 }
             lock(DuelQueue)
-                while (DuelQueue.Count/2 > 1)
+                while (DuelQueue.Count/2 > 0)
                 {
                     var player1 = DuelQueue.Dequeue();
                     var player2 = DuelQueue.Dequeue();
                     var game = new ServerGameManager(player1, player2);
                     DuelGames.Add(game);
                 }
+        }
+        private IBjGameManager GetGameByConnection(Connection client)
+        {
+            var player = client.PlayerInstance;
+            var game = ClassicGames.SingleOrDefault(p => p.Item1 == player || p.Item2 == player).Item3;
+            return game;
         }
     }
 }
