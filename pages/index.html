@@ -1,0 +1,456 @@
+﻿<!DOCTYPE html>
+<!--<html onmousedown=' return false;' onselectstart='return false;' oncontextmenu='return false;'>-->
+<html >
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Jack</title>
+    <link href="Content/bootstrap.superhero.min.css" rel="stylesheet"/>
+    <link href="Content/bootstrap-dialog.min.css" rel="stylesheet"/>
+    <link href="Content/animate.css" rel="stylesheet"/>
+    <link href="Content/font-awesome.min.css" rel="stylesheet"/>
+    <link href="Content/Site.css" rel="stylesheet"/>
+
+    <script src="Scripts/modernizr-2.6.2.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/bootstrap-notify.min.js"></script>
+    <script src="Scripts/bootstrap-dialog.min.js"></script>
+    <script src="Scripts/main.js"></script>
+
+    <style>
+            /*
+        * Specific styles of signin component
+        */
+            /*
+        * General styles
+        */
+            body, html {
+                height: 100%;
+            }
+
+            .card-container.card {
+                width: 350px;
+                padding-left: 40px;
+                padding-right: 40px;
+                margin-top: -30px;
+                margin-bottom: -30px;
+            }
+
+            .btn {
+                font-weight: 700;
+                -moz-user-select: none;
+                -webkit-user-select: none;
+                user-select: none;
+                cursor: default;
+            }
+
+            /*
+        * Card component
+        */
+            .card {
+                background-color: #F7F7F7;
+                /* just in case there no content*/
+                padding: 20px 25px 30px;
+                margin: 0 auto 25px;
+                /* shadows and rounded borders */
+                -moz-border-radius: 2px;
+                -webkit-border-radius: 2px;
+                border-radius: 2px;
+                -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+                box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            }
+
+            .profile-img-card {
+                width: 96px;
+                height: 96px;
+                margin: 0 auto 10px;
+                display: block;
+                -moz-border-radius: 50%;
+                -webkit-border-radius: 50%;
+                border-radius: 50%;
+            }
+
+            /*
+        * Form styles
+        */
+            .profile-name-card {
+                font-size: 16px;
+                font-weight: bold;
+                text-align: center;
+                margin: 10px 0 0;
+                min-height: 1em;
+            }
+
+            .reauth-email {
+                display: block;
+                color: #404040;
+                line-height: 2;
+                margin-bottom: 10px;
+                font-size: 14px;
+                text-align: center;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .form-signin #inputlogin,
+            .form-signin #inputPassword {
+                direction: ltr;
+                height: 44px;
+                font-size: 16px;
+            }
+
+            .form-signin input[type=email],
+            .form-signin input[type=password],
+            .form-signin input[type=text],
+            .form-signin button {
+                width: 100%;
+                display: block;
+                margin-bottom: 10px;
+                z-index: 1;
+                position: relative;
+                -moz-box-sizing: border-box;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+            .form-signin .form-control:focus {
+                border-color: rgb(104, 145, 162);
+                outline: 0;
+                -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+                box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgb(104, 145, 162);
+            }
+
+            .btn.btn-signin {
+                /*background-color: #4d90fe; */
+                background-color: rgb(104, 145, 162);
+                /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+                padding: 0px;
+                font-weight: 700;
+                font-size: 14px;
+                -moz-border-radius: 3px;
+                -webkit-border-radius: 3px;
+                border-radius: 3px;
+                border: none;
+                -o-transition: all 0.218s;
+                -moz-transition: all 0.218s;
+                -webkit-transition: all 0.218s;
+                transition: all 0.218s;
+                margin-bottom: -50px
+            }
+
+                .btn.btn-signin:hover,
+                .btn.btn-signin:active,
+                .btn.btn-signin:focus {
+                    background-color: #bf5a16;
+                }
+
+            .forgot-password {
+                color: rgb(104, 145, 162);
+            }
+            .modal-dialog {
+                margin-top: 40px;
+            }
+    </style>
+<script>
+    function triggerErrorModal(redirectPage) {
+        BootstrapDialog.show({
+            closable: false,
+            title: 'Authentication error',
+            message: 'Username or password is incorrect',
+            buttons: [
+            {
+                label: 'OK',
+                cssClass: 'btn btn-sm btn-success',
+                action: function (dialog) {
+                    reflectAuthChanges();
+                    dialog.close();
+                    triggerSignInModal(redirectPage);
+                }
+            }]
+        });
+    }
+    function triggerWaitingModal(redirectPage) {
+        BootstrapDialog.show({
+            closable: true,
+            title: 'Searching for a game',
+            message: $('#waiting').html(),
+            buttons: []
+        });
+        //infinite loop, waiting while server is ready to start the game		
+        var intervalId = setInterval(function(){
+			var isReady = jsobject.isGameReadyJs();			
+			if (isReady){
+				jsobject.newGameJs();
+				clearInterval(intervalId);
+				window.location.href = 'game.html';
+			}			
+		}, 500);
+    }
+    function triggerSettingsModal() {
+        BootstrapDialog.show({
+            closable: true,
+            title: 'Settings',
+            message: $('#settings').html(),
+            buttons: [
+            {
+                label: 'OK',
+                cssClass: 'btn btn-sm btn-success',
+                action: function(dialog) {
+                    //save settings action here
+                    dialog.close();
+                }
+            }]
+        });
+    }
+    
+    function triggerSignInModal(redirectPage) {
+        reflectAuthChanges();
+        var msgBody = $('#signinModal');
+        var html = msgBody.html();
+        msgBody.remove();
+        BootstrapDialog.show({
+            closable: false,
+            title: 'Sign in',
+            message: html,
+            buttons: [
+                {
+                    label: 'Sign in',
+                    cssClass: 'btn btn-sm btn-success',
+                    action: function (dialog) {
+                        logIn();
+                        reflectAuthChanges();
+                        var authResult = getAuthState();
+                        if (!authResult) {
+                            dialog.close();
+                            triggerErrorModal(redirectPage);
+                        } else {
+                            dialog.close();
+                            if (redirectPage != null) {
+                                if (redirectPage === 'leaderboard') {
+                                    triggerLeaderboardModal();
+                                } else {
+                                    triggerWaitingModal(redirectPage);
+                                }
+                            }
+                            
+                        }
+                        var cont = $('<div id="signinModal"></div>');
+                        var obj = $(html);
+                        obj.css('margin-top', '0px');
+                        obj.css('margin-bottom', '0px');
+                        cont.append(obj);
+                        $('#hidden').append(cont);
+                    }
+                }, {
+                    label: 'Cancel',
+                    cssClass: 'btn btn-sm btn-danger',
+                    action: function (dialog) {
+                        dialog.close();
+                        var cont = $('<div id="signinModal"></div>');
+                        var obj = $(html);
+                        obj.css('margin-top', '0px');
+                        obj.css('margin-bottom', '0px');
+                        cont.append(obj);
+                        $('#hidden').append(cont);
+                    }
+                }
+            ]
+        });
+    } 
+    function triggerLeaderboardModal() {
+        var table = $('<table class="table table-striped table-hover"></div>');
+        table.css('margin-right', '50px');
+        var thead = $('<thead><tr class="warning"><th class="text-center">Username</th><th class="text-center">Score</th></tr></thead>');
+        var tbody = $('<tbody></tbody>');
+        var response = jsobject.getLeaderboardJs();
+        var leaders = $.parseJSON(response).Leaderboard;
+        for (var i = 0; i < leaders.length; i++) {
+            var row = $('<tr class="info"><td>' + leaders[i].key + '</td><td>' + leaders[i].value + '</td></tr>');
+            tbody.append(row);
+        }
+        table.append(thead);
+        table.append(tbody);
+
+        BootstrapDialog.show({
+            closable: true,
+            title: 'Leaderboard',
+            message: table,
+            buttons: [
+            {
+                label: 'OK',
+                cssClass: 'btn btn-sm btn-success',
+                action: function (dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+
+
+    function showLeaderboards() {
+        var state = getAuthState();
+        if (!state)
+            triggerSignInModal('leaderboard');
+        else
+            triggerLeaderboardModal();
+    }
+
+    function startClassic() {
+        var state = getAuthState();
+        if (!state)
+            triggerSignInModal('classic');
+        else
+            triggerWaitingModal('classic');
+    }
+
+    function startDuel() {
+        var state = getAuthState();
+        if (!state)
+            triggerSignInModal('duel');
+        else
+            triggerWaitingModal('duel');
+    }
+    function reflectAuthChanges() {
+        var state = getAuthState();
+        var btn = $('#profileBtn');
+        var btnText = $('#profileBtnText');
+        var btnIcon = $('#profileBtnIcon');
+        if (state) {
+            btn.removeClass('btn-info');
+            btn.addClass('btn-warning');
+            btn.attr('onclick', 'logOut();');
+
+            btnText.text('Sign out');
+
+            btnIcon.removeClass('icon-signin');
+            btnIcon.addClass('icon-signout');
+        } else {
+            btn.removeClass('btn-warning');
+            btn.addClass('btn-info');
+            btn.attr('onclick', 'triggerSignInModal();');
+
+            btnText.text('Sign in');
+
+            btnIcon.removeClass('icon-signout');
+            btnIcon.addClass('icon-signin');
+        }
+    }
+    function checkConnection()
+    {
+        var serverAlive = jsobject.connectJs();
+        if (!(serverAlive === 'True'))
+            {
+                 BootstrapDialog.show({
+                    closable: false,
+                    title: 'Information',
+                    message: 'Game server is down for maintenance.'
+                });
+            }
+    }
+    $(document).ready(function () {
+        reflectAuthChanges();
+        
+    });
+</script>
+</head>
+
+<body>
+<div class="hidden" id="hidden">
+    <div class="row" id="signinModal">
+        <div class="card card-container" style="background-color: rgba(54, 142, 158, 0.52)">
+            <img id="profile-img" class="profile-img-card" src="images/avatar.png" style="margin-top: -10px; margin-bottom: -50px;"/>
+            <p id="profile-name" class="profile-name-card"></p>
+            <div class="form-signin form-group">
+                <input type="text" id="inputlogin" class="form-control" placeholder="Login">
+                <input type="password" id="inputPassword" class="form-control" placeholder="Password" style="margin-bottom: -30px">
+            </div><!-- /form -->
+        </div><!-- /card-container -->
+    </div>
+    <div id="waiting">
+        <h3 id="waitingText">Waiting for a player...</h3>
+    </div>
+    <div class="row" id="settings">
+        <div class="card card-container" style="background-color: rgba(54, 142, 158, 0.52)">
+            <p id="profile-name" class="profile-name-card text-success">Connection settings</p>
+            <div class="form-signin form-group" style="margin-top: -30px; ">
+                <label class="control-label h5"><b>Server address</b></label>
+                <input type="text" class="form-control" id="serverAddress" value="127.0.0.1">
+                <label class="control-label h5"><b>Server port</b></label>
+                <input type="text" class="form-control" id="serverPort" style="margin-bottom: -40px" value="777">
+            </div><!-- /form -->
+        </div><!-- /card-container -->
+    </div>
+</div>
+
+
+<!--<div class="container body-content" onmousedown=' return false; ' onselectstart='return false;' oncontextmenu='return false;'>-->
+<div class="container body-content">
+    <div class="row" >
+        <div class="col-sm-3">
+        </div>
+        <div class="col-sm-6">
+        </div>
+        <div class="col-sm-3">
+            <div>
+                <div class="btn btn-sm btn-info pull-right" style="border-radius: 5px;" id="profileBtn" rel="tooltip"
+                     onclick='triggerSignInModal()'>
+                    <span id="profileBtnText">Sign in</span>&nbsp;&nbsp;
+                    <i class="fa icon-signin" id="profileBtnIcon"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 15px">
+        <div class="col-sm-8">
+            <div class="col-sm-12">
+                <div class="well well-lg" style="background-color: rgba(54, 142, 158, 0.52); border-radius: 5px">
+                    <h1>Welcome to BlackJack!</h1>
+                    <img src="Images/1429055942_kpat.png" style='float: left; width: 130px; margin-right: 10px;'/>
+                    <p class="text-justify">
+                        Blackjack, also known as twenty-one, is the most widely played casino banking game in the world. Blackjack is a comparing card game between a player and dealer, meaning that players compete against the dealer but not against any other players. It is played with one or more decks of 52 cards.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div id="gameTable">
+                <a class="btn btn-block btn-success" style="border-radius: 5px"
+                   onclick="startDuel();">
+                    <b>Duel mode</b>&nbsp;&nbsp;<i class="fa icon-globe"></i>
+                </a>
+                <a class="btn btn-block btn-warning" style="border-radius: 5px"
+                   onclick="startClassic()">
+                    <b>Classic mode</b>&nbsp;&nbsp;<i class="fa icon-gamepad"></i>
+                </a>
+                <a class="btn btn-block btn-info" style="border-radius: 5px"
+                   onclick="showLeaderboards()">
+                    <b>Leaderboards</b>&nbsp;&nbsp;<i class="fa icon-group"></i>
+                </a>
+                <img src="Images/Cards.png" style="margin: auto; display: block; height: 130px"/>
+                <a class="btn btn-block btn-default" style="border-radius: 5px;"
+                   onclick="triggerSettingsModal()">
+                    <b>Settings</b>&nbsp;&nbsp;<i class="fa icon-gears"></i>
+                </a>
+                <a class="btn btn-block btn-danger" style="border-radius: 5px"
+                   onclick="jsobject.exitGameJs()">
+                    <b>Exit</b>&nbsp;&nbsp;<i class="fa icon-signout"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-success text-center" style="background-color: rgba(0, 0, 0, 0.3); margin-left: 15px; border-radius: 5px;">
+                <i>Created by <strong>Max Prilutskiy</strong></i>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
