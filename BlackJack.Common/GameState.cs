@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 namespace BlackJack.Common
 {
     [DataContract]
+    [Serializable]
     public class GameState
     {
         public GameState(Player player, Player dealer, bool gameIsOver, Player winner, int bet, double doubleFactor, String exMsg, string appStage = "game", string msg = null)

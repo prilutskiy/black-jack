@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
+    [Serializable]
     [DataContract]
     public enum CardSuit : int
     {
@@ -17,6 +18,7 @@ namespace BlackJack.Common
         Diamonds = 4,
     }
 
+    [Serializable]
     [DataContract]
     public enum CardValue : int
     {
@@ -35,6 +37,8 @@ namespace BlackJack.Common
         Queen = 12,
         King = 13,
     }
+
+    [Serializable]
     [DataContract]
     public class Card
     {

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
+    [Serializable]
     [DataContract]
     public enum PlayerType
     {
@@ -15,10 +16,12 @@ namespace BlackJack.Common
         Dealer = 2,
         Draw = 3,
     }
-
+    [Serializable]
     [DataContract]
     public class Player
     {
+        [DataMember]
+        public Guid Id { get; set; }
         public void ChangeCash(int value)
         {
             Cash += value;
@@ -33,6 +36,9 @@ namespace BlackJack.Common
         public String Username { get; internal set; }
         [DataMember]
         public List<Card> Cards { get; private set; }
+
+        public bool GameFound { get; set; }
+
         private void RecalculateCardScore()
         {
             var aceCount = 0;
@@ -57,6 +63,15 @@ namespace BlackJack.Common
             Cards = new List<Card>();
             Username = username;
             Cash = 1000;
+        }
+
+        public void Populate(Player player)
+        {
+            Id = player.Id;
+            Cash = player.Cash;
+            Username = player.Username;
+            PlayerType = player.PlayerType;
+            Cards = new List<Card>();
         }
         public void TakeCard(int count)
         {

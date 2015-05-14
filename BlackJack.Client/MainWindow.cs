@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net.Sockets;
 using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Security.Permissions;
@@ -24,21 +25,34 @@ namespace BlackJack.Client
     public partial class MainWindow : Form
     {
         #region Initialization
-        private ClientGameManager gm = new ClientGameManager();
 
+        private ClientGameManager gm;
+        private bool connected = false;
         public MainWindow()
         {
             InitializeComponent();
+#if DEBUG
+            refreshBtn.Visible = true;
+#else
+            refreshBtn.Visible = false;
+#endif
+
             webView.DocumentReady += WebViewOnDocumentReady;
             webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
         }
 
+        private void Connect()
+        {
+            var tcp = new TcpClient();
+            tcp.Connect("127.0.0.1", 777);
+            var connection = new Connection(tcp.Client);
+            var result = connection.ReceiveHandshake();
+            gm = new ClientGameManager(connection);
+            connected = true;
+        }
+
         private bool initialLoad = true;
 
-        private JSValue isInitialLoadJs(object sender, JavascriptMethodEventArgs e)
-        {
-            return initialLoad.ToString();
-        }
         private void WebViewOnDocumentReady(object sender, DocumentReadyEventArgs e)
         {
             JSObject jsobject = webView.CreateGlobalJavascriptObject("jsobject");
@@ -59,6 +73,25 @@ namespace BlackJack.Client
         #endregion
 
         #region HTML UI Event Handlers
+
+        private JSValue connectJs(object sender, JavascriptMethodEventArgs args)
+        {
+            if (!initialLoad) return true.ToString();
+            initialLoad = false;
+            if (!connected)
+            {
+                try
+                {
+                    Connect();
+                }
+                catch (SocketException ex)
+                {
+                    //MessageBox.Show(ex.Message, "Connection unavailible", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return false.ToString();
+                }
+            }
+                    return true.ToString();
+        }
         private JSValue getAuthStateJs(object sender, JavascriptMethodEventArgs e)
         {
             var authState = gm.IsAuthenticated();
@@ -66,7 +99,7 @@ namespace BlackJack.Client
         }
         private JSValue newGameJs(object sender, JavascriptMethodEventArgs e)
         {
-            var state = gm.Start();
+            var state = gm.Start(GameType.Classic);
             var json = GameStateToJson(state);
             return json;
         }
@@ -82,7 +115,7 @@ namespace BlackJack.Client
         }
         private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
         {
-            Application.Exit();
+            this.Close();
             return null;
         } 
         private JSValue leaveGameJs(object sender, JavascriptMethodEventArgs e)
@@ -126,8 +159,8 @@ namespace BlackJack.Client
             var username = e.Arguments.FirstOrDefault() == null ? "" : e.Arguments.FirstOrDefault().ToString();
             var pass = e.Arguments.ElementAtOrDefault(1) == null ? "" : e.Arguments.ElementAtOrDefault(1).ToString();
             var state = gm.Login(username, pass);
-            var json = GameStateToJson(state);
-            return json;
+            //var json = GameStateToJson(state);
+            return "STUB";
         }
         private JSValue logOutJs(object sender, JavascriptMethodEventArgs e)
         {
@@ -141,6 +174,19 @@ namespace BlackJack.Client
             var json = GameStateToJson(state);
             return json;
         }
+
+        private JSValue getAuthInfoJs(object sender, JavascriptMethodEventArgs e)
+        {
+            gm.Connection.SendRequest(new ServerRequest() {RequestType = ServerMessageType.AuthInfo});
+            var resp = gm.Connection.GetResponse().Username;
+            return resp;
+        }
+        private JSValue isGameReadyJs(object sender, JavascriptMethodEventArgs e)
+        {
+            gm.Connection.SendRequest(new ServerRequest() {RequestType = ServerMessageType.IsGameReady});
+            bool isReady = gm.Connection.GetResponse().IsReady;
+            return isReady.ToString();
+        }
         private JSValue getLeaderboardJs(object sender, JavascriptMethodEventArgs e)
         {
             var state = gm.GetLeaderboard();
@@ -149,5 +195,16 @@ namespace BlackJack.Client
             return json;
         }
         #endregion
+
+        private void MainWindow_Shown(object sender, EventArgs e)
+        {
+            webView.ExecuteJavascript("checkConnection();");
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            webView.Reload(true);
+        }
+
     }
 }

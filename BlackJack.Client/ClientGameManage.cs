@@ -1,278 +1,198 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using BlackJack.Common;
+using DevExpress.Data.Linq;
+using DevExpress.XtraPrinting.Native;
 
 namespace BlackJack.Client
 {
     class ClientGameManager : IBjGameManager
     {
-        #region Private members
-
-        private bool isAuthenticated;
-        private void Clear()
+        public ClientGameManager(Connection connection)
         {
-            EndGame = false;
-            doubleFactor = 1.0;
-            Winner = null;
-            if (Dealer != null)
-                Dealer.Clear();
-            if (UserPlayer != null)
-                UserPlayer.Clear();
-            canDouble = true;
-            isRunning = false;
+            Connection = connection;
         }
-        private Player Winner;
-        private Double doubleFactor = 1.0;
-        private bool EndGame = false;
-        private bool canDouble;
-        private bool isRunning;
-        private static Player CreateDraftPlayer()
+        public Connection Connection { get; set; }
+        private GameType GameType = GameType.NotSet;
+        private ServerResponse InvokeRemote(MethodInfo methodInfo, List<object> args, ServerRequest request)
         {
-            var p = new Player(PlayerType.Draw, "Draw");
-            return p;
-        }
-        private void CalculateWinner()
-        {
-            if (!EndGame)
+            var methodRequest = new MethodCallRequest()
             {
-                if (IsBlackJack(Dealer) && IsBlackJack(UserPlayer))
-                {
-                    Winner = CreateDraftPlayer();
-                    EndGame = true;
-                }
-                else
-                {
-                    if (IsBlackJack(Dealer))
-                    {
-                        Winner = Dealer;
-                        EndGame = true;
-                    }
-                    if (IsBlackJack(UserPlayer))
-                    {
-                        Winner = UserPlayer;
-                        EndGame = true;
-                    }
-                }
-            }
-            else
-            {
-                if (Dealer.CardScore == 21)
-                    if (UserPlayer.CardScore == 21)
-                        Winner = CreateDraftPlayer();
-                    else
-                        Winner = Dealer;
-                else if (UserPlayer.CardScore == 21)
-                    if (Dealer.CardScore == 21)
-                        Winner = CreateDraftPlayer();
-                    else
-                        Winner = UserPlayer;
-                else if (UserPlayer.CardScore > 21)
-                    Winner = Dealer;
-                else if (Dealer.CardScore > 21)
-                    Winner = UserPlayer;
-                else if (UserPlayer.CardScore > Dealer.CardScore)
-                    Winner = UserPlayer;
-                else if (Dealer.CardScore > UserPlayer.CardScore)
-                    Winner = Dealer;
-                else
-                    Winner = CreateDraftPlayer();
-            }
-
-            /*
-            if (dealer.CardScore == 21)
-                Winner = dealer;
-            else if (userPlayer.CardScore > 21)
-                Winner = dealer;
-            else if (dealer.CardScore > 21)
-                Winner = userPlayer;
-            else if (userPlayer.CardScore == dealer.CardScore)
-            {
-                Winner = new Player();
-                Winner.Username = "Draw";
-            }
-            */
-            CalculatePrize();
+                Arguments = args,
+                Signature = methodInfo.ToMethodSignature()
+            };
+            request.RequestedMethod = methodRequest;
+            Connection.SendRequest(request);
+            ServerResponse response = Connection.GetResponse();
+            return response;
         }
-        private bool IsBlackJack(Player player)
+        public GameState Initialize()
         {
-            if (player.Cards.Count == 2 && player.CardScore == 21)
-                return true;
-            return false;
+            throw new NotImplementedException();
         }
-        private void CalculatePrize()
-        {
-            int prize = Bet;
-            if (Winner == null)
-                return;
-            if (Winner.Username == "Draw")
-            {
-                return;
-            }
-            if (IsBlackJack(Winner))
-                doubleFactor *= 1.5;
-            if (Winner.PlayerType == PlayerType.Player)
-                UserPlayer.ChangeCash((int)(prize * doubleFactor));
-            else
-                UserPlayer.ChangeCash(-((int)(prize * doubleFactor)));
-            isRunning = false;
-        }
-        private Int32 Bet { get; set; }
 
-        private Player UserPlayer;
-        private Player Dealer;
-        #endregion
-
-        #region Public members
-        public ClientGameManager()
-        {
-            doubleFactor = 1.0;
-            Winner = null;
-            UserPlayer = null;
-            Dealer = null;
-            Bet = 100;
-            isAuthenticated = false;
-        }
         public GameState IncreaseBet(int value = 50)
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            if (!canDouble)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is already running. You cannot change your bet.");
-            if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over. You can change bets when the game starts.");
-            Bet += value;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+            var args = new List<object> { value };
+            var req = new ServerRequest()
+            {
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
+
         public GameState DecreaseBet(int value = 50)
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            if (Bet - value < 1)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Your bet cannot be less then 1$.");
-            if (!canDouble)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is already running. You cannot change your bet.");
-            if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over. You can change bets when the game starts.");
-            Bet -= value;
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+            var args = new List<object> { value };
+            var req = new ServerRequest()
+            {
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
-        public GameState Start()
-        {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            Clear();
-            isRunning = true;
-            Dealer.TakeCard(2);
 
-            UserPlayer.TakeCard(2);
-            CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+        public GameState Start(GameType gameType = GameType.NotSet)
+        {
+            GameType = gameType;
+            var args = new List<object>();
+            var req = new ServerRequest()
+            {
+                GameType = gameType,
+                RequestType = ServerMessageType.StartGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState Stop()
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            Clear();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+            var args = new List<object>();
+            var req = new ServerRequest()
+            {
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState Double()
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
-            if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
-            if (!canDouble)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Cannot double after any card has been hit");
-            doubleFactor = 2.0;
-            EndGame = true;
-            UserPlayer.TakeCard(1);
-            if (UserPlayer.CardScore > 21)
+            var args = new List<object>();
+            var req = new ServerRequest()
             {
-                CalculateWinner();
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
-            }
-            while (Dealer.CardScore < 16)
-                Dealer.TakeCard(1);
-            CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState Stand()
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
-            if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
-            EndGame = true;
-            while (Dealer.CardScore < 16)
-                Dealer.TakeCard(1);
-            CalculateWinner();
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+            var args = new List<object>();
+            var req = new ServerRequest()
+            {
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState Hit()
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            if (!isRunning)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is not running yet");
-            if (EndGame)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "Game is over");
-            UserPlayer.TakeCard(1);
-            canDouble = false;
-            if (UserPlayer.CardScore >= 21)
+            var args = new List<object>();
+            var req = new ServerRequest()
             {
-                EndGame = true;
-                CalculateWinner();
-            }
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState Login(string username, string pass)
         {
-            var result = username.ToLower() == "admin" && pass.ToLower() == "admin";
-            isAuthenticated = result;
-            if (isAuthenticated)
+            var args = new List<object>() { username, pass };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var req = new ServerRequest()
             {
-                UserPlayer = new Player(PlayerType.Player, username);
-                Dealer = new Player(PlayerType.Dealer);
-            }
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, result ? null : "Username or password is incorrect", "auth", result ? "Login successful" : null);
+                Credentials = new Credentials(username, pass),
+                GameType = GameType,
+                RequestType = ServerMessageType.Auth
+            };
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState Logoff()
         {
-            if (!isAuthenticated)
-                return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, "You cannot play while not authenticated.", "auth");
-            isAuthenticated = false;
-            UserPlayer = null;
-            Dealer = null;
-            return Stop();
+            var args = new List<object>();
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var req = new ServerRequest()
+            {
+                GameType = GameType,
+                RequestType = ServerMessageType.Deauth
+            };
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public GameState GetState()
         {
-            return new GameState(UserPlayer, Dealer, EndGame, Winner, Bet, doubleFactor, null);
+            var args = new List<object>();
+            var req = new ServerRequest()
+            {
+                GameType = GameType,
+                RequestType = ServerMessageType.InGame
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
+
         public bool IsAuthenticated()
         {
-            return isAuthenticated;
+            var args = new List<object>();
+            var req = new ServerRequest()
+            {
+                RequestType = ServerMessageType.CheckAuth
+            };
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.IsAuthenticated;
         }
 
         public GameState GetLeaderboard()
         {
-            var dict = new Dictionary<string, int>();
-            dict.Add("Admin", 5400);
-            dict.Add("John Doe", 3000);
-            var state = new GameState(null, null, false, null, -1, -1, null, "leaderboard")
+            var args = new List<object>();
+            var req = new ServerRequest()
             {
-                Leaderboard = dict.OrderByDescending(a => a.Value).ToList()
+                GameType = GameType,
+                RequestType = ServerMessageType.Leaderboard
             };
-            return state;
+            var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
+            var response = InvokeRemote(methodInfo, args, req);
+            return response.GameState;
         }
-        #endregion
 
     }
 

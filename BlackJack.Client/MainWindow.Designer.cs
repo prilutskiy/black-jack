@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.webView = new Awesomium.Windows.Forms.WebControl(this.components);
+            this.refreshBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // webView
@@ -40,12 +41,23 @@
             this.webView.Source = new System.Uri("about:error", System.UriKind.Absolute);
             this.webView.TabIndex = 0;
             // 
+            // refreshBtn
+            // 
+            this.refreshBtn.Location = new System.Drawing.Point(12, 565);
+            this.refreshBtn.Name = "refreshBtn";
+            this.refreshBtn.Size = new System.Drawing.Size(75, 23);
+            this.refreshBtn.TabIndex = 1;
+            this.refreshBtn.Text = "Refresh";
+            this.refreshBtn.UseVisualStyleBackColor = true;
+            this.refreshBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.MidnightBlue;
             this.ClientSize = new System.Drawing.Size(900, 600);
+            this.Controls.Add(this.refreshBtn);
             this.Controls.Add(this.webView);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -53,6 +65,7 @@
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BlackJack";
+            this.Shown += new System.EventHandler(this.MainWindow_Shown);
             this.ResumeLayout(false);
 
         }
@@ -60,6 +73,7 @@
         #endregion
 
         private Awesomium.Windows.Forms.WebControl webView;
+        private System.Windows.Forms.Button refreshBtn;
 
     }
 }
