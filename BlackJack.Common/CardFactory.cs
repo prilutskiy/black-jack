@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
     public static class CardFactory
     {
-        private static Random rand = new Random();
+        private static readonly Random rand = new Random();
+        public static List<Card> AlreadySpawned = new List<Card>();
+
         public static Card SpawnCard(bool needCleaning = false)
         {
             if (needCleaning)
@@ -16,8 +15,8 @@ namespace BlackJack.Common
             Card c;
             while (true)
             {
-                int suit = rand.Next(1, 5);
-                int value = rand.Next(1, 14);
+                var suit = rand.Next(1, 5);
+                var value = rand.Next(1, 14);
                 c = new Card(suit, value);
                 if (!AlreadySpawned.Contains(c))
                     break;
@@ -25,7 +24,6 @@ namespace BlackJack.Common
             AlreadySpawned.Add(c);
             return c;
         }
-        public static List<Card> AlreadySpawned = new List<Card>();
 
         private static void ResetGenerator()
         {

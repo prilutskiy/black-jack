@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
@@ -14,30 +11,45 @@ namespace BlackJack.Common
         NotSet = 0,
         Player = 1,
         Dealer = 2,
-        Draw = 3,
+        Draw = 3
     }
+
     [Serializable]
     [DataContract]
     public class Player
     {
+        public Player(PlayerType playerType, string username = "")
+        {
+            PlayerType = playerType;
+            Cards = new List<Card>();
+            Username = username;
+            Cash = 1000;
+        }
+
         [DataMember]
         public Guid Id { get; set; }
-        public void ChangeCash(int value)
-        {
-            Cash += value;
-        }
+
         [DataMember]
         public PlayerType PlayerType { get; private set; }
+
         [DataMember]
         public Int32 Cash { get; private set; }
+
         [DataMember]
         public Int32 CardScore { get; private set; }
+
         [DataMember]
         public String Username { get; internal set; }
+
         [DataMember]
         public List<Card> Cards { get; private set; }
 
         public bool GameFound { get; set; }
+
+        public void ChangeCash(int value)
+        {
+            Cash += value;
+        }
 
         private void RecalculateCardScore()
         {
@@ -57,13 +69,6 @@ namespace BlackJack.Common
                 CardScore -= 10;
             }
         }
-        public Player(PlayerType playerType, string username = "")
-        {
-            this.PlayerType = playerType;
-            Cards = new List<Card>();
-            Username = username;
-            Cash = 1000;
-        }
 
         public void Populate(Player player)
         {
@@ -73,15 +78,17 @@ namespace BlackJack.Common
             PlayerType = player.PlayerType;
             Cards = new List<Card>();
         }
+
         public void TakeCard(int count)
         {
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 var c = CardFactory.SpawnCard();
                 Cards.Add(c);
                 RecalculateCardScore();
             }
         }
+
         public void Clear()
         {
             Cards.Clear();

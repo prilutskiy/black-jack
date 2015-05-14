@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
@@ -23,9 +20,10 @@ namespace BlackJack.Common
 
         public MethodSignature Signature { get; set; }
         public List<Object> Arguments { get; set; }
+
         public override string ToString()
         {
-            return String.Format("Method signature: {0}", Signature.ToString());
+            return String.Format("Method signature: {0}", Signature);
         }
     }
 }

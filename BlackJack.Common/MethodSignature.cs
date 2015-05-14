@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
     /// <summary>
-    /// Represents method signature
+    ///     Represents method signature
     /// </summary>
     [Serializable]
     public sealed class MethodSignature
@@ -30,38 +27,28 @@ namespace BlackJack.Common
         }
 
         /// <summary>
-        /// Name of the method
+        ///     Name of the method
         /// </summary>
-        public String Name
-        {
-            get; 
-            set;
-        }
+        public String Name { get; set; }
 
         /// <summary>
-        /// List of parameters of the method
+        ///     List of parameters of the method
         /// </summary>
-        public ReadOnlyCollection<Type> ParametersTypes
-        {
-            get; 
-            set;
-        }
+        public ReadOnlyCollection<Type> ParametersTypes { get; set; }
+
         /// <summary>
-        /// Return type of the method
+        ///     Return type of the method
         /// </summary>
-        public Type ReturnType 
-        { 
-            get; 
-            set; 
-        }
+        public Type ReturnType { get; set; }
 
         public override string ToString()
         {
-            string parameters = "";
-            for (int i = 0; i < ParametersTypes.Count; i++)
-                parameters += String.Format("{0}: {1}\n", i + 1, ParametersTypes[i].ToString());
+            var parameters = "";
+            for (var i = 0; i < ParametersTypes.Count; i++)
+                parameters += String.Format("{0}: {1}\n", i + 1, ParametersTypes[i]);
 
-            return String.Format("Method name: {0}\nReturn type: {1}\nParameters types: {2}",Name,ReturnType.ToString(), parameters);
+            return String.Format("Method name: {0}\nReturn type: {1}\nParameters types: {2}", Name, ReturnType,
+                parameters);
         }
     }
 }
