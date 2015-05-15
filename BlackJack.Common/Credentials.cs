@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
@@ -14,6 +10,7 @@ namespace BlackJack.Common
             Password = pass;
             Username = user;
         }
+
         public String Password { get; set; }
         public String Username { get; set; }
     }

@@ -1,13 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
     public class CardEventArgs : EventArgs
     {
+        public readonly Card Card;
+        public readonly Int32 CardScore;
+        public readonly Player Player;
+
         public CardEventArgs()
         {
         }
@@ -18,9 +18,5 @@ namespace BlackJack.Common
             Card = c;
             CardScore = cardScore;
         }
-
-        public readonly Player Player;
-        public readonly Card Card;
-        public readonly Int32 CardScore;
     }
 }

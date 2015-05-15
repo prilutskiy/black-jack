@@ -1,36 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using BlackJack.Common;
-using DevExpress.Data.Linq;
-using DevExpress.XtraPrinting.Native;
 
 namespace BlackJack.Client
 {
-    class ClientGameManager : IBjGameManager
+    internal class ClientGameManager : IBjGameManager
     {
+        private GameType GameType = GameType.NotSet;
+
         public ClientGameManager(Connection connection)
         {
             Connection = connection;
         }
+
         public Connection Connection { get; set; }
-        private GameType GameType = GameType.NotSet;
-        private ServerResponse InvokeRemote(MethodInfo methodInfo, List<object> args, ServerRequest request)
-        {
-            var methodRequest = new MethodCallRequest()
-            {
-                Arguments = args,
-                Signature = methodInfo.ToMethodSignature()
-            };
-            request.RequestedMethod = methodRequest;
-            Connection.SendRequest(request);
-            ServerResponse response = Connection.GetResponse();
-            return response;
-        }
+
         public GameState Initialize()
         {
             throw new NotImplementedException();
@@ -38,8 +23,8 @@ namespace BlackJack.Client
 
         public GameState IncreaseBet(int value = 50)
         {
-            var args = new List<object> { value };
-            var req = new ServerRequest()
+            var args = new List<object> {value};
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -49,11 +34,10 @@ namespace BlackJack.Client
             return response.GameState;
         }
 
-
         public GameState DecreaseBet(int value = 50)
         {
-            var args = new List<object> { value };
-            var req = new ServerRequest()
+            var args = new List<object> {value};
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -67,7 +51,7 @@ namespace BlackJack.Client
         {
             GameType = gameType;
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = gameType,
                 RequestType = ServerMessageType.StartGame
@@ -80,7 +64,7 @@ namespace BlackJack.Client
         public GameState Stop()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -93,7 +77,7 @@ namespace BlackJack.Client
         public GameState Double()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -106,7 +90,7 @@ namespace BlackJack.Client
         public GameState Stand()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -119,7 +103,7 @@ namespace BlackJack.Client
         public GameState Hit()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -131,9 +115,9 @@ namespace BlackJack.Client
 
         public GameState Login(string username, string pass)
         {
-            var args = new List<object>() { username, pass };
+            var args = new List<object> {username, pass};
             var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 Credentials = new Credentials(username, pass),
                 GameType = GameType,
@@ -147,7 +131,7 @@ namespace BlackJack.Client
         {
             var args = new List<object>();
             var methodInfo = MethodBase.GetCurrentMethod() as MethodInfo;
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.Deauth
@@ -159,7 +143,7 @@ namespace BlackJack.Client
         public GameState GetState()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.InGame
@@ -172,7 +156,7 @@ namespace BlackJack.Client
         public bool IsAuthenticated()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 RequestType = ServerMessageType.CheckAuth
             };
@@ -184,7 +168,7 @@ namespace BlackJack.Client
         public GameState GetLeaderboard()
         {
             var args = new List<object>();
-            var req = new ServerRequest()
+            var req = new ServerRequest
             {
                 GameType = GameType,
                 RequestType = ServerMessageType.Leaderboard
@@ -194,6 +178,17 @@ namespace BlackJack.Client
             return response.GameState;
         }
 
+        private ServerResponse InvokeRemote(MethodInfo methodInfo, List<object> args, ServerRequest request)
+        {
+            var methodRequest = new MethodCallRequest
+            {
+                Arguments = args,
+                Signature = methodInfo.ToMethodSignature()
+            };
+            request.RequestedMethod = methodRequest;
+            Connection.SendRequest(request);
+            var response = Connection.GetResponse();
+            return response;
+        }
     }
-
 }

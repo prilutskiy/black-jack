@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlackJack.Common
 {
     public class Connection : IDisposable
     {
         private const String HandshakePhrase = "Handshake";
+
         public Connection(Socket socket)
         {
             Socket = socket;
@@ -20,11 +17,16 @@ namespace BlackJack.Common
         public Player PlayerInstance { get; set; }
         public Socket Socket { get; private set; }
 
-        public  bool SendHandshake()
+        public void Dispose()
+        {
+            Socket.Close();
+        }
+
+        public bool SendHandshake()
         {
             try
             {
-                var bytes = BitConverter.GetBytes((Int64)(HandshakePhrase.GetHashCode()));
+                var bytes = BitConverter.GetBytes((Int64) (HandshakePhrase.GetHashCode()));
                 Socket.Send(bytes);
                 return true;
             }
@@ -40,8 +42,8 @@ namespace BlackJack.Common
             {
                 var bytes = new byte[8];
                 var length = Socket.Receive(bytes);
-                var handshakeHashcode = BitConverter.ToInt64(bytes,0);
-                return handshakeHashcode.Equals((Int64)(HandshakePhrase.GetHashCode()));
+                var handshakeHashcode = BitConverter.ToInt64(bytes, 0);
+                return handshakeHashcode.Equals(HandshakePhrase.GetHashCode());
             }
             catch (SocketException ex)
             {
@@ -49,14 +51,9 @@ namespace BlackJack.Common
             }
         }
 
-        public void Dispose()
-        {
-            Socket.Close();
-        }
-
         ~Connection()
         {
-            Dispose();   
+            Dispose();
         }
 
         public ServerRequest ReceiveRequest()
