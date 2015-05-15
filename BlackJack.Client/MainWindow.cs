@@ -41,7 +41,7 @@ namespace BlackJack.Client
 #endif
 
             webView.DocumentReady += WebViewOnDocumentReady;
-            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
+            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"pages\index.html"));
         }
 
         private void Connect()

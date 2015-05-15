@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
@@ -73,6 +74,8 @@ namespace BlackJack.Launcher
                     MessageBoxIcon.Information);
                 return;
             }
+
+            Process.Start(@"BlackJack.Client.exe");
         }
     }
 }
