@@ -14,7 +14,7 @@ namespace BlackJack.Server
         private static readonly BlackJackRepository _repo = new BlackJackRepository();
         private readonly PlayerFactory playerFactory = new DbPlayerFactory();
         private readonly IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 777);
-        private readonly int maxConnections = 10;
+        private readonly int maxConnections = 100;
         private readonly List<Thread> runningThreads = new List<Thread>();
         private readonly Thread serverThread;
         private readonly object syncRoot = new object();

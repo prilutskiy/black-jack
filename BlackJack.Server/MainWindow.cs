@@ -38,7 +38,11 @@ namespace BlackJack.Server
         {
             var item = new ListViewItem(DateTime.Now.ToString());
             item.SubItems.Add(args.Message);
-            
+            if (args.ClientSocket != null)
+            {
+                var addr = args.ClientSocket.RemoteEndPoint as IPEndPoint;
+                item.SubItems.Add(addr != null ? addr.Address.ToString() : "");
+            }
 
             Action crossThreadAction = () => serverLogListView.Items.Add(item);
             serverLogListView.Invoke(crossThreadAction);

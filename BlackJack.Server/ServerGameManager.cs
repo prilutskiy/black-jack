@@ -5,7 +5,7 @@ using BlackJack.Common;
 
 namespace BlackJack.Server
 {
-    internal class ServerGameManager : IBjGameManager
+    public class ServerGameManager : IBjGameManager
     {
         #region Private members
 
