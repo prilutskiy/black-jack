@@ -16,7 +16,7 @@ namespace BlackJack.Common
 
     [Serializable]
     [DataContract]
-    public class Player
+    public class Player : IUser
     {
         public Player(PlayerType playerType, string username = "")
         {
@@ -30,16 +30,16 @@ namespace BlackJack.Common
         public Guid Id { get; set; }
 
         [DataMember]
-        public PlayerType PlayerType { get; private set; }
+        public PlayerType PlayerType { get;  set; }
 
         [DataMember]
-        public Int32 Cash { get; private set; }
+        public Int32 Cash { get;  set; }
 
         [DataMember]
         public Int32 CardScore { get; private set; }
 
         [DataMember]
-        public String Username { get; internal set; }
+        public String Username { get;  set; }
 
         [DataMember]
         public List<Card> Cards { get; private set; }
