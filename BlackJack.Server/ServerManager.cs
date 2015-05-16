@@ -138,14 +138,32 @@ namespace BlackJack.Server
 
         public void Dispose()
         {
-            StopListening();
-            server.Close();
-            if (serverThread != null && serverThread.ThreadState != ThreadState.Aborted)
-                serverThread.Abort();
+            try
+            {
+                StopListening();
+                server.Close();
+                if (serverThread != null && serverThread.ThreadState != ThreadState.Aborted)
+                    serverThread.Abort();
+            }
+            catch (Exception)
+            {
+                
+            }
+            
         }
 
         public event EventHandler<ServerEventArgs> ServerStateChanged;
 
+        public void FillContext(ServerContext context)
+        {
+            context.ClassicGames = ClassicGames;
+            context.ClassicQueue = ClassicQueue;
+            context.MaxConnections = maxConnections;
+            context.EndPoint = endPoint;
+            context.RunningThreads = runningThreads;
+            context.Trusted = Trusted;
+            context.Untrusted = Untrusted;
+        }
         public void Start()
         {
             serverThread.Start();

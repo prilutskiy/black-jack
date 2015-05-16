@@ -1,39 +1,27 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml.Serialization;
-using BlackJack.Common;
 
 namespace BlackJack.Server
 {
     public partial class MainWindow : Form
     {
-        private ServerManager serverManager = new ServerManager();
+        private readonly ServerManager serverManager = new ServerManager();
+        private TcpClient connection_;
         public MainWindow()
         {
             InitializeComponent();
             serverManager.ServerStateChanged += AddMessageToEventLog;
         }
-
-        private TcpClient connection_;
-
         private void startServerBtn_Click(object sender, EventArgs e)
         {
             startServerBtn.Enabled = false;
             serverManager.Start();
         }
-
         public void AddMessageToEventLog(object sender, ServerEventArgs args)
         {
             var item = new ListViewItem(DateTime.Now.ToString());
@@ -44,8 +32,57 @@ namespace BlackJack.Server
                 item.SubItems.Add(addr != null ? addr.Address.ToString() : "");
             }
 
-            Action crossThreadAction = () => serverLogListView.Items.Add(item);
-            serverLogListView.Invoke(crossThreadAction);
+            Action crossThreadAction = () => logListview.Items.Add(item);
+            logListview.Invoke(crossThreadAction);
+        }
+
+        private void pluginBtn_Click(object sender, EventArgs e)
+        {
+            Type pluginType = typeof(IPlugin); 
+            var pluginAssemblies = new List<Type>();
+                var pluginDir = Path.Combine(Environment.CurrentDirectory, "plugin");
+            if (!Directory.Exists(pluginDir))
+                Directory.CreateDirectory(pluginDir);
+            foreach (var file in Directory.GetFiles(pluginDir, "*.dll"))
+            {
+                Assembly assembly = Assembly.LoadFile(file);
+                if (assembly != null)
+                {
+                    Type[] types = assembly.GetTypes();
+                    foreach (Type type in types)
+                    {
+                        if (type.IsInterface || type.IsAbstract)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            if (type.GetInterface(pluginType.FullName) != null)
+                            {
+                                pluginAssemblies.Add(type);
+                            }
+                        }
+                    }
+                }
+            }
+            ICollection<IPlugin> plugins = new List<IPlugin>(pluginAssemblies.Count);
+            foreach (Type type in pluginAssemblies)
+            {
+                IPlugin plugin = (IPlugin)Activator.CreateInstance(type);
+                plugins.Add(plugin);
+            }
+            foreach (var plugin in plugins)
+            {
+                var context = new ServerContext();
+                FillContext(context);
+                plugin.DoWork(context);
+            }
+        }
+
+        public void FillContext(ServerContext context)
+        {
+            context.TabControl = tabControl;
+            serverManager.FillContext(context);
         }
     }
 }

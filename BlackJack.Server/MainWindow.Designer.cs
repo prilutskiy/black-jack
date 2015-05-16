@@ -29,6 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            DevExpress.XtraCharts.SimpleDiagram simpleDiagram3 = new DevExpress.XtraCharts.SimpleDiagram();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.SeriesPoint seriesPoint5 = new DevExpress.XtraCharts.SeriesPoint("Slots occupied", new object[] {
+            ((object)(8D))}, 0);
+            DevExpress.XtraCharts.SeriesPoint seriesPoint6 = new DevExpress.XtraCharts.SeriesPoint("Slots availible", new object[] {
+            ((object)(2D))}, 2);
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView5 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.PieSeriesView pieSeriesView6 = new DevExpress.XtraCharts.PieSeriesView();
+            DevExpress.XtraCharts.ChartTitle chartTitle3 = new DevExpress.XtraCharts.ChartTitle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -62,10 +71,11 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tabControl = new DevExpress.XtraTab.XtraTabControl();
             this.serverLogTab = new DevExpress.XtraTab.XtraTabPage();
-            this.serverLogListView = new System.Windows.Forms.ListView();
+            this.logListview = new System.Windows.Forms.ListView();
             this.timeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.messageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ipColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gameInfoTab = new DevExpress.XtraTab.XtraTabPage();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -78,11 +88,30 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.startServerBtn = new System.Windows.Forms.Button();
+            this.pluginBtn = new System.Windows.Forms.Button();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.gameServerLoadChart = new DevExpress.XtraCharts.ChartControl();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.clientsConnectedLabel = new System.Windows.Forms.Label();
+            this.connectionsAvailibleLabel = new System.Windows.Forms.Label();
+            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.serverLogTab.SuspendLayout();
+            this.gameInfoTab.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
+            this.groupControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gameServerLoadChart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(simpleDiagram3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
+            this.panelControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -341,30 +370,31 @@
             this.tabControl.Size = new System.Drawing.Size(707, 349);
             this.tabControl.TabIndex = 2;
             this.tabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
-            this.serverLogTab});
+            this.serverLogTab,
+            this.gameInfoTab});
             // 
             // serverLogTab
             // 
-            this.serverLogTab.Controls.Add(this.serverLogListView);
+            this.serverLogTab.Controls.Add(this.logListview);
             this.serverLogTab.Name = "serverLogTab";
             this.serverLogTab.Size = new System.Drawing.Size(638, 343);
             this.serverLogTab.Text = "Server log";
             // 
-            // serverLogListView
+            // logListview
             // 
-            this.serverLogListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.logListview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.timeColumn,
             this.messageColumn,
             this.ipColumn});
-            this.serverLogListView.FullRowSelect = true;
-            this.serverLogListView.GridLines = true;
-            this.serverLogListView.Location = new System.Drawing.Point(3, 3);
-            this.serverLogListView.MultiSelect = false;
-            this.serverLogListView.Name = "serverLogListView";
-            this.serverLogListView.Size = new System.Drawing.Size(632, 367);
-            this.serverLogListView.TabIndex = 0;
-            this.serverLogListView.UseCompatibleStateImageBehavior = false;
-            this.serverLogListView.View = System.Windows.Forms.View.Details;
+            this.logListview.FullRowSelect = true;
+            this.logListview.GridLines = true;
+            this.logListview.Location = new System.Drawing.Point(3, 3);
+            this.logListview.MultiSelect = false;
+            this.logListview.Name = "logListview";
+            this.logListview.Size = new System.Drawing.Size(632, 367);
+            this.logListview.TabIndex = 0;
+            this.logListview.UseCompatibleStateImageBehavior = false;
+            this.logListview.View = System.Windows.Forms.View.Details;
             // 
             // timeColumn
             // 
@@ -380,6 +410,13 @@
             // 
             this.ipColumn.Text = "Address";
             this.ipColumn.Width = 91;
+            // 
+            // gameInfoTab
+            // 
+            this.gameInfoTab.Controls.Add(this.groupControl1);
+            this.gameInfoTab.Name = "gameInfoTab";
+            this.gameInfoTab.Size = new System.Drawing.Size(638, 343);
+            this.gameInfoTab.Text = "Game info";
             // 
             // toolStrip1
             // 
@@ -486,17 +523,127 @@
             // 
             this.startServerBtn.Location = new System.Drawing.Point(12, 407);
             this.startServerBtn.Name = "startServerBtn";
-            this.startServerBtn.Size = new System.Drawing.Size(683, 23);
+            this.startServerBtn.Size = new System.Drawing.Size(533, 23);
             this.startServerBtn.TabIndex = 4;
             this.startServerBtn.Text = "Start server";
             this.startServerBtn.UseVisualStyleBackColor = true;
             this.startServerBtn.Click += new System.EventHandler(this.startServerBtn_Click);
+            // 
+            // pluginBtn
+            // 
+            this.pluginBtn.Location = new System.Drawing.Point(551, 407);
+            this.pluginBtn.Name = "pluginBtn";
+            this.pluginBtn.Size = new System.Drawing.Size(151, 23);
+            this.pluginBtn.TabIndex = 5;
+            this.pluginBtn.Text = "Load plugins";
+            this.pluginBtn.UseVisualStyleBackColor = true;
+            this.pluginBtn.Click += new System.EventHandler(this.pluginBtn_Click);
+            // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.panelControl1);
+            this.groupControl1.Controls.Add(this.gameServerLoadChart);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(638, 343);
+            this.groupControl1.TabIndex = 0;
+            this.groupControl1.Text = "Game info";
+            // 
+            // gameServerLoadChart
+            // 
+            this.gameServerLoadChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            simpleDiagram3.EqualPieSize = false;
+            this.gameServerLoadChart.Diagram = simpleDiagram3;
+            this.gameServerLoadChart.Legend.EquallySpacedItems = false;
+            this.gameServerLoadChart.Location = new System.Drawing.Point(5, 24);
+            this.gameServerLoadChart.Name = "gameServerLoadChart";
+            this.gameServerLoadChart.PaletteName = "Blue Green";
+            series3.CheckedInLegend = false;
+            series3.Name = "Series 1";
+            series3.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
+            seriesPoint5,
+            seriesPoint6});
+            pieSeriesView5.RuntimeExploding = false;
+            pieSeriesView5.SweepDirection = DevExpress.XtraCharts.PieSweepDirection.Counterclockwise;
+            series3.View = pieSeriesView5;
+            this.gameServerLoadChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series3};
+            pieSeriesView6.RuntimeExploding = false;
+            pieSeriesView6.SweepDirection = DevExpress.XtraCharts.PieSweepDirection.Counterclockwise;
+            this.gameServerLoadChart.SeriesTemplate.View = pieSeriesView6;
+            this.gameServerLoadChart.Size = new System.Drawing.Size(418, 314);
+            this.gameServerLoadChart.TabIndex = 1;
+            chartTitle3.Text = "Game server load";
+            this.gameServerLoadChart.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
+            chartTitle3});
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(46, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(121, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Game server load status";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Clients connected: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(107, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Connections avilible: ";
+            // 
+            // clientsConnectedLabel
+            // 
+            this.clientsConnectedLabel.AutoSize = true;
+            this.clientsConnectedLabel.Location = new System.Drawing.Point(159, 46);
+            this.clientsConnectedLabel.Name = "clientsConnectedLabel";
+            this.clientsConnectedLabel.Size = new System.Drawing.Size(13, 13);
+            this.clientsConnectedLabel.TabIndex = 3;
+            this.clientsConnectedLabel.Text = "0";
+            // 
+            // connectionsAvailibleLabel
+            // 
+            this.connectionsAvailibleLabel.AutoSize = true;
+            this.connectionsAvailibleLabel.Location = new System.Drawing.Point(159, 69);
+            this.connectionsAvailibleLabel.Name = "connectionsAvailibleLabel";
+            this.connectionsAvailibleLabel.Size = new System.Drawing.Size(13, 13);
+            this.connectionsAvailibleLabel.TabIndex = 3;
+            this.connectionsAvailibleLabel.Text = "0";
+            // 
+            // panelControl1
+            // 
+            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelControl1.Controls.Add(this.label1);
+            this.panelControl1.Controls.Add(this.connectionsAvailibleLabel);
+            this.panelControl1.Controls.Add(this.label2);
+            this.panelControl1.Controls.Add(this.clientsConnectedLabel);
+            this.panelControl1.Controls.Add(this.label3);
+            this.panelControl1.Location = new System.Drawing.Point(429, 24);
+            this.panelControl1.Name = "panelControl1";
+            this.panelControl1.Size = new System.Drawing.Size(202, 96);
+            this.panelControl1.TabIndex = 4;
             // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 456);
+            this.Controls.Add(this.pluginBtn);
             this.Controls.Add(this.startServerBtn);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl);
@@ -511,8 +658,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).EndInit();
             this.tabControl.ResumeLayout(false);
             this.serverLogTab.ResumeLayout(false);
+            this.gameInfoTab.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
+            this.groupControl1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(simpleDiagram3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(pieSeriesView6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gameServerLoadChart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
+            this.panelControl1.ResumeLayout(false);
+            this.panelControl1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -553,7 +711,7 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private DevExpress.XtraTab.XtraTabControl tabControl;
         private DevExpress.XtraTab.XtraTabPage serverLogTab;
-        private System.Windows.Forms.ListView serverLogListView;
+        private System.Windows.Forms.ListView logListview;
         private System.Windows.Forms.ColumnHeader timeColumn;
         private System.Windows.Forms.ColumnHeader messageColumn;
         private System.Windows.Forms.ToolStrip toolStrip1;
@@ -569,6 +727,16 @@
         private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.Button startServerBtn;
         private System.Windows.Forms.ColumnHeader ipColumn;
+        private System.Windows.Forms.Button pluginBtn;
+        private DevExpress.XtraTab.XtraTabPage gameInfoTab;
+        private DevExpress.XtraEditors.GroupControl groupControl1;
+        private DevExpress.XtraCharts.ChartControl gameServerLoadChart;
+        private System.Windows.Forms.Label connectionsAvailibleLabel;
+        private System.Windows.Forms.Label clientsConnectedLabel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.PanelControl panelControl1;
     }
 }
 
