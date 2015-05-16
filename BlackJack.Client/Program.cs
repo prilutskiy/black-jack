@@ -15,7 +15,6 @@ namespace BlackJack.Client
         [STAThread]
         private static void Main()
         {
-            Debugger.Launch();
             if (!TryLoadConfig())
                 return;
             Application.EnableVisualStyles();

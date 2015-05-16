@@ -12,7 +12,7 @@ namespace BlackJack.Server
         public PlayerType PlayerType { get; set; }
         public int Cash { get; set; }
         public string Username { get; set; }
-        internal string  Password { get; set; }
+        public string  Password { get; set; }
     }
     public class BlackJackRepository
     {
@@ -56,6 +56,26 @@ namespace BlackJack.Server
             var list = new List<IUser>();
             _db.Users.ForEach(u => list.Add(u));
             return list;
+        }
+
+        public void UpdatePlayer(IUser userPlayer)
+        {
+            var user = _db.Users.Single(u => u.Username == userPlayer.Username);
+            user.Cash = userPlayer.Cash;
+            _db.SaveChanges();
+        }
+
+        public List<KeyValuePair<string, int>> GetLeaderboard(int count)
+        {
+            var table = new List<KeyValuePair<string, int>>();
+            var users = _db.Users.OrderByDescending(u => u.Cash).Take(count);
+            users.ForEach(u => table.Add(new KeyValuePair<string, int>(u.Username, u.Cash)));
+            return table;
+        }
+
+        public IUser GetPlayer(string username)
+        {
+            return _db.Users.Single(u => u.Username == username);
         }
     }
 }

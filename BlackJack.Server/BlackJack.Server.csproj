@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="BlackJackDbContext.cs" />
     <Compile Include="BlackJackRepository.cs" />
+    <Compile Include="DbPlayerFactory.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
