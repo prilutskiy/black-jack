@@ -42,7 +42,7 @@ namespace BlackJack.Common
         public String Username { get;  set; }
 
         [DataMember]
-        public List<Card> Cards { get; private set; }
+        public List<Card> Cards { get; set; }
 
         public bool GameFound { get; set; }
 

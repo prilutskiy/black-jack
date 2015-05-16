@@ -11,7 +11,7 @@ namespace BlackJack.Server
 {
     internal class ServerManager : IDisposable
     {
-        private readonly BlackJackRepository _repo = new BlackJackRepository();
+        private static readonly BlackJackRepository _repo = new BlackJackRepository();
         private readonly PlayerFactory playerFactory = new DbPlayerFactory();
         private readonly IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 777);
         private readonly int maxConnections = 10;
@@ -66,7 +66,7 @@ namespace BlackJack.Server
                 {
                     var player1 = ClassicQueue.Dequeue();
                     var player2 = playerFactory.Create(PlayerType.Dealer, "Dealer");
-                    var game = new ServerGameManager(player1, player2, new BlackJackRepository());
+                    var game = new ServerGameManager(player1, player2, _repo);
                     var pair = new Tuple<Player, Player, ServerGameManager>(player1, null, game);
                     if (!ClassicGames.Any(t => t.Item1 == player1))
                         ClassicGames.Add(pair);

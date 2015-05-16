@@ -76,6 +76,7 @@ namespace BlackJack.Launcher
             }
 
             Process.Start(@"BlackJack.Client.exe");
+            this.Close();
         }
     }
 }

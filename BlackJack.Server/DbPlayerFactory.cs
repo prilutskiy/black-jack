@@ -12,8 +12,10 @@ namespace BlackJack.Server
         public override  Player LoadFromDataStorage(string username)
         {
             var repo = new BlackJackRepository();
-            var user = repo.GetPlayer(username) as Player;
-            return user;
+            var iuser = repo.GetPlayer(username);
+            var player = new Player(iuser.PlayerType,iuser.Username);
+            player.Cash = iuser.Cash;
+            return player;
         }
     }
 }
