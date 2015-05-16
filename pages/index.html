@@ -192,23 +192,7 @@
 			}			
 		}, 500);
     }
-    function triggerSettingsModal() {
-        BootstrapDialog.show({
-            closable: true,
-            title: 'Settings',
-            message: $('#settings').html(),
-            buttons: [
-            {
-                label: 'OK',
-                cssClass: 'btn btn-sm btn-success',
-                action: function(dialog) {
-                    //save settings action here
-                    dialog.close();
-                }
-            }]
-        });
-    }
-    
+	
     function triggerSignInModal(redirectPage) {
         reflectAuthChanges();
         var msgBody = $('#signinModal');
@@ -309,13 +293,6 @@
             triggerWaitingModal('classic');
     }
 
-    function startDuel() {
-        var state = getAuthState();
-        if (!state)
-            triggerSignInModal('duel');
-        else
-            triggerWaitingModal('duel');
-    }
     function reflectAuthChanges() {
         var state = getAuthState();
         var btn = $('#profileBtn');
@@ -374,18 +351,7 @@
     </div>
     <div id="waiting">
         <h3 id="waitingText">Waiting for a player...</h3>
-    </div>
-    <div class="row" id="settings">
-        <div class="card card-container" style="background-color: rgba(54, 142, 158, 0.52)">
-            <p id="profile-name" class="profile-name-card text-success">Connection settings</p>
-            <div class="form-signin form-group" style="margin-top: -30px; ">
-                <label class="control-label h5"><b>Server address</b></label>
-                <input type="text" class="form-control" id="serverAddress" value="127.0.0.1">
-                <label class="control-label h5"><b>Server port</b></label>
-                <input type="text" class="form-control" id="serverPort" style="margin-bottom: -40px" value="777">
-            </div><!-- /form -->
-        </div><!-- /card-container -->
-    </div>
+    </div>    
 </div>
 
 
@@ -420,10 +386,6 @@
         </div>
         <div class="col-sm-4">
             <div id="gameTable">
-                <a class="btn btn-block btn-success" style="border-radius: 5px"
-                   onclick="startDuel();">
-                    <b>Duel mode</b>&nbsp;&nbsp;<i class="fa icon-globe"></i>
-                </a>
                 <a class="btn btn-block btn-warning" style="border-radius: 5px"
                    onclick="startClassic()">
                     <b>Classic mode</b>&nbsp;&nbsp;<i class="fa icon-gamepad"></i>
@@ -432,11 +394,7 @@
                    onclick="showLeaderboards()">
                     <b>Leaderboards</b>&nbsp;&nbsp;<i class="fa icon-group"></i>
                 </a>
-                <img src="Images/Cards.png" style="margin: auto; display: block; height: 130px"/>
-                <a class="btn btn-block btn-default" style="border-radius: 5px;"
-                   onclick="triggerSettingsModal()">
-                    <b>Settings</b>&nbsp;&nbsp;<i class="fa icon-gears"></i>
-                </a>
+                <img src="Images/Cards.png" style="margin: auto; display: block; height: 220px"/>
                 <a class="btn btn-block btn-danger" style="border-radius: 5px"
                    onclick="jsobject.exitGameJs()">
                     <b>Exit</b>&nbsp;&nbsp;<i class="fa icon-signout"></i>
