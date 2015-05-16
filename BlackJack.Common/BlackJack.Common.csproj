@@ -52,6 +52,7 @@
     <Compile Include="GameType.cs" />
     <Compile Include="IBjGameManager.cs" />
     <Compile Include="IPlayerFactory.cs" />
+    <Compile Include="IUser.cs" />
     <Compile Include="MethodCallRequest.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="ServerMessageType.cs" />
