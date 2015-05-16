@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Output\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -45,6 +45,7 @@
     <Compile Include="CardExtensions.cs" />
     <Compile Include="CardFactory.cs" />
     <Compile Include="Connection.cs" />
+    <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Credentials.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="GameState.cs" />
