@@ -27,7 +27,7 @@ namespace BlackJack.Common
         }
 
         [DataMember]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
         public PlayerType PlayerType { get;  set; }

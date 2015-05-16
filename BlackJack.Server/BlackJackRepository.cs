@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BlackJack.Common;
+using DevExpress.XtraPrinting.Native;
 
-namespace BlackJack.DataStorage
+namespace BlackJack.Server
 {
     class User : IUser
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public PlayerType PlayerType { get; set; }
         public int Cash { get; set; }
         public string Username { get; set; }
@@ -52,9 +51,11 @@ namespace BlackJack.DataStorage
             return _db.Users.Single(u => u.Username == username && u.Password == pass);
         }
 
-        public ICollection<Player> GetAllPlayers()
+        public ICollection<IUser> GetAllPlayers()
         {
-            return null;
+            var list = new List<IUser>();
+            _db.Users.ForEach(u => list.Add(u));
+            return list;
         }
     }
 }
