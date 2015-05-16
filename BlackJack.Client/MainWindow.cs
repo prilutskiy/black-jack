@@ -47,7 +47,7 @@ namespace BlackJack.Client
         private void Connect()
         {
             var tcp = new TcpClient();
-            tcp.Connect("127.0.0.1", 777);
+            tcp.Connect(Program.ConnectionInfo.IpAddress, Program.ConnectionInfo.Port);
             var connection = new Connection(tcp.Client);
             var result = connection.ReceiveHandshake();
             gm = new ClientGameManager(connection);
