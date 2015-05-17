@@ -5,10 +5,11 @@ using BlackJack.Common;
 
 namespace BlackJack.Server
 {
-    internal class ServerGameManager : IBjGameManager
+    public class ServerGameManager : IBjGameManager
     {
         #region Private members
 
+        private BlackJackRepository _repo;
         private bool isAuthenticated;
 
         private void Clear()
@@ -122,6 +123,7 @@ namespace BlackJack.Server
             else
                 UserPlayer.ChangeCash(-((int) (prize*doubleFactor)));
             isRunning = false;
+            _repo.UpdatePlayer(UserPlayer);
         }
 
         private Int32 Bet { get; set; }
@@ -133,12 +135,13 @@ namespace BlackJack.Server
 
         #region Public members
 
-        public ServerGameManager(Player p1, Player p2)
+        public ServerGameManager(Player p1, Player p2, BlackJackRepository dbRepo)
         {
             Initialize();
             UserPlayer = p1;
             Dealer = p2;
             isAuthenticated = true;
+            _repo = dbRepo;
         }
 
         public GameState Initialize()

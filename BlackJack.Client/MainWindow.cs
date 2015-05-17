@@ -41,13 +41,13 @@ namespace BlackJack.Client
 #endif
 
             webView.DocumentReady += WebViewOnDocumentReady;
-            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"..\..\..\", @"pages\index.html"));
+            webView.Source = new Uri(Path.Combine(Application.StartupPath, @"pages\index.html"));
         }
 
         private void Connect()
         {
             var tcp = new TcpClient();
-            tcp.Connect("127.0.0.1", 777);
+            tcp.Connect(Program.ConnectionInfo.IpAddress, Program.ConnectionInfo.Port);
             var connection = new Connection(tcp.Client);
             var result = connection.ReceiveHandshake();
             gm = new ClientGameManager(connection);
@@ -129,6 +129,7 @@ namespace BlackJack.Client
         private JSValue exitGameJs(object sender, JavascriptMethodEventArgs e)
         {
             Close();
+            Application.Exit();
             return null;
         }
 

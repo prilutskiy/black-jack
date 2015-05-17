@@ -1,10 +1,27 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace BlackJack.Common
 {
-    public interface IPlayerFactory
+    public abstract class PlayerFactory
     {
-        Player Create(PlayerType type, String username = "");
-        Player LoadFromDataStorage(string username);
+        public virtual Player Create(PlayerType type, String username = "")
+        {
+            switch (type)
+            {
+                case PlayerType.NotSet:
+                    throw new InvalidEnumArgumentException("type");
+                case PlayerType.Player:
+                    //get player from database and return
+                    return new Player(type, username);
+                case PlayerType.Dealer:
+                    return new Player(type, "Dealer");
+                case PlayerType.Draw:
+                    return new Player(PlayerType.Draw, "Draw");
+                default:
+                    throw new InvalidEnumArgumentException("type");
+            }
+        }
+        public abstract Player LoadFromDataStorage(string username);
     }
 }
