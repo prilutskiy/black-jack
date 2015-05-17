@@ -15,6 +15,7 @@ namespace BlackJack.Server
             var iuser = repo.GetPlayer(username);
             var player = new Player(iuser.PlayerType,iuser.Username);
             player.Cash = iuser.Cash;
+            player.Id = iuser.Id;
             return player;
         }
     }

@@ -14,7 +14,7 @@ namespace BlackJack.Server
         private static readonly BlackJackRepository _repo = new BlackJackRepository();
         private readonly PlayerFactory playerFactory = new DbPlayerFactory();
         private readonly IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 777);
-        private readonly int maxConnections = 10;
+        private readonly int maxConnections = 100;
         private readonly List<Thread> runningThreads = new List<Thread>();
         private readonly Thread serverThread;
         private readonly object syncRoot = new object();
@@ -138,14 +138,33 @@ namespace BlackJack.Server
 
         public void Dispose()
         {
-            StopListening();
-            server.Close();
-            if (serverThread != null && serverThread.ThreadState != ThreadState.Aborted)
-                serverThread.Abort();
+            try
+            {
+                StopListening();
+                server.Close();
+                if (serverThread != null && serverThread.ThreadState != ThreadState.Aborted)
+                    serverThread.Abort();
+            }
+            catch (Exception)
+            {
+                
+            }
+            
         }
 
         public event EventHandler<ServerEventArgs> ServerStateChanged;
 
+        public void FillContext(ServerContext context)
+        {
+            context.ClassicGames = ClassicGames;
+            context.ClassicQueue = ClassicQueue;
+            context.MaxConnections = maxConnections;
+            context.EndPoint = endPoint;
+            context.RunningThreads = runningThreads;
+            context.Trusted = Trusted;
+            context.Untrusted = Untrusted;
+            context.AppRepository = _repo;
+        }
         public void Start()
         {
             serverThread.Start();
@@ -155,10 +174,10 @@ namespace BlackJack.Server
         public void ProcessClientConnection(object clientObj)
         {
             var clientSocket = clientObj as Socket;
+            WriteLog("Client connected", clientSocket);
+            var client = new Connection(clientSocket);
             try
             {
-                WriteLog("Client connected", clientSocket);
-                var client = new Connection(clientSocket);
                 if (!client.SendHandshake()) throw new InvalidOperationException("Handshake error");
 
                 lock (Untrusted)
@@ -263,9 +282,13 @@ namespace BlackJack.Server
                             client.SendResponse(response);
                             break;
                         case ServerMessageType.InGame:
-
                             var game = GetGameByConnection(client);
                             var gameState = ProcessInGameRequest(game, request);
+                            if (request.RequestedMethod.Signature.Name == "Stop")
+                            {
+                                var toRemove = ClassicGames.SingleOrDefault(t => t.Item1 == client.PlayerInstance);
+                                ClassicGames.Remove(toRemove);
+                            }
                             response = new ServerResponse();
                             if (gameState is bool)
                                 response.IsAuthenticated = (bool) gameState;
@@ -309,6 +332,12 @@ namespace BlackJack.Server
                 {
                     runningThreads.Remove(threadInstance);
                 }
+                lock(Trusted)
+                    if (Trusted.Contains(client))
+                        Trusted.Remove(client);
+                lock(Untrusted)
+                    if (Untrusted.Contains(client))
+                        Untrusted.Remove(client);
             }
         }
 

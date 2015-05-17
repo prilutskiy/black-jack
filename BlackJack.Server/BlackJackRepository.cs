@@ -6,7 +6,7 @@ using DevExpress.XtraPrinting.Native;
 
 namespace BlackJack.Server
 {
-    class User : IUser
+    public class User : IUser
     {
         public int Id { get; set; }
         public PlayerType PlayerType { get; set; }
