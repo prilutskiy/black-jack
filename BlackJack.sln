@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack.Launcher", "Black
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack.InfoPlugin", "BlackJack.InfoPlugin\BlackJack.InfoPlugin.csproj", "{01D86A9C-7C9A-4233-918B-8017818C4324}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlackJack.MachineInfoPlugin", "BlackJack.MachineInfoPlugin\BlackJack.MachineInfoPlugin.csproj", "{3C5DC1C5-63E4-41FB-9401-1F270777580F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{01D86A9C-7C9A-4233-918B-8017818C4324}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01D86A9C-7C9A-4233-918B-8017818C4324}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01D86A9C-7C9A-4233-918B-8017818C4324}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C5DC1C5-63E4-41FB-9401-1F270777580F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C5DC1C5-63E4-41FB-9401-1F270777580F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C5DC1C5-63E4-41FB-9401-1F270777580F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C5DC1C5-63E4-41FB-9401-1F270777580F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

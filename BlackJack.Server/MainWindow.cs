@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -111,6 +112,7 @@ namespace BlackJack.Server
         private void FillContext(ServerContext context)
         {
             context.TabControl = tabControl;
+            context.CurrentProcess = Process.GetCurrentProcess();
             serverManager.FillContext(context);
         }
 
