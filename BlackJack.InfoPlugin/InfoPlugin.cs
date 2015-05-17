@@ -90,7 +90,7 @@ namespace BlackJack.InfoPlugin
             xtraTabPage1.Controls.Add(onlineListView);
             xtraTabPage1.Name = "xtraTabPage1";
             xtraTabPage1.Size = new Size(417, 263);
-            xtraTabPage1.Text = "Online";
+            xtraTabPage1.Text = "In game";
             // 
             // onlineListView
             // 
@@ -223,7 +223,7 @@ namespace BlackJack.InfoPlugin
             label5.Name = "label5";
             label5.Size = new Size(78, 13);
             label5.TabIndex = 0;
-            label5.Text = "Players online: ";
+            label5.Text = "Players in game: ";
             // 
             // groupControl3
             // 

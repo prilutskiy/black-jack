@@ -40,15 +40,26 @@ namespace BlackJack.Server
         {
             Type pluginType = typeof(IPlugin); 
             var pluginAssemblies = new List<Type>();
-                var pluginDir = Path.Combine(Environment.CurrentDirectory, "plugin");
+                var pluginDir = Path.Combine(Environment.CurrentDirectory);
             if (!Directory.Exists(pluginDir))
                 Directory.CreateDirectory(pluginDir);
             foreach (var file in Directory.GetFiles(pluginDir, "*.dll"))
             {
-                Assembly assembly = Assembly.LoadFile(file);
+                Assembly assembly;
+                try
+                {
+                    assembly = Assembly.LoadFile(file);
+                }
+                catch (BadImageFormatException)
+                {
+                    continue;
+                }
                 if (assembly != null)
                 {
-                    Type[] types = assembly.GetTypes();
+                    Type[] types;
+                    try { types = assembly.GetTypes();}
+                    catch(ReflectionTypeLoadException)
+                    {continue;}
                     foreach (Type type in types)
                     {
                         if (type.IsInterface || type.IsAbstract)
