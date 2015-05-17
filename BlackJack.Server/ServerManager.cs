@@ -16,7 +16,7 @@ namespace BlackJack.Server
         private readonly IPEndPoint endPoint = new IPEndPoint(IPAddress.Any, 777);
         private readonly int maxConnections = 100;
         private readonly List<Thread> runningThreads = new List<Thread>();
-        private readonly Thread serverThread;
+        private Thread serverThread;
         private readonly object syncRoot = new object();
         private TcpClient server;
 
@@ -84,20 +84,28 @@ namespace BlackJack.Server
 
         private void StartListening()
         {
-            server = new TcpClient(endPoint);
-            server.Client.Listen(maxConnections);
-            WriteLog("Listening started", null);
-            while (true)
+            try
             {
-                var incoming = server.Client.Accept();
-                var workThread = new Thread(ProcessClientConnection);
-                workThread.IsBackground = true;
-                lock (syncRoot)
+                server = new TcpClient(endPoint);
+                server.Client.Listen(maxConnections);
+                WriteLog("Listening started", null);
+                while (true)
                 {
-                    runningThreads.Add(workThread);
+                    var incoming = server.Client.Accept();
+                    var workThread = new Thread(ProcessClientConnection);
+                    workThread.IsBackground = true;
+                    lock (syncRoot)
+                    {
+                        runningThreads.Add(workThread);
+                    }
+                    workThread.Start(incoming);
                 }
-                workThread.Start(incoming);
             }
+            catch (SocketException ex)
+            {
+                WriteLog(ex.Message, null);
+            }
+            
         }
 
         private void StopListening()
@@ -110,6 +118,25 @@ namespace BlackJack.Server
                 }
                 runningThreads.Clear();
             }
+            WriteLog("Listening stopped", null);
+        }
+        public ServerManager()
+        {
+            
+        }
+        public void Start()
+        {
+            WriteLog("Starting server...", null);
+            serverThread = new Thread(StartListening) { IsBackground = true };
+            serverThread.Start();
+        }
+
+        public void Stop()
+        {
+            WriteLog("Stopping server...", null);
+            StopListening();
+            server.Close();
+            serverThread.Abort();
         }
 
         private bool CheckCredentials(Credentials cred)
@@ -131,10 +158,6 @@ namespace BlackJack.Server
                 ServerStateChanged(this, new ServerEventArgs { Message = msg, ClientSocket = clientSocket });
         }
 
-        public ServerManager()
-        {
-            serverThread = new Thread(StartListening) {IsBackground = true};
-        }
 
         public void Dispose()
         {
@@ -164,11 +187,6 @@ namespace BlackJack.Server
             context.Trusted = Trusted;
             context.Untrusted = Untrusted;
             context.AppRepository = _repo;
-        }
-        public void Start()
-        {
-            serverThread.Start();
-            WriteLog("Server started", null);
         }
 
         public void ProcessClientConnection(object clientObj)
@@ -209,7 +227,10 @@ namespace BlackJack.Server
                         case ServerMessageType.Auth:
                             var creds = request.Credentials;
                             var result = CheckCredentials(creds);
-
+                            var logMsg = result
+                                ? String.Format("{0} authenticated", creds.Username)
+                                : String.Format("{0} authentication failed", creds.Username);
+                            WriteLog(logMsg, client.Socket);
                             response = new ServerResponse
                             {
                                 ResponseType = ServerMessageType.Auth,
@@ -237,7 +258,7 @@ namespace BlackJack.Server
                                 ResponseType = ServerMessageType.Auth,
                                 AuthSucceed = true
                             };
-
+                            WriteLog(String.Format("{0} deauthenticated", client.PlayerInstance.Username), client.Socket);
                             client.SendResponse(response);
                             break;
                         case ServerMessageType.StartGame:
@@ -338,6 +359,7 @@ namespace BlackJack.Server
                 lock(Untrusted)
                     if (Untrusted.Contains(client))
                         Untrusted.Remove(client);
+                WriteLog("Client disconnected", client.Socket);
             }
         }
 

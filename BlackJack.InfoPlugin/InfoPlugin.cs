@@ -13,7 +13,7 @@ using Timer = System.Threading.Timer;
 
 namespace BlackJack.InfoPlugin
 {
-    public class InfoPlugin : IPlugin, IDisposable
+    public class InfoPlugin : IPlugin
     {
         private Timer _viewUpdateTimer;
 
@@ -21,8 +21,12 @@ namespace BlackJack.InfoPlugin
         {
             if (_viewUpdateTimer != null)
                 _viewUpdateTimer.Dispose();
+            Context.TabControl.TabPages.Remove(gameInfoTab);
+            if (!gameInfoTab.IsDisposed)
+                gameInfoTab.Dispose();
         }
 
+        private ServerContext Context;
         public string Name
         {
             get { return "Game server load"; }
@@ -30,6 +34,7 @@ namespace BlackJack.InfoPlugin
 
         public void DoWork(ServerContext context)
         {
+            Context = context;
             InitializeComponents();
             _viewUpdateTimer = new Timer(this.UpdateViewFromContext, context, 0, 1000);
             //UpdateViewFromContext(context);
