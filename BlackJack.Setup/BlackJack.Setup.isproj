@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<PropertyGroup>
+		<!-- Select a Product Configuration -->
+		<InstallShieldProductConfiguration>Express</InstallShieldProductConfiguration>
+		<!-- Select a Visual Studio Configuration / InstallShield Release -->
+		<Configuration>Debug</Configuration>
+		<InstallShieldRelease>$(Configuration)</InstallShieldRelease>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- The InstallShieldProject item selects the project to build -->
+		<InstallShieldProject Include="$(MSBuildProjectDirectory)\$(MSBuildProjectName).isl"/>
+		<!-- The InstallShieldReleaseFlags sets Release Flags -->
+		<!--<InstallShieldReleaseFlags Include=""/>-->
+		<!-- The InstallShieldMergeModulePath specifies what directories are
+		searched for Merge Modules -->
+		<!--<InstallShieldMergeModulePath Include=""/>-->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The ProjectReference items refer to any Visual Studio solutions you want to automatically probe for Project Output Groups.  -->
+	</ItemGroup>
+	<ItemGroup>
+		<!-- The TaggedOutputs items allow you to explicitly add extra files to output groups. Each item must include both Name and OutputGroup, as well as TargetPath metadata values. -->
+		<!--<TaggedOutputs Include="C:\My Test Exe.exe">
+			<Name>My Test Project</Name>
+			<OutputGroup>Primary output</OutputGroup>
+			<TargetPath>My Test Exe.exe</TargetPath>
+		</TaggedOutputs> -->
+	</ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2013Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\BlackJack.Client\BlackJack.Client.csproj">
+			<Name>BlackJack.Client</Name>
+			<Project>{C595D83E-AFE5-42E8-B5FB-7DF52911CE9F}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.Common\BlackJack.Common.csproj">
+			<Name>BlackJack.Common</Name>
+			<Project>{90286DAF-0AF9-4206-840F-10A1AAA7AB45}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.InfoPlugin\BlackJack.InfoPlugin.csproj">
+			<Name>BlackJack.InfoPlugin</Name>
+			<Project>{01D86A9C-7C9A-4233-918B-8017818C4324}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.Launcher\BlackJack.Launcher.csproj">
+			<Name>BlackJack.Launcher</Name>
+			<Project>{5621AA5D-6987-4A7A-B57D-4455E1EC1CB0}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.MachineInfoPlugin\BlackJack.MachineInfoPlugin.csproj">
+			<Name>BlackJack.MachineInfoPlugin</Name>
+			<Project>{3C5DC1C5-63E4-41FB-9401-1F270777580F}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.Server\BlackJack.Server.csproj">
+			<Name>BlackJack.Server</Name>
+			<Project>{972B1973-688E-4F7E-8C7F-C13A236991D2}</Project>
+		</ProjectReference>
+	</ItemGroup>
+</Project>

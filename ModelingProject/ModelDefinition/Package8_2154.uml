@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="acbd73e8-7cf3-4252-9ed3-dcf655e87692"
+  name="Forms"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="258c2b16-918a-467f-aaee-309e4fecc412"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DAwesomium.Windows.Forms"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="8040828f-f04f-4444-a1e1-a3b3f8f2e6cf">
+      <profileInstance
+        Id="7045cc78-13dc-44f6-8357-daba4272e220"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="aedf524c-ce20-412a-a808-544bffaa42c3"
+        name="WebControl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="e201c454-1d53-4e69-aef6-ba69358db930"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FAwesomium Technologies LLC%2FAwesomium SDK%2F1.7.5.0%2Fwrappers%2FAwesomium.NET%2FAssemblies%2FAwesomium.Windows.Forms.dll&quot; Namespace%3DAwesomium.Windows.Forms Type%3DWebControl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="20cc256a-f2bd-47dc-a4c0-868a721bb814"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ce6ff099-89ae-41fa-a563-332830a3089e">
+                <propertyInstance
+                  Id="a3eb9b46-a692-4676-b574-5099f06217e7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="181c36bb-8112-4897-b83a-f9aa3b339b70">
+                <propertyInstance
+                  Id="630f82f6-e001-4e71-a065-6f721499132b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="11125035-a523-489f-bb53-4c9eb2ae7a26">
+                <propertyInstance
+                  Id="4bd7a853-2f67-4073-809d-9ca11339265b"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e7c50537-f2c4-4bf3-a26b-211d2a6b2933">
+                <propertyInstance
+                  Id="f37b866e-e8f6-40d2-9627-6f022912dd11"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e2f51f20-8222-4384-a090-3a7ca57cd737">
+                <propertyInstance
+                  Id="b20a9c03-abde-468e-9125-ff60915f24d1"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <suppliersInternal>
+          <interfaceRealization
+            Id="36209a18-3edc-4b11-94f9-0e55d3c90d95">
+            <interfaceMoniker
+              Id="871cb49b-a627-48d6-adfb-e9970fd05611"
+              LastKnownName="IDisposable"
+              LastKnownLocation="Package3_2154.uml" />
+          </interfaceRealization>
+        </suppliersInternal>
+        <generalsInternal>
+          <generalization
+            Id="c882ceab-ca7c-4cda-b6a5-c3ede7446359"
+            isSubstitutable="false">
+            <classMoniker
+              Id="78c49bb4-4e3c-43c6-b739-0b3868764f0f"
+              LastKnownName="Control"
+              LastKnownLocation="Package10_2154.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

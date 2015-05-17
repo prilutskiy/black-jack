@@ -38,7 +38,10 @@ namespace BlackJack.InfoPlugin
             InitializeComponents();
             _viewUpdateTimer = new Timer(this.UpdateViewFromContext, context, 0, 1000);
             //UpdateViewFromContext(context);
-            context.TabControl.TabPages.Add(gameInfoTab);
+            context.TabControl.Invoke(() =>
+            {
+                context.TabControl.TabPages.Add(gameInfoTab);
+            });
         }
 
         private void InitializeComponents()
@@ -376,7 +379,8 @@ namespace BlackJack.InfoPlugin
                 totalPlayersLabel.Text = allUsers.Count.ToString();
             });
 
-            lock(_syncRootOnline)
+            lock (_syncRootOnline)
+            {
                 if (_prevOnlineCount != inGameUsers.Count())
                 {
                     _prevOnlineCount = inGameUsers.Count();
@@ -394,8 +398,19 @@ namespace BlackJack.InfoPlugin
                         onlineListView.Invoke(() => { onlineListView.Items.Add(item); });
                     }
                 }
+                onlineListView.Invoke(() =>
+                {
+                    foreach (ListViewItem item in onlineListView.Items)
+                    {
+                        var user = inGameUsers.Single(u => u.Id.ToString() == item.Text);
+                        if (item.SubItems[2].Text != user.Cash.ToString())
+                            item.SubItems[2].Text = user.Cash.ToString();
+                    }
+                });
+            }
 
             lock (_syncRootTotal)
+            {
                 if (_prevTotalCount != allUsers.Count)
                 {
                     _prevTotalCount = allUsers.Count;
@@ -410,6 +425,16 @@ namespace BlackJack.InfoPlugin
                             totalListView.Invoke(() => { totalListView.Items.Add(item); });
                     }
                 }
+                totalListView.Invoke(() =>
+                {
+                    foreach (ListViewItem item in totalListView.Items)
+                    {
+                        var user = allUsers.Single(u => u.Id.ToString() == item.Text);
+                        if (item.SubItems[3].Text != user.Cash.ToString())
+                            item.SubItems[3].Text = user.Cash.ToString();
+                    }
+                });
+            }
 
         }
 
@@ -445,6 +470,8 @@ namespace BlackJack.InfoPlugin
         private readonly Label label9 = new Label();
         private readonly Label maxConnectionsLabel = new Label();
         private readonly ListView onlineListView = new ListView();
+
+
         private readonly Label playersInGameLabel = new Label();
         private readonly ListView totalListView = new ListView();
         private readonly Label totalPlayersLabel = new Label();

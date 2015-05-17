@@ -37,7 +37,10 @@ namespace BlackJack.MachineInfoPlugin
             Context = context;
             InitializeComponents();
             _viewUpdateTimer = new Timer(this.UpdateViewFromContext, context, 0, 1000);
-            context.TabControl.TabPages.Add(machineInfoTab);
+            context.TabControl.Invoke(() =>
+            {
+                context.TabControl.TabPages.Add(machineInfoTab);
+            });
         }
 
         private int _prevModulesCount = 0;

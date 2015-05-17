@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="12233ae6-1fa0-44f0-ab5d-71b56e311429"
+  name="BlackJack"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0f503b0e-211b-4f5c-8256-38757b04a73e"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DBlackJack"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="c57962e3-0745-4cb3-ba09-2f7760673b8e"
+        LastKnownName="Client"
+        LastKnownLocation="Package1_2154.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="298c9713-6c8a-4a45-8ca4-6f0958dd7f1f"
+        LastKnownName="Common"
+        LastKnownLocation="Package2_2154.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="1742cfbb-15a2-450f-9bf6-6e0023bfafeb"
+        LastKnownName="InfoPlugin"
+        LastKnownLocation="Package_2156.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="162d308f-93ed-4b3e-bfea-07c544d30305"
+        LastKnownName="Server"
+        LastKnownLocation="Package1_2156.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="2f54cd7e-3d2a-4ef1-9fa0-7a8bed6b324a"
+        LastKnownName="Launcher"
+        LastKnownLocation="Package6_2156.uml" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <packageMoniker
+        Id="682ed9cb-b767-4bcc-aa44-15880a6c98ef"
+        LastKnownName="MachineInfoPlugin"
+        LastKnownLocation="Package7_2156.uml" />
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -189,8 +189,8 @@
             // 
             this.serverLogTab.Controls.Add(this.logListview);
             this.serverLogTab.Name = "serverLogTab";
-            this.serverLogTab.Size = new System.Drawing.Size(661, 398);
-            this.serverLogTab.Text = "Server log";
+            this.serverLogTab.Size = new System.Drawing.Size(640, 398);
+            this.serverLogTab.Text = "Server log       ";
             // 
             // logListview
             // 
@@ -204,7 +204,7 @@
             this.logListview.Location = new System.Drawing.Point(0, 0);
             this.logListview.MultiSelect = false;
             this.logListview.Name = "logListview";
-            this.logListview.Size = new System.Drawing.Size(661, 398);
+            this.logListview.Size = new System.Drawing.Size(640, 398);
             this.logListview.TabIndex = 0;
             this.logListview.UseCompatibleStateImageBehavior = false;
             this.logListview.View = System.Windows.Forms.View.Details;
@@ -338,6 +338,7 @@
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

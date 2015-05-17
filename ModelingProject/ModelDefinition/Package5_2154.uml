@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="3cf72f7b-2a94-4357-b6c9-1e1291272a68"
+  name="Core"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="631089bd-8510-4ac3-9b7c-f2e5c564a5fa"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DAwesomium.Core"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="291f285d-3a2c-426d-8dac-85cc2ed9d8c4">
+      <profileInstance
+        Id="d12297e6-ebf8-4c04-a5ab-864a25c83c6b"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="6d01ec77-8976-4e65-b6b0-c22263737fb4"
+        name="DocumentReadyEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="d3138f3d-e663-4cc2-b807-7cf879a2fc43"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FAwesomium Technologies LLC%2FAwesomium SDK%2F1.7.5.0%2Fwrappers%2FAwesomium.NET%2FAssemblies%2FAwesomium.Core.dll&quot; Namespace%3DAwesomium.Core Type%3DDocumentReadyEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c5479b62-8db2-42bc-90c9-7a4917a016fa"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="55e28b38-5257-4609-825c-81785fa06785">
+                <propertyInstance
+                  Id="95e57995-6912-465d-b1e8-512aa36f0288"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3e65a909-ba11-4a71-8d5a-c7440e263ef0">
+                <propertyInstance
+                  Id="ef3a89d2-a0cd-4a57-8155-8b36385941fa"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3dae33c6-f732-4409-b296-8cff52d27eeb">
+                <propertyInstance
+                  Id="9e70990f-c317-4bf1-88c7-f5d4b54e7bbe"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0b8a739f-b6a3-4074-97d4-c0c8d451c5fb">
+                <propertyInstance
+                  Id="a32fb182-bd45-4cb0-8b42-ddb9d9d588bf"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="83eb4a97-2a1d-4a3e-930e-ff672bd765f0">
+                <propertyInstance
+                  Id="37a77df1-8a20-4a1a-a164-4bd2fda95c94"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1303b990-2d4a-447a-92a1-e6a518fe985f"
+        name="JSValue"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="c73c9ac3-9212-4ed8-b81d-a34ce58ce106"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FAwesomium Technologies LLC%2FAwesomium SDK%2F1.7.5.0%2Fwrappers%2FAwesomium.NET%2FAssemblies%2FAwesomium.Core.dll&quot; Namespace%3DAwesomium.Core Type%3DJSValue"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="23f1760b-54d0-4e6d-bfae-c6fbb03134ae"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e163e6b7-a28e-435d-b591-d8a39d0acf43">
+                <propertyInstance
+                  Id="c54565e7-eb2b-48bc-8173-13fab2a7075b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3cfb65f7-2261-4a2c-96eb-e3bcbff0a4b9">
+                <propertyInstance
+                  Id="dd5dbbde-5eb9-4118-81d6-dee04344f411"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="08e70bf3-7020-43c3-bfaf-1654a2981b4d">
+                <propertyInstance
+                  Id="e7ef14ea-a83b-4e1f-9398-7da3489919bd"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e9bad40-2ca3-40ea-8090-9ab9f1a5bb09">
+                <propertyInstance
+                  Id="ec0b5b21-1d38-49ef-abb7-596a43525c13"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1e1044a1-49a6-4b16-a36f-dd6ed5d29417">
+                <propertyInstance
+                  Id="be8ad3ec-f8d5-4c3b-99bf-4b0131cb0920"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="e8876873-a04a-437f-8b71-a2ee668196c9"
+        name="JavascriptMethodEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="33f36672-3828-442f-9800-66922e2039f9"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FAwesomium Technologies LLC%2FAwesomium SDK%2F1.7.5.0%2Fwrappers%2FAwesomium.NET%2FAssemblies%2FAwesomium.Core.dll&quot; Namespace%3DAwesomium.Core Type%3DJavascriptMethodEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="d5255725-81d1-479f-b114-99d79350fe65"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4eaceb0c-9820-44b3-9c06-4500d27b8183">
+                <propertyInstance
+                  Id="2a50a341-1d3f-4314-8b06-42b2c68595f4"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ff500d9f-7190-4573-90c6-a702b4909036">
+                <propertyInstance
+                  Id="4052ef3a-8dc1-4cb1-ac01-e393281f6ca9"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="be34ed36-1f88-4be5-be96-f4a9087d1378">
+                <propertyInstance
+                  Id="5c48586b-0111-4117-badc-ce429da87f96"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="83d821d4-886c-4e8e-a484-b053bdfc6a1b">
+                <propertyInstance
+                  Id="153dce69-9b98-4e16-9152-d6db316915ed"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="34904bd1-11c6-40d4-81b5-1b52775a38cd">
+                <propertyInstance
+                  Id="f2a455c0-d7a0-4a03-b91e-c6d019a8776f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

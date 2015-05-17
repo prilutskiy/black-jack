@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="e9bb12bf-da22-4b6e-b804-4ff9270aadfd"
+  name="Migrations"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="83c01174-3211-4ada-9c4d-9d57cd2af24c"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DBlackJack.Server.Migrations"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="99ab528f-caef-4fff-a2ca-08a81ce455de"
+        name="Configuration"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="true"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="ee0ee5fa-9a90-454a-a650-9d5da8bac6ba"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2FOutput%2FDebug%2FBlackJack.Server.exe Namespace%3DBlackJack.Server.Migrations Type%3DConfiguration"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="10f01305-d96e-439d-8443-be0c961b7107"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0896f1fc-95a4-4705-889c-191a0ddb4096">
+                <propertyInstance
+                  Id="b7edcdfb-b729-42d3-b8e3-88a05be0a84b"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="43ab7ecb-4e80-4971-be45-fd7a48dd91bc">
+                <propertyInstance
+                  Id="6e3826d3-58df-4a6b-b4a3-e06eafc96e31"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a07543d1-7ed0-4370-ad5f-844b5ba99723">
+                <propertyInstance
+                  Id="230bac8a-428e-4e2e-9a8f-bf2fb93793e9"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="386c0375-b318-4a24-9089-62d3035d8b67">
+                <propertyInstance
+                  Id="1ff4e859-f0fa-46a4-bf99-1cf61ae46e19"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b8f02be6-1893-452c-ba74-2168134e6ca4">
+                <propertyInstance
+                  Id="b5844d7b-87bd-4d90-b211-b8df9a57ee26"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="eedb9f8a-9cca-4f91-9c35-a2748d13c6a3"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7b23f3b5-9552-4032-8264-625abd332ca1"
+              LastKnownName="DbMigrationsConfiguration&lt;BlackJackDbContext‎&gt;"
+              LastKnownLocation="Package7_2158.uml" />
+          </generalization>
+          <generalization
+            Id="ea1922cf-59f5-4e0e-b9a4-8e78ddb6f0af"
+            isSubstitutable="false">
+            <classMoniker
+              Id="577f3a6c-1638-4fb5-961d-0ce91d5909fa"
+              LastKnownName="DbMigrationsConfiguration"
+              LastKnownLocation="Package7_2158.uml" />
+          </generalization>
+        </generalsInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="4813b2ae-a942-4f92-ba09-c99c36b6f3e8"
+            name="Configuration"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="983fffb8-ac24-4fe7-bd42-0163ebf73e97"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2FOutput%2FDebug%2FBlackJack.Server.exe Namespace%3DBlackJack.Server.Migrations Type%3DConfiguration Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="16ec6e25-e9c2-4b24-9cc0-56e5184f02af"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc9258ef-1823-447a-b63c-2951466dd460">
+                    <propertyInstance
+                      Id="689c4c94-9098-45d1-b645-009c45202fda"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ee5a8325-4a90-411b-abd3-9821ed45b442">
+                    <propertyInstance
+                      Id="e7ca76de-dc42-46a7-9c9e-67c14b62b9d5"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="04baaf6d-27c9-4e24-8c41-da991d37884e">
+                    <propertyInstance
+                      Id="219b3a06-5d2a-4b44-941b-078d9982b8a1"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7e639196-7859-41f3-8d71-e3416279a047">
+                    <propertyInstance
+                      Id="e9b79afe-c92b-4cc5-b588-aef1caa40b3d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3591c854-ff1f-4755-958e-8418f0cdc48b">
+                    <propertyInstance
+                      Id="40808b03-b25b-4334-8196-e95b17a473fa"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="18bc27b5-0835-4d73-a868-0ee3c4a369e4">
+                    <propertyInstance
+                      Id="8d602aa9-ccb2-420a-bc95-f53c35d34229"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="eeec1526-5a97-4056-a9ae-5a29ef0e541a"
+            name="Seed"
+            visibility="Protected"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ad1b956f-f19a-4132-92c9-335834ea0b07"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2FOutput%2FDebug%2FBlackJack.Server.exe Namespace%3DBlackJack.Server.Migrations Type%3DConfiguration Member%3D(Name%3DSeed OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2FOutput%2FDebug%2FBlackJack.Server.exe Namespace%3DBlackJack.Server Type%3DBlackJackDbContext)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="c896ba19-ad8b-43c4-b0a6-12a2cd22fd7b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c06f7661-4a01-4f29-81ac-16565521f81c">
+                    <propertyInstance
+                      Id="8bd52388-e747-4058-992c-ad6fb48c9380"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="75573a0a-c0d3-483d-8714-eee5e555dfbf">
+                    <propertyInstance
+                      Id="207ce453-c9aa-414b-b786-4b757b31db26"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="82c26186-af92-41ac-97cf-08617f5c69d1">
+                    <propertyInstance
+                      Id="98876ac1-2ada-4431-b82b-9b7d1ae3762a"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4566e761-f10e-4de7-99b9-68fb36981966">
+                    <propertyInstance
+                      Id="54a3fc41-be5c-4d11-bc2c-348aeba1fea5"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d092d294-67b2-491d-8189-e6c1a7d30e1c">
+                    <propertyInstance
+                      Id="6b58f16f-0863-4130-b03b-ef56e6362059"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e6f2fa2e-4952-4812-bff2-075325419ebc">
+                    <propertyInstance
+                      Id="0710da2c-1f7c-4b1b-a92b-d498d962157c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f4e5c5ad-a9e1-4209-8e02-51cb83918e57"
+                  name="context"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="6bc832a2-91e9-469c-9321-a3b0cabac5e4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2FOutput%2FDebug%2FBlackJack.Server.exe Namespace%3DBlackJack.Server.Migrations Type%3DConfiguration Member%3D(Name%3DSeed OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2FOutput%2FDebug%2FBlackJack.Server.exe Namespace%3DBlackJack.Server Type%3DBlackJackDbContext)]) ParameterIdentifier%3Dcontext"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="345513fa-9bfc-4edb-8487-4e80559723e8"
+                      LastKnownName="BlackJackDbContext"
+                      LastKnownLocation="Package1_2156.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

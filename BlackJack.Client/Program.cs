@@ -26,7 +26,7 @@ namespace BlackJack.Client
         {
             try
             {
-                using (var stream = new FileStream(ConnectionInfo.DeafultConfigFilePath, FileMode.Open))
+                using (var stream = new FileStream(Path.Combine(Application.StartupPath,ConnectionInfo.DeafultConfigFileName), FileMode.Open))
                 {
                     var xmlSer = new XmlSerializer(typeof(ConnectionInfo));
                     var obj = xmlSer.Deserialize(stream) as ConnectionInfo;

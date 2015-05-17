@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.webView = new Awesomium.Windows.Forms.WebControl(this.components);
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            this.webView = new Awesomium.Windows.Forms.WebControl();
             this.refreshBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -61,6 +61,7 @@
             this.Controls.Add(this.webView);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="3608e823-27b4-4bd5-a670-a63a3c53f2b8"
+  name="Migrations"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="89182fa3-f9fc-4a5c-8be9-76802ed34a95"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DSystem.Data.Entity.Migrations"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="7b23f3b5-9552-4032-8264-625abd332ca1"
+        name="DbMigrationsConfiguration&lt;BlackJackDbContext‎&gt;"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="26928eeb-a8cb-4da8-b104-c4a61e481df9"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="345a1cee-f351-4a10-994b-503bba30d752">
+                <propertyInstance
+                  Id="bf272970-69a4-4407-9c15-a26e38e2bdbc"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ec115c74-d061-49e1-b7ce-59e2ffb8cab0">
+                <propertyInstance
+                  Id="dfa4ab53-6286-4742-99f5-b06cb42dc543"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8255ee61-6046-4292-9748-7f69679a9c03">
+                <propertyInstance
+                  Id="4fcaed32-d772-4a45-8018-346874773c83"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7e98cc7f-45e7-4be0-9ad0-3df92a4fd100">
+                <propertyInstance
+                  Id="a4d7b6be-08f8-4889-a2e1-1a78f4b9deed"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f6d5818c-232e-450c-ac5e-9ef22115776c">
+                <propertyInstance
+                  Id="68d5dcc0-e1a8-4a6f-8440-418746f9636c"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <signatures>
+          <templateBinding
+            Id="fcfebc65-4157-424f-975a-68e8bb84cb29">
+            <redefinableTemplateSignatureMoniker
+              Id="33ccbfdb-dc6d-4df2-9c85-0355459d9304"
+              LastKnownLocation="Package7_2158.uml" />
+            <relationshipOwnedElementsInternal>
+              <templateBindingHasTemplateParameterSubstitution>
+                <templateParameterSubstitution
+                  Id="4cb062d8-8bcd-465a-95bf-93a772b21d6c">
+                  <actuals>
+                    <classMoniker
+                      Id="345513fa-9bfc-4edb-8487-4e80559723e8"
+                      LastKnownName="BlackJackDbContext"
+                      LastKnownLocation="Package1_2156.uml" />
+                  </actuals>
+                  <formal>
+                    <classifierTemplateParameterMoniker
+                      Id="4b7b00fe-4e9f-4b23-9384-d54ee65f4ef7"
+                      LastKnownLocation="Package7_2158.uml" />
+                  </formal>
+                </templateParameterSubstitution>
+              </templateBindingHasTemplateParameterSubstitution>
+            </relationshipOwnedElementsInternal>
+          </templateBinding>
+        </signatures>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="577f3a6c-1638-4fb5-961d-0ce91d5909fa"
+        name="DbMigrationsConfiguration"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a6fd09f6-7bde-4768-9164-5770910263d0"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2Fpackages%2FEntityFramework.6.1.3%2Flib%2Fnet45%2FEntityFramework.dll Namespace%3DSystem.Data.Entity.Migrations Type%3D(Name%3DDbMigrationsConfiguration GenericParameterCount%3D1)"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="cfcb3e3a-5042-405b-be16-9e94d030968e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bf320e6f-b431-4943-9c86-f63557ed6e50">
+                <propertyInstance
+                  Id="91d9936a-c646-4099-8f6a-569ce2cb68cf"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="81890216-9249-46cb-abf0-628ab8502731">
+                <propertyInstance
+                  Id="348e8ed9-f621-4038-92d2-6fd17f480330"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8ae65fa5-3d80-49fc-96b5-72512ef68b99">
+                <propertyInstance
+                  Id="670ca870-0d38-42fc-bf82-ee5a8daf93dd"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="939853a8-e795-4f16-bcf1-58a2441faecd">
+                <propertyInstance
+                  Id="6f9750d5-1ac1-48db-89ec-9e3f7fab3df6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f88f75ac-5125-4493-ac46-6e4a381bbcd4">
+                <propertyInstance
+                  Id="7531810c-69a1-4841-9c3f-9be2d5cb1fb1"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedRedefinableTemplateSignatureInternal>
+          <redefinableTemplateSignature
+            Id="33ccbfdb-dc6d-4df2-9c85-0355459d9304"
+            parameters=""
+            name="RedefinableTemplateSignature1"
+            isLeaf="false">
+            <ownedParameters>
+              <classifierTemplateParameter
+                Id="4b7b00fe-4e9f-4b23-9384-d54ee65f4ef7">
+                <referencesInternal>
+                  <reference
+                    Id="9e56b519-c6e4-4e54-ae9a-d4a653b7f6aa"
+                    handle="viewcode://./CodeSchema_GenericParameter?Assembly%3Dfile:%2F%2F%2FD:%2FRepos%2Fblack-jack%2Fpackages%2FEntityFramework.6.1.3%2Flib%2Fnet45%2FEntityFramework.dll Namespace%3DSystem.Data.Entity.Migrations Type%3D(Name%3DDbMigrationsConfiguration GenericParameterCount%3D1) ParameterIdentifier%3D0"
+                    tag="ViewCode" />
+                </referencesInternal>
+                <ownedParameterableElement>
+                  <class
+                    Id="ca9cf54d-809b-469a-97ae-1677e313d2c7"
+                    name="TContext"
+                    isAbstract="false"
+                    isLeaf="false"
+                    isActiveClass="false" />
+                </ownedParameterableElement>
+              </classifierTemplateParameter>
+            </ownedParameters>
+          </redefinableTemplateSignature>
+        </ownedRedefinableTemplateSignatureInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
