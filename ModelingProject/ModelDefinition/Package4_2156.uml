@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="3300b339-16c8-4215-a7a3-daf4aca5e2de"
+  name="XtraTab"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="a658ef4a-b709-45fa-aa60-d0d1fc07bb35"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DDevExpress.XtraTab"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="6376800f-eac1-42d6-a10e-1bdd101908dc"
+        name="XtraTabPage"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="654ed21a-e06d-42da-8e28-2469c1a75c98"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FDevExpress 14.1%2FComponents%2FBin%2FFramework%2FDevExpress.XtraEditors.v14.1.dll&quot; Namespace%3DDevExpress.XtraTab Type%3DXtraTabPage"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3dcfb2d0-e90c-4fb3-9567-faea727936bf"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="93c254e2-58e4-46f8-acca-c253f61955c5">
+                <propertyInstance
+                  Id="bf139502-57f6-454d-ae36-a53eaa9f8a76"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9d557ef5-418c-4541-98c3-507edd6159c6">
+                <propertyInstance
+                  Id="0f4c9808-3fb5-4e1a-b0f6-f6a5fef2f61d"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="498d20e2-4713-4761-9209-04a1a51cc6ca">
+                <propertyInstance
+                  Id="f93e4f45-70f2-4a92-833b-f00fa1d8f6f8"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="46122088-1347-4801-b59b-5a3052d3a512">
+                <propertyInstance
+                  Id="39a35992-5a98-4e0b-85b6-e9f7e61f0027"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5816eae4-3eef-4854-9e38-7052972f841d">
+                <propertyInstance
+                  Id="8175963f-7ee0-4d50-a7c3-a547d946b0ef"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="119aafbb-f9e3-4142-a4d2-b05a7a920031"
+        name="XtraTabControl"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="50233bff-c988-46db-bad0-c80f9aa6262a"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FDevExpress 14.1%2FComponents%2FBin%2FFramework%2FDevExpress.XtraEditors.v14.1.dll&quot; Namespace%3DDevExpress.XtraTab Type%3DXtraTabControl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="1ded0fcb-1302-4d93-9fd5-f9859d2aadb6"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="65b832bf-a421-4412-bef1-3f145040dc17">
+                <propertyInstance
+                  Id="4986fa0e-fe13-46f6-9a3f-c6789fce6252"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="55394e17-006f-4004-aa20-51bcb5629e38">
+                <propertyInstance
+                  Id="1743cca1-da80-4464-8c19-6c8df6408bc4"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f721c1b9-2dfb-4999-91ec-698bf9fc5c2a">
+                <propertyInstance
+                  Id="e84927aa-a051-4fb6-9b7b-c614c742776d"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a8df4d98-2e1d-4be7-804c-f94c9c9536ac">
+                <propertyInstance
+                  Id="0fee2ac5-1808-45b1-a135-f2f53608ac22"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a05b5a13-22a1-40b1-8d70-7526ca5507a1">
+                <propertyInstance
+                  Id="ac3d206b-9df5-4a37-ade0-124e933ecc69"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

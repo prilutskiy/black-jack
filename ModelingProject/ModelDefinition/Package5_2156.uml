@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="f7be8ef5-eb67-4e2b-921e-7528471905f7"
+  name="XtraEditors"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="40bbcd02-e430-416e-a013-c5607c729b77"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DDevExpress.XtraEditors"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="1476ba58-f826-47a8-97c1-b89b19fb4b86"
+        name="GroupControl"
+        visibility="Private"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="0cdbdb13-db82-4424-9f5e-2b06b9f92ddc"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FDevExpress 14.1%2FComponents%2FBin%2FFramework%2FDevExpress.Utils.v14.1.dll&quot; Namespace%3DDevExpress.XtraEditors Type%3DGroupControl"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="d0d59e18-c5d5-4a98-af7e-84de0d35a63d"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5ce2bcf0-33e0-449f-860b-53c171b3b4b5">
+                <propertyInstance
+                  Id="c92bd45a-95b9-44be-8fdc-057b2d4d8171"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cc513db9-cec7-4234-bb2c-dfe0e1d95c13">
+                <propertyInstance
+                  Id="89c0d043-0e35-4473-a197-2fcac90b2b43"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e230db8d-3ef4-4560-9614-66f266aed701">
+                <propertyInstance
+                  Id="afe5e72b-360b-4fb2-a857-f01fb0d46bf6"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7ebdb480-0842-411d-a381-42ee50a2e87e">
+                <propertyInstance
+                  Id="b9a7e4af-86d3-4538-a257-529df74a127c"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="955304a2-a535-41d5-8640-ec6e0d4d6845">
+                <propertyInstance
+                  Id="f00cd354-25fe-41bc-9dfb-969a431284d1"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="9dd6cb6f-f0ef-4323-9085-031bce98a37f"
+        name="SimpleButton"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="4683d267-fc7d-455e-87db-7626698042ba"
+            handle="viewcode://./CodeSchema_Class?Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FDevExpress 14.1%2FComponents%2FBin%2FFramework%2FDevExpress.XtraEditors.v14.1.dll&quot; Namespace%3DDevExpress.XtraEditors Type%3DSimpleButton"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="021fb698-882f-4362-b713-4466717358cf"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3eda303f-5ba6-4f46-8d3d-c4914b343e13">
+                <propertyInstance
+                  Id="72113c7d-6c7b-4e0e-98df-417c39b0a564"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="72f509af-c94b-49c9-9b08-2d5ed0b87d83">
+                <propertyInstance
+                  Id="2585a45a-59ed-4f07-a43d-747734d9a242"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="bb5a598a-4337-4f0d-b0bd-408f5fc17d7e">
+                <propertyInstance
+                  Id="2276b4a2-1ecb-486a-a08c-63e802fb23dd"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5abb8562-f163-49b2-bd4a-edaa15c8f52b">
+                <propertyInstance
+                  Id="29479804-e6e3-41c2-ac77-87bed042d89b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a6b8c3f0-70a6-4b51-94e2-591ee60213d9">
+                <propertyInstance
+                  Id="a87e93d9-1d49-4bde-8b19-e20a0a57082b"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
