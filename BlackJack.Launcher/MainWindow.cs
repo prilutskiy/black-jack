@@ -20,11 +20,11 @@ namespace BlackJack.Launcher
         private void LoadPrevConfig()
         {
             var address = String.Empty;
-            if (!File.Exists(@"blackjack.config"))
+            if (!File.Exists(Path.Combine(Application.StartupPath, ConnectionInfo.DeafultConfigFileName)))
                 return;
             try
             {
-                using (var stream = new FileStream(ConnectionInfo.DeafultConfigFilePath, FileMode.Open))
+                using (var stream = new FileStream(Path.Combine(Application.StartupPath, ConnectionInfo.DeafultConfigFileName), FileMode.Open))
                 {
                     var xmlSer = new XmlSerializer(typeof (ConnectionInfo));
                     var obj = xmlSer.Deserialize(stream) as ConnectionInfo;
@@ -56,7 +56,7 @@ namespace BlackJack.Launcher
                    MessageBoxIcon.Information);
             try
             {
-                using (var stream = new FileStream(ConnectionInfo.DeafultConfigFilePath, FileMode.Create))
+                using (var stream = new FileStream(Path.Combine(Application.StartupPath, ConnectionInfo.DeafultConfigFileName), FileMode.Create))
                 {
                     var xmlSer = new XmlSerializer(typeof(ConnectionInfo));
                     xmlSer.Serialize(stream, new ConnectionInfo() { IpAddress = textBox1.Text });
@@ -75,7 +75,8 @@ namespace BlackJack.Launcher
                 return;
             }
 
-            Process.Start(@"BlackJack.Client.exe");
+            var clientAppPath = Path.Combine(Application.StartupPath, "BlackJack.Client.exe");
+            Process.Start(clientAppPath);
             this.Close();
         }
     }

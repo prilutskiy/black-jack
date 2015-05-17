@@ -52,8 +52,8 @@
 	<summary>
 		<codepage>1252</codepage>
 		<title>Installation Database</title>
-		<subject/>
-		<author>InstallShield</author>
+		<subject>BlackJack</subject>
+		<author>##ID_STRING3##</author>
 		<keywords>Installer,MSI,Database</keywords>
 		<comments>Contact:  Your local administrator</comments>
 		<template>Intel;1033</template>
@@ -225,6 +225,7 @@
 	<table name="AppSearch">
 		<col key="yes" def="s72">Property</col>
 		<col key="yes" def="s72">Signature_</col>
+		<row><td>DOTNETVERSION45FULL</td><td>DotNet45Full</td></row>
 	</table>
 
 	<table name="BBControl">
@@ -251,6 +252,7 @@
 		<col def="V0">Data</col>
 		<col def="S255">ISBuildSourcePath</col>
 		<row><td>ISExpHlp.dll</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\ISExpHlp.dll</td></row>
+		<row><td>ISSELFREG.DLL</td><td/><td>&lt;ISRedistPlatformDependentFolder&gt;\isregsvr.dll</td></row>
 		<row><td>NewBinary1</td><td/><td>&lt;ISProductFolder&gt;\Support\Themes\InstallShield Blue Theme\banner.jpg</td></row>
 		<row><td>NewBinary10</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CompleteSetupIco.ibd</td></row>
 		<row><td>NewBinary11</td><td/><td>&lt;ISProductFolder&gt;\Redist\Language Independent\OS Independent\CustomSetupIco.ibd</td></row>
@@ -338,6 +340,31 @@
 		<col def="S0">ISDotNetInstallerArgsCommit</col>
 		<col def="S0">ISDotNetInstallerArgsUninstall</col>
 		<col def="S0">ISDotNetInstallerArgsRollback</col>
+		<row><td>BlackJack.Client.Content_Files</td><td>{189179DB-59C8-45A6-BB6F-F3F870CFEFF5}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.client.content_fil</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BlackJack.Client.Primary_output</td><td>{1B7F618B-587A-4AE4-9C8B-F23F3B9BDF92}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.client.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BlackJack.Common.Primary_output</td><td>{3A7E2744-F3F7-4F3B-8FEE-4D869BD27762}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.common.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BlackJack.InfoPlugin.Primary_output</td><td>{9579F5C1-395A-4898-B65C-37F757A71B60}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.infoplugin.primary</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BlackJack.Launcher.Primary_output</td><td>{A782E31F-16C1-4A4B-8EAE-84A7C9802A0C}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.launcher.primary_o</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BlackJack.MachineInfoPlugin.Primary_output</td><td>{9A0A550E-7C0F-401C-873E-26D729649398}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.machineinfoplugin.</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>BlackJack.Server.Primary_output</td><td>{03CE1492-914E-4E5A-8221-34058F3A4365}</td><td>INSTALLDIR</td><td>2</td><td/><td>blackjack.server.primary_out</td><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td>{EB2CB4E1-FD4C-465F-95DE-EBCAAA94D846}</td><td>PAGES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td>{3A99F6F5-7278-4719-935A-9076EF4293C7}</td><td>CONTENT</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT10</td><td>{07FCEF5D-C1D2-48E3-9A68-794CA9C5BE0A}</td><td>FA_OLD</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT11</td><td>{D4617497-2661-4568-8EF9-39DCD6852772}</td><td>IMAGES1</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT12</td><td>{A92D441D-3B29-48C1-8CB5-DC4C1D9C8930}</td><td>CARDS1</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT13</td><td>{66BB9D77-331A-4213-A91B-11C85093A600}</td><td>_4</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT14</td><td>{D9D55086-2AB8-4AA2-87BD-693A1F17F46D}</td><td>_5</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT15</td><td>{B7410A12-90FE-4D29-B1B1-0251EF7C31E9}</td><td>_6</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT16</td><td>{DFE6422E-335F-4D5F-880E-A0057B7C23B6}</td><td>_7</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT17</td><td>{E096D07F-BB94-4B99-9DA7-A04533B7A66D}</td><td>SCRIPTS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td>{86732F11-AB8E-49F7-9C70-B656F46667E7}</td><td>FONTS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td>{2E75EC8C-2313-49B4-9825-5869262B12B4}</td><td>IMAGES</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT4</td><td>{26D4CA1B-B2B5-45B6-89EC-57E2157C6C1B}</td><td>CARDS</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT5</td><td>{C13E5C4E-BC86-4CC7-BECC-B95BE9DF614E}</td><td>_</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT6</td><td>{91076687-3C0F-49C6-831D-EB2056FFC42E}</td><td>_1</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT7</td><td>{51FADD4C-6296-466A-ABB7-0A621EED75EC}</td><td>_2</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT8</td><td>{C5E48A03-0552-45DD-976E-F013031565DE}</td><td>_3</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
+		<row><td>ISX_DEFAULTCOMPONENT9</td><td>{9A62D181-EF94-4236-980F-D3E8F4AD07B6}</td><td>FONTS1</td><td>2</td><td/><td/><td>17</td><td/><td/><td/><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td><td>/LogFile=</td></row>
 	</table>
 
 	<table name="Condition">
@@ -548,7 +575,7 @@
 		<row><td>LicenseAgreement</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsLicenseDlg_LicenseAgreement##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>PushButton</td><td>301</td><td>188</td><td>65</td><td>17</td><td>3</td><td/><td>##IDS_PRINT_BUTTON##</td><td>Agree</td><td/><td>0</td><td/><td/><td/></row>
-		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>&lt;ISProductFolder&gt;\Redist\0409\Eula.rtf</td><td/></row>
+		<row><td>LicenseAgreement</td><td>Memo</td><td>ScrollableText</td><td>8</td><td>55</td><td>358</td><td>130</td><td>7</td><td/><td/><td/><td/><td>0</td><td/><td>&lt;VSSolutionFolder&gt;\LICENSE.rtf</td><td/></row>
 		<row><td>LicenseAgreement</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_BACK##</td><td>Next</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>MaintenanceType</td><td>Banner</td><td>Bitmap</td><td>0</td><td>0</td><td>374</td><td>44</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary1</td></row>
@@ -752,14 +779,14 @@
 		<row><td>SetupType</td><td>Cancel</td><td>PushButton</td><td>301</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_CANCEL##</td><td>RadioGroup</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupType</td><td>CompText</td><td>Text</td><td>80</td><td>80</td><td>246</td><td>30</td><td>3</td><td/><td>##IDS__IsSetupTypeMinDlg_AllFeatures##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupType</td><td>CompleteIco</td><td>Icon</td><td>34</td><td>80</td><td>24</td><td>24</td><td>5242881</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary10</td></row>
-		<row><td>SetupType</td><td>CustText</td><td>Text</td><td>80</td><td>171</td><td>246</td><td>30</td><td>3</td><td/><td>##IDS__IsSetupTypeMinDlg_ChooseFeatures##</td><td/><td/><td>0</td><td/><td/><td/></row>
-		<row><td>SetupType</td><td>CustomIco</td><td>Icon</td><td>34</td><td>171</td><td>24</td><td>24</td><td>5242881</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary6</td></row>
+		<row><td>SetupType</td><td>CustText</td><td>Text</td><td>80</td><td>171</td><td>246</td><td>30</td><td>2</td><td/><td>##IDS__IsSetupTypeMinDlg_ChooseFeatures##</td><td/><td/><td>0</td><td/><td/><td/></row>
+		<row><td>SetupType</td><td>CustomIco</td><td>Icon</td><td>34</td><td>171</td><td>24</td><td>24</td><td>5242880</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary11</td></row>
 		<row><td>SetupType</td><td>DlgDesc</td><td>Text</td><td>21</td><td>23</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsSetupTypeMinDlg_ChooseSetupType##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupType</td><td>DlgLine</td><td>Line</td><td>48</td><td>234</td><td>326</td><td>0</td><td>1</td><td/><td/><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupType</td><td>DlgText</td><td>Text</td><td>22</td><td>49</td><td>326</td><td>10</td><td>3</td><td/><td>##IDS__IsSetupTypeMinDlg_SelectSetupType##</td><td/><td/><td>0</td><td>0</td><td/><td/></row>
 		<row><td>SetupType</td><td>DlgTitle</td><td>Text</td><td>13</td><td>6</td><td>292</td><td>25</td><td>65539</td><td/><td>##IDS__IsSetupTypeMinDlg_SetupType##</td><td/><td/><td>0</td><td/><td/><td/></row>
-		<row><td>SetupType</td><td>MinIco</td><td>Icon</td><td>34</td><td>125</td><td>24</td><td>24</td><td>5242881</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary6</td></row>
-		<row><td>SetupType</td><td>MinText</td><td>Text</td><td>80</td><td>125</td><td>246</td><td>30</td><td>3</td><td/><td>##IDS__IsSetupTypeMinDlg_MinimumFeatures##</td><td/><td/><td>0</td><td/><td/><td/></row>
+		<row><td>SetupType</td><td>MinIco</td><td>Icon</td><td>34</td><td>125</td><td>24</td><td>24</td><td>5242880</td><td/><td/><td/><td/><td>0</td><td/><td/><td>NewBinary11</td></row>
+		<row><td>SetupType</td><td>MinText</td><td>Text</td><td>80</td><td>125</td><td>246</td><td>30</td><td>2</td><td/><td>##IDS__IsSetupTypeMinDlg_MinimumFeatures##</td><td/><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupType</td><td>Next</td><td>PushButton</td><td>230</td><td>243</td><td>66</td><td>17</td><td>3</td><td/><td>##IDS_NEXT##</td><td>Cancel</td><td/><td>0</td><td/><td/><td/></row>
 		<row><td>SetupType</td><td>RadioGroup</td><td>RadioButtonGroup</td><td>20</td><td>59</td><td>264</td><td>139</td><td>1048579</td><td>_IsSetupTypeMin</td><td/><td>Back</td><td/><td>0</td><td>0</td><td/><td/></row>
 		<row><td>SplashBitmap</td><td>Back</td><td>PushButton</td><td>164</td><td>243</td><td>66</td><td>17</td><td>1</td><td/><td>##IDS_BACK##</td><td>Next</td><td/><td>0</td><td/><td/><td/></row>
@@ -896,8 +923,8 @@
 		<row><td>CancelSetup</td><td>No</td><td>EndDialog</td><td>Return</td><td>1</td><td>0</td></row>
 		<row><td>CancelSetup</td><td>Yes</td><td>DoAction</td><td>CleanUp</td><td>ISSCRIPTRUNNING="1"</td><td>1</td></row>
 		<row><td>CancelSetup</td><td>Yes</td><td>EndDialog</td><td>Exit</td><td>1</td><td>2</td></row>
+		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed</td><td>0</td></row>
-		<row><td>CustomSetup</td><td>Back</td><td>NewDialog</td><td>SetupType</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>ChangeFolder</td><td>SelectionBrowse</td><td>InstallChangeFolder</td><td>1</td><td>0</td></row>
 		<row><td>CustomSetup</td><td>Details</td><td>SelectionBrowse</td><td>DiskSpaceRequirements</td><td>1</td><td>1</td></row>
@@ -909,7 +936,7 @@
 		<row><td>CustomerInformation</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>1</td><td>1</td></row>
 		<row><td>CustomerInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>EndDialog</td><td>Exit</td><td>(SERIALNUMVALRETRYLIMIT) And (SERIALNUMVALRETRYLIMIT&lt;0) And (SERIALNUMVALRETURN&lt;&gt;SERIALNUMVALSUCCESSRETVAL)</td><td>2</td></row>
-		<row><td>CustomerInformation</td><td>Next</td><td>NewDialog</td><td>SetupType</td><td>(Not SERIALNUMVALRETURN) OR (SERIALNUMVALRETURN=SERIALNUMVALSUCCESSRETVAL)</td><td>3</td></row>
+		<row><td>CustomerInformation</td><td>Next</td><td>NewDialog</td><td>ReadyToInstall</td><td>(Not SERIALNUMVALRETURN) OR (SERIALNUMVALRETURN=SERIALNUMVALSUCCESSRETVAL)</td><td>3</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>[ALLUSERS]</td><td>1</td><td>ApplicationUsers = "AllUsers" And Privileged</td><td>1</td></row>
 		<row><td>CustomerInformation</td><td>Next</td><td>[ALLUSERS]</td><td>{}</td><td>ApplicationUsers = "OnlyCurrentUser" And Privileged</td><td>2</td></row>
 		<row><td>DatabaseFolder</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
@@ -917,7 +944,7 @@
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
 		<row><td>DatabaseFolder</td><td>ChangeFolder</td><td>[_BrowseProperty]</td><td>DATABASEDIR</td><td>1</td><td>2</td></row>
 		<row><td>DatabaseFolder</td><td>Next</td><td>NewDialog</td><td>SetupType</td><td>1</td><td>1</td></row>
-		<row><td>DestinationFolder</td><td>Back</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>0</td></row>
+		<row><td>DestinationFolder</td><td>Back</td><td>NewDialog</td><td>LicenseAgreement</td><td>NOT Installed</td><td>0</td></row>
 		<row><td>DestinationFolder</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>ChangeFolder</td><td>SpawnDialog</td><td>InstallChangeFolder</td><td>1</td><td>1</td></row>
 		<row><td>DestinationFolder</td><td>ChangeFolder</td><td>[_BrowseProperty]</td><td>INSTALLDIR</td><td>1</td><td>2</td></row>
@@ -938,7 +965,7 @@
 		<row><td>LicenseAgreement</td><td>Back</td><td>NewDialog</td><td>InstallWelcome</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>LicenseAgreement</td><td>ISPrintButton</td><td>DoAction</td><td>ISPrint</td><td>1</td><td>0</td></row>
-		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
+		<row><td>LicenseAgreement</td><td>Next</td><td>NewDialog</td><td>DestinationFolder</td><td>AgreeToLicense = "Yes"</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Back</td><td>NewDialog</td><td>MaintenanceWelcome</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>MaintenanceType</td><td>Next</td><td>NewDialog</td><td>CustomSetup</td><td>_IsMaintenance = "Change"</td><td>12</td></row>
@@ -960,7 +987,7 @@
 		<row><td>MsiRMFilesInUse</td><td>OK</td><td>EndDialog</td><td>Return</td><td>1</td><td>1</td></row>
 		<row><td>MsiRMFilesInUse</td><td>OK</td><td>RMShutdownAndRestart</td><td>0</td><td>RestartManagerOption="CloseRestart"</td><td>2</td></row>
 		<row><td>OutOfSpace</td><td>Resume</td><td>NewDialog</td><td>AdminNetworkLocation</td><td>ACTION = "ADMIN"</td><td>0</td></row>
-		<row><td>OutOfSpace</td><td>Resume</td><td>NewDialog</td><td>CustomSetup</td><td>ACTION &lt;&gt; "ADMIN"</td><td>0</td></row>
+		<row><td>OutOfSpace</td><td>Resume</td><td>NewDialog</td><td>DestinationFolder</td><td>ACTION &lt;&gt; "ADMIN"</td><td>0</td></row>
 		<row><td>PatchWelcome</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>EndDialog</td><td>Return</td><td>1</td><td>3</td></row>
 		<row><td>PatchWelcome</td><td>Next</td><td>Reinstall</td><td>ALL</td><td>PATCH And REINSTALL=""</td><td>1</td></row>
@@ -969,8 +996,8 @@
 		<row><td>ReadmeInformation</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>1</td></row>
 		<row><td>ReadmeInformation</td><td>Next</td><td>NewDialog</td><td>CustomerInformation</td><td>1</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>CustomSetup</td><td>Installed OR _IsSetupTypeMin = "Custom"</td><td>2</td></row>
+		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>DestinationFolder</td><td>NOT Installed</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>MaintenanceType</td><td>Installed AND _IsMaintenance = "Reinstall"</td><td>3</td></row>
-		<row><td>ReadyToInstall</td><td>Back</td><td>NewDialog</td><td>SetupType</td><td>NOT Installed AND _IsSetupTypeMin &lt;&gt; "Custom"</td><td>1</td></row>
 		<row><td>ReadyToInstall</td><td>Cancel</td><td>SpawnDialog</td><td>CancelSetup</td><td>1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>EndDialog</td><td>Return</td><td>OutOfNoRbDiskSpace &lt;&gt; 1</td><td>0</td></row>
 		<row><td>ReadyToInstall</td><td>InstallNow</td><td>NewDialog</td><td>OutOfSpace</td><td>OutOfNoRbDiskSpace = 1</td><td>0</td></row>
@@ -1058,6 +1085,10 @@
 		<row><td>ISPreventDowngrade</td><td>19</td><td/><td>[IS_PREVENT_DOWNGRADE_EXIT]</td><td/><td>Exits install when a newer version of this product is found</td></row>
 		<row><td>ISPrint</td><td>1</td><td>SetAllUsers.dll</td><td>PrintScrollableText</td><td/><td>Prints the contents of a ScrollableText control on a dialog.</td></row>
 		<row><td>ISRunSetupTypeAddLocalEvent</td><td>1</td><td>ISExpHlp.dll</td><td>RunSetupTypeAddLocalEvent</td><td/><td>Run the AddLocal events associated with the Next button on the Setup Type dialog.</td></row>
+		<row><td>ISSelfRegisterCosting</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterCosting</td><td/><td/></row>
+		<row><td>ISSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFiles</td><td/><td/></row>
+		<row><td>ISSelfRegisterFinalize</td><td>1</td><td>ISSELFREG.DLL</td><td>ISSelfRegisterFinalize</td><td/><td/></row>
+		<row><td>ISUnSelfRegisterFiles</td><td>3073</td><td>ISSELFREG.DLL</td><td>ISUnSelfRegisterFiles</td><td/><td/></row>
 		<row><td>SetARPINSTALLLOCATION</td><td>51</td><td>ARPINSTALLLOCATION</td><td>[INSTALLDIR]</td><td/><td/></row>
 		<row><td>SetAllUsersProfileNT</td><td>51</td><td>ALLUSERSPROFILE</td><td>[%SystemRoot]\Profiles\All Users</td><td/><td/></row>
 		<row><td>ShowMsiLog</td><td>226</td><td>SystemFolder</td><td>[SystemFolder]notepad.exe "[MsiLogFileLocation]"</td><td/><td>Shows Property-driven MSI Log</td></row>
@@ -1123,22 +1154,39 @@
 		<row><td>ALLUSERSPROFILE</td><td>TARGETDIR</td><td>.:ALLUSE~1|All Users</td><td/><td>0</td><td/></row>
 		<row><td>AdminToolsFolder</td><td>TARGETDIR</td><td>.:Admint~1|AdminTools</td><td/><td>0</td><td/></row>
 		<row><td>AppDataFolder</td><td>TARGETDIR</td><td>.:APPLIC~1|Application Data</td><td/><td>0</td><td/></row>
+		<row><td>BELARUSIAN_STATE_UNIVERSITY_OF_INFORMATICS_AND_RADIOELECTRONICS</td><td>ProgramFilesFolder</td><td>BELARU~1|Belarusian State University of Informatics and Radioelectronics</td><td/><td>0</td><td/></row>
+		<row><td>BELORUSIAN_STATE_UNIVERSITY_OF_INFORMATICS_AND_RADIOELECTRONICS</td><td>ProgramFilesFolder</td><td>BELORU~1|Belorusian State University of Informatics and Radioelectronics</td><td/><td>0</td><td/></row>
+		<row><td>BLACKJACK</td><td>BELARUSIAN_STATE_UNIVERSITY_OF_INFORMATICS_AND_RADIOELECTRONICS</td><td>BLACKJ~1|BlackJack</td><td/><td>0</td><td/></row>
+		<row><td>BLACKJACK1</td><td>BSUIR</td><td>BLACKJ~1|BlackJack</td><td/><td>0</td><td/></row>
+		<row><td>BLACKJACK_SETUP</td><td>BELARUSIAN_STATE_UNIVERSITY_OF_INFORMATICS_AND_RADIOELECTRONICS</td><td>BLACKJ~1|BlackJack Setup</td><td/><td>0</td><td/></row>
+		<row><td>BSUIR</td><td>ProgramFilesFolder</td><td>BSUIR</td><td/><td>0</td><td/></row>
+		<row><td>CARDS</td><td>IMAGES</td><td>Cards</td><td/><td>0</td><td/></row>
+		<row><td>CARDS1</td><td>IMAGES1</td><td>Cards</td><td/><td>0</td><td/></row>
+		<row><td>CONTENT</td><td>PAGES</td><td>Content</td><td/><td>0</td><td/></row>
 		<row><td>CommonAppDataFolder</td><td>TARGETDIR</td><td>.:Common~1|CommonAppData</td><td/><td>0</td><td/></row>
 		<row><td>CommonFiles64Folder</td><td>TARGETDIR</td><td>.:Common64</td><td/><td>0</td><td/></row>
 		<row><td>CommonFilesFolder</td><td>TARGETDIR</td><td>.:Common</td><td/><td>0</td><td/></row>
 		<row><td>DATABASEDIR</td><td>ISYourDataBaseDir</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>DesktopFolder</td><td>TARGETDIR</td><td>.:Desktop</td><td/><td>3</td><td/></row>
+		<row><td>FA_OLD</td><td>FONTS1</td><td>fa-old</td><td/><td>0</td><td/></row>
+		<row><td>FONTS</td><td>CONTENT</td><td>fonts</td><td/><td>0</td><td/></row>
+		<row><td>FONTS1</td><td>PAGES</td><td>fonts</td><td/><td>0</td><td/></row>
 		<row><td>FavoritesFolder</td><td>TARGETDIR</td><td>.:FAVORI~1|Favorites</td><td/><td>0</td><td/></row>
 		<row><td>FontsFolder</td><td>TARGETDIR</td><td>.:Fonts</td><td/><td>0</td><td/></row>
 		<row><td>GlobalAssemblyCache</td><td>TARGETDIR</td><td>.:Global~1|GlobalAssemblyCache</td><td/><td>0</td><td/></row>
-		<row><td>INSTALLDIR</td><td>ISMyProductDir</td><td>.</td><td/><td>0</td><td/></row>
+		<row><td>IMAGES</td><td>CONTENT</td><td>Images</td><td/><td>0</td><td/></row>
+		<row><td>IMAGES1</td><td>PAGES</td><td>Images</td><td/><td>0</td><td/></row>
+		<row><td>INSTALLDIR</td><td>BLACKJACK1</td><td>.</td><td/><td>0</td><td/></row>
 		<row><td>ISCommonFilesFolder</td><td>CommonFilesFolder</td><td>Instal~1|InstallShield</td><td/><td>0</td><td/></row>
 		<row><td>ISMyCompanyDir</td><td>ProgramFilesFolder</td><td>MYCOMP~1|My Company Name</td><td/><td>0</td><td/></row>
 		<row><td>ISMyProductDir</td><td>ISMyCompanyDir</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>ISYourDataBaseDir</td><td>INSTALLDIR</td><td>Database</td><td/><td>0</td><td/></row>
 		<row><td>LocalAppDataFolder</td><td>TARGETDIR</td><td>.:LocalA~1|LocalAppData</td><td/><td>0</td><td/></row>
+		<row><td>MY_PRODUCT_NAME</td><td>BELORUSIAN_STATE_UNIVERSITY_OF_INFORMATICS_AND_RADIOELECTRONICS</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
+		<row><td>MY_PRODUCT_NAME1</td><td>BELARUSIAN_STATE_UNIVERSITY_OF_INFORMATICS_AND_RADIOELECTRONICS</td><td>MYPROD~1|My Product Name</td><td/><td>0</td><td/></row>
 		<row><td>MyPicturesFolder</td><td>TARGETDIR</td><td>.:MyPict~1|MyPictures</td><td/><td>0</td><td/></row>
 		<row><td>NetHoodFolder</td><td>TARGETDIR</td><td>.:NetHood</td><td/><td>0</td><td/></row>
+		<row><td>PAGES</td><td>INSTALLDIR</td><td>pages</td><td/><td>0</td><td/></row>
 		<row><td>PersonalFolder</td><td>TARGETDIR</td><td>.:Personal</td><td/><td>0</td><td/></row>
 		<row><td>PrimaryVolumePath</td><td>TARGETDIR</td><td>.:Primar~1|PrimaryVolumePath</td><td/><td>0</td><td/></row>
 		<row><td>PrintHoodFolder</td><td>TARGETDIR</td><td>.:PRINTH~1|PrintHood</td><td/><td>0</td><td/></row>
@@ -1146,6 +1194,7 @@
 		<row><td>ProgramFilesFolder</td><td>TARGETDIR</td><td>.:PROGRA~1|program files</td><td/><td>0</td><td/></row>
 		<row><td>ProgramMenuFolder</td><td>TARGETDIR</td><td>.:Programs</td><td/><td>3</td><td/></row>
 		<row><td>RecentFolder</td><td>TARGETDIR</td><td>.:Recent</td><td/><td>0</td><td/></row>
+		<row><td>SCRIPTS</td><td>PAGES</td><td>Scripts</td><td/><td>0</td><td/></row>
 		<row><td>SendToFolder</td><td>TARGETDIR</td><td>.:SendTo</td><td/><td>3</td><td/></row>
 		<row><td>StartMenuFolder</td><td>TARGETDIR</td><td>.:STARTM~1|Start Menu</td><td/><td>3</td><td/></row>
 		<row><td>StartupFolder</td><td>TARGETDIR</td><td>.:StartUp</td><td/><td>3</td><td/></row>
@@ -1158,6 +1207,16 @@
 		<row><td>USERPROFILE</td><td>TARGETDIR</td><td>.:USERPR~1|UserProfile</td><td/><td>0</td><td/></row>
 		<row><td>WindowsFolder</td><td>TARGETDIR</td><td>.:Windows</td><td/><td>0</td><td/></row>
 		<row><td>WindowsVolume</td><td>TARGETDIR</td><td>.:WinRoot</td><td/><td>0</td><td/></row>
+		<row><td>_</td><td>CARDS</td><td>1</td><td/><td>0</td><td/></row>
+		<row><td>_1</td><td>CARDS</td><td>2</td><td/><td>0</td><td/></row>
+		<row><td>_2</td><td>CARDS</td><td>3</td><td/><td>0</td><td/></row>
+		<row><td>_3</td><td>CARDS</td><td>4</td><td/><td>0</td><td/></row>
+		<row><td>_4</td><td>CARDS1</td><td>1</td><td/><td>0</td><td/></row>
+		<row><td>_5</td><td>CARDS1</td><td>2</td><td/><td>0</td><td/></row>
+		<row><td>_6</td><td>CARDS1</td><td>3</td><td/><td>0</td><td/></row>
+		<row><td>_7</td><td>CARDS1</td><td>4</td><td/><td>0</td><td/></row>
+		<row><td>blackj_1_blackjack</td><td>bsuir</td><td>BLACKJ~1|BlackJack</td><td/><td>1</td><td/></row>
+		<row><td>bsuir</td><td>ProgramMenuFolder</td><td>BSUIR</td><td/><td>1</td><td/></row>
 	</table>
 
 	<table name="DrLocator">
@@ -1849,6 +1908,31 @@
 	<table name="FeatureComponents">
 		<col key="yes" def="s38">Feature_</col>
 		<col key="yes" def="s72">Component_</col>
+		<row><td>AlwaysInstall</td><td>BlackJack.Client.Content_Files</td></row>
+		<row><td>AlwaysInstall</td><td>BlackJack.Client.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>BlackJack.Common.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>BlackJack.InfoPlugin.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>BlackJack.Launcher.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>BlackJack.MachineInfoPlugin.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>BlackJack.Server.Primary_output</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT1</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT10</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT11</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT12</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT13</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT14</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT15</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT16</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT17</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT2</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT3</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT4</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT5</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT6</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT7</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT8</td></row>
+		<row><td>AlwaysInstall</td><td>ISX_DEFAULTCOMPONENT9</td></row>
 	</table>
 
 	<table name="File">
@@ -1863,6 +1947,210 @@
 		<col def="S255">ISBuildSourcePath</col>
 		<col def="I4">ISAttributes</col>
 		<col def="S72">ISComponentSubFolder_</col>
+		<row><td>_.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\1.png</td><td>1</td><td/></row>
+		<row><td>_.png1</td><td>ISX_DEFAULTCOMPONENT3</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\2.png</td><td>1</td><td/></row>
+		<row><td>_.png10</td><td>ISX_DEFAULTCOMPONENT5</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\2.png</td><td>1</td><td/></row>
+		<row><td>_.png11</td><td>ISX_DEFAULTCOMPONENT5</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\3.png</td><td>1</td><td/></row>
+		<row><td>_.png12</td><td>ISX_DEFAULTCOMPONENT5</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\4.png</td><td>1</td><td/></row>
+		<row><td>_.png13</td><td>ISX_DEFAULTCOMPONENT5</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\5.png</td><td>1</td><td/></row>
+		<row><td>_.png14</td><td>ISX_DEFAULTCOMPONENT5</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\6.png</td><td>1</td><td/></row>
+		<row><td>_.png15</td><td>ISX_DEFAULTCOMPONENT5</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\7.png</td><td>1</td><td/></row>
+		<row><td>_.png16</td><td>ISX_DEFAULTCOMPONENT5</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\8.png</td><td>1</td><td/></row>
+		<row><td>_.png17</td><td>ISX_DEFAULTCOMPONENT5</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\9.png</td><td>1</td><td/></row>
+		<row><td>_.png18</td><td>ISX_DEFAULTCOMPONENT6</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\1.png</td><td>1</td><td/></row>
+		<row><td>_.png19</td><td>ISX_DEFAULTCOMPONENT6</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\2.png</td><td>1</td><td/></row>
+		<row><td>_.png2</td><td>ISX_DEFAULTCOMPONENT3</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\3.png</td><td>1</td><td/></row>
+		<row><td>_.png20</td><td>ISX_DEFAULTCOMPONENT6</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\3.png</td><td>1</td><td/></row>
+		<row><td>_.png21</td><td>ISX_DEFAULTCOMPONENT6</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\4.png</td><td>1</td><td/></row>
+		<row><td>_.png22</td><td>ISX_DEFAULTCOMPONENT6</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\5.png</td><td>1</td><td/></row>
+		<row><td>_.png23</td><td>ISX_DEFAULTCOMPONENT6</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\6.png</td><td>1</td><td/></row>
+		<row><td>_.png24</td><td>ISX_DEFAULTCOMPONENT6</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\7.png</td><td>1</td><td/></row>
+		<row><td>_.png25</td><td>ISX_DEFAULTCOMPONENT6</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\8.png</td><td>1</td><td/></row>
+		<row><td>_.png26</td><td>ISX_DEFAULTCOMPONENT6</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\9.png</td><td>1</td><td/></row>
+		<row><td>_.png27</td><td>ISX_DEFAULTCOMPONENT7</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\1.png</td><td>1</td><td/></row>
+		<row><td>_.png28</td><td>ISX_DEFAULTCOMPONENT7</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\2.png</td><td>1</td><td/></row>
+		<row><td>_.png29</td><td>ISX_DEFAULTCOMPONENT7</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\3.png</td><td>1</td><td/></row>
+		<row><td>_.png3</td><td>ISX_DEFAULTCOMPONENT3</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\4.png</td><td>1</td><td/></row>
+		<row><td>_.png30</td><td>ISX_DEFAULTCOMPONENT7</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\4.png</td><td>1</td><td/></row>
+		<row><td>_.png31</td><td>ISX_DEFAULTCOMPONENT7</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\5.png</td><td>1</td><td/></row>
+		<row><td>_.png32</td><td>ISX_DEFAULTCOMPONENT7</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\6.png</td><td>1</td><td/></row>
+		<row><td>_.png33</td><td>ISX_DEFAULTCOMPONENT7</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\7.png</td><td>1</td><td/></row>
+		<row><td>_.png34</td><td>ISX_DEFAULTCOMPONENT7</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\8.png</td><td>1</td><td/></row>
+		<row><td>_.png35</td><td>ISX_DEFAULTCOMPONENT7</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\9.png</td><td>1</td><td/></row>
+		<row><td>_.png36</td><td>ISX_DEFAULTCOMPONENT8</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\1.png</td><td>1</td><td/></row>
+		<row><td>_.png37</td><td>ISX_DEFAULTCOMPONENT8</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\2.png</td><td>1</td><td/></row>
+		<row><td>_.png38</td><td>ISX_DEFAULTCOMPONENT8</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\3.png</td><td>1</td><td/></row>
+		<row><td>_.png39</td><td>ISX_DEFAULTCOMPONENT8</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\4.png</td><td>1</td><td/></row>
+		<row><td>_.png4</td><td>ISX_DEFAULTCOMPONENT3</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\5.png</td><td>1</td><td/></row>
+		<row><td>_.png40</td><td>ISX_DEFAULTCOMPONENT8</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\5.png</td><td>1</td><td/></row>
+		<row><td>_.png41</td><td>ISX_DEFAULTCOMPONENT8</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\6.png</td><td>1</td><td/></row>
+		<row><td>_.png42</td><td>ISX_DEFAULTCOMPONENT8</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\7.png</td><td>1</td><td/></row>
+		<row><td>_.png43</td><td>ISX_DEFAULTCOMPONENT8</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\8.png</td><td>1</td><td/></row>
+		<row><td>_.png44</td><td>ISX_DEFAULTCOMPONENT8</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\9.png</td><td>1</td><td/></row>
+		<row><td>_.png45</td><td>ISX_DEFAULTCOMPONENT13</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\1.png</td><td>1</td><td/></row>
+		<row><td>_.png46</td><td>ISX_DEFAULTCOMPONENT13</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\2.png</td><td>1</td><td/></row>
+		<row><td>_.png47</td><td>ISX_DEFAULTCOMPONENT13</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\3.png</td><td>1</td><td/></row>
+		<row><td>_.png48</td><td>ISX_DEFAULTCOMPONENT13</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\4.png</td><td>1</td><td/></row>
+		<row><td>_.png49</td><td>ISX_DEFAULTCOMPONENT13</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\5.png</td><td>1</td><td/></row>
+		<row><td>_.png5</td><td>ISX_DEFAULTCOMPONENT3</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\6.png</td><td>1</td><td/></row>
+		<row><td>_.png50</td><td>ISX_DEFAULTCOMPONENT13</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\6.png</td><td>1</td><td/></row>
+		<row><td>_.png51</td><td>ISX_DEFAULTCOMPONENT13</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\7.png</td><td>1</td><td/></row>
+		<row><td>_.png52</td><td>ISX_DEFAULTCOMPONENT13</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\8.png</td><td>1</td><td/></row>
+		<row><td>_.png53</td><td>ISX_DEFAULTCOMPONENT13</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\9.png</td><td>1</td><td/></row>
+		<row><td>_.png54</td><td>ISX_DEFAULTCOMPONENT14</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\1.png</td><td>1</td><td/></row>
+		<row><td>_.png55</td><td>ISX_DEFAULTCOMPONENT14</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\2.png</td><td>1</td><td/></row>
+		<row><td>_.png56</td><td>ISX_DEFAULTCOMPONENT14</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\3.png</td><td>1</td><td/></row>
+		<row><td>_.png57</td><td>ISX_DEFAULTCOMPONENT14</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\4.png</td><td>1</td><td/></row>
+		<row><td>_.png58</td><td>ISX_DEFAULTCOMPONENT14</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\5.png</td><td>1</td><td/></row>
+		<row><td>_.png59</td><td>ISX_DEFAULTCOMPONENT14</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\6.png</td><td>1</td><td/></row>
+		<row><td>_.png6</td><td>ISX_DEFAULTCOMPONENT3</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\7.png</td><td>1</td><td/></row>
+		<row><td>_.png60</td><td>ISX_DEFAULTCOMPONENT14</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\7.png</td><td>1</td><td/></row>
+		<row><td>_.png61</td><td>ISX_DEFAULTCOMPONENT14</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\8.png</td><td>1</td><td/></row>
+		<row><td>_.png62</td><td>ISX_DEFAULTCOMPONENT14</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\9.png</td><td>1</td><td/></row>
+		<row><td>_.png63</td><td>ISX_DEFAULTCOMPONENT15</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\1.png</td><td>1</td><td/></row>
+		<row><td>_.png64</td><td>ISX_DEFAULTCOMPONENT15</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\2.png</td><td>1</td><td/></row>
+		<row><td>_.png65</td><td>ISX_DEFAULTCOMPONENT15</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\3.png</td><td>1</td><td/></row>
+		<row><td>_.png66</td><td>ISX_DEFAULTCOMPONENT15</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\4.png</td><td>1</td><td/></row>
+		<row><td>_.png67</td><td>ISX_DEFAULTCOMPONENT15</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\5.png</td><td>1</td><td/></row>
+		<row><td>_.png68</td><td>ISX_DEFAULTCOMPONENT15</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\6.png</td><td>1</td><td/></row>
+		<row><td>_.png69</td><td>ISX_DEFAULTCOMPONENT15</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\7.png</td><td>1</td><td/></row>
+		<row><td>_.png7</td><td>ISX_DEFAULTCOMPONENT3</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\8.png</td><td>1</td><td/></row>
+		<row><td>_.png70</td><td>ISX_DEFAULTCOMPONENT15</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\8.png</td><td>1</td><td/></row>
+		<row><td>_.png71</td><td>ISX_DEFAULTCOMPONENT15</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\9.png</td><td>1</td><td/></row>
+		<row><td>_.png72</td><td>ISX_DEFAULTCOMPONENT16</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\1.png</td><td>1</td><td/></row>
+		<row><td>_.png73</td><td>ISX_DEFAULTCOMPONENT16</td><td>2.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\2.png</td><td>1</td><td/></row>
+		<row><td>_.png74</td><td>ISX_DEFAULTCOMPONENT16</td><td>3.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\3.png</td><td>1</td><td/></row>
+		<row><td>_.png75</td><td>ISX_DEFAULTCOMPONENT16</td><td>4.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\4.png</td><td>1</td><td/></row>
+		<row><td>_.png76</td><td>ISX_DEFAULTCOMPONENT16</td><td>5.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\5.png</td><td>1</td><td/></row>
+		<row><td>_.png77</td><td>ISX_DEFAULTCOMPONENT16</td><td>6.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\6.png</td><td>1</td><td/></row>
+		<row><td>_.png78</td><td>ISX_DEFAULTCOMPONENT16</td><td>7.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\7.png</td><td>1</td><td/></row>
+		<row><td>_.png79</td><td>ISX_DEFAULTCOMPONENT16</td><td>8.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\8.png</td><td>1</td><td/></row>
+		<row><td>_.png8</td><td>ISX_DEFAULTCOMPONENT3</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\9.png</td><td>1</td><td/></row>
+		<row><td>_.png80</td><td>ISX_DEFAULTCOMPONENT16</td><td>9.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\9.png</td><td>1</td><td/></row>
+		<row><td>_.png9</td><td>ISX_DEFAULTCOMPONENT5</td><td>1.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\1.png</td><td>1</td><td/></row>
+		<row><td>_0.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png1</td><td>ISX_DEFAULTCOMPONENT5</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png2</td><td>ISX_DEFAULTCOMPONENT6</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png3</td><td>ISX_DEFAULTCOMPONENT7</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png4</td><td>ISX_DEFAULTCOMPONENT8</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png5</td><td>ISX_DEFAULTCOMPONENT13</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png6</td><td>ISX_DEFAULTCOMPONENT14</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png7</td><td>ISX_DEFAULTCOMPONENT15</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\10.png</td><td>1</td><td/></row>
+		<row><td>_0.png8</td><td>ISX_DEFAULTCOMPONENT16</td><td>10.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\10.png</td><td>1</td><td/></row>
+		<row><td>_1.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png1</td><td>ISX_DEFAULTCOMPONENT5</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png2</td><td>ISX_DEFAULTCOMPONENT6</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png3</td><td>ISX_DEFAULTCOMPONENT7</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png4</td><td>ISX_DEFAULTCOMPONENT8</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png5</td><td>ISX_DEFAULTCOMPONENT13</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png6</td><td>ISX_DEFAULTCOMPONENT14</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png7</td><td>ISX_DEFAULTCOMPONENT15</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\11.png</td><td>1</td><td/></row>
+		<row><td>_1.png8</td><td>ISX_DEFAULTCOMPONENT16</td><td>11.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\11.png</td><td>1</td><td/></row>
+		<row><td>_2.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png1</td><td>ISX_DEFAULTCOMPONENT5</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png2</td><td>ISX_DEFAULTCOMPONENT6</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png3</td><td>ISX_DEFAULTCOMPONENT7</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png4</td><td>ISX_DEFAULTCOMPONENT8</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png5</td><td>ISX_DEFAULTCOMPONENT13</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png6</td><td>ISX_DEFAULTCOMPONENT14</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png7</td><td>ISX_DEFAULTCOMPONENT15</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\12.png</td><td>1</td><td/></row>
+		<row><td>_2.png8</td><td>ISX_DEFAULTCOMPONENT16</td><td>12.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\12.png</td><td>1</td><td/></row>
+		<row><td>_3.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png1</td><td>ISX_DEFAULTCOMPONENT5</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\1\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png2</td><td>ISX_DEFAULTCOMPONENT6</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png3</td><td>ISX_DEFAULTCOMPONENT7</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png4</td><td>ISX_DEFAULTCOMPONENT8</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png5</td><td>ISX_DEFAULTCOMPONENT13</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\1\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png6</td><td>ISX_DEFAULTCOMPONENT14</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png7</td><td>ISX_DEFAULTCOMPONENT15</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\13.png</td><td>1</td><td/></row>
+		<row><td>_3.png8</td><td>ISX_DEFAULTCOMPONENT16</td><td>13.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\13.png</td><td>1</td><td/></row>
+		<row><td>_429055942_kpat.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>142905~1.PNG|1429055942_kpat.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\1429055942_kpat.png</td><td>1</td><td/></row>
+		<row><td>_429055942_kpat.png1</td><td>ISX_DEFAULTCOMPONENT11</td><td>142905~1.PNG|1429055942_kpat.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\1429055942_kpat.png</td><td>1</td><td/></row>
+		<row><td>_429055992_games.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>142905~1.PNG|1429055992_games.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\1429055992_games.png</td><td>1</td><td/></row>
+		<row><td>_429055992_games.png1</td><td>ISX_DEFAULTCOMPONENT11</td><td>142905~1.PNG|1429055992_games.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\1429055992_games.png</td><td>1</td><td/></row>
+		<row><td>_references.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>_REFER~1.JS|_references.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\_references.js</td><td>1</td><td/></row>
+		<row><td>_ywb1so8ye1lyjf12wniua.woff2</td><td>ISX_DEFAULTCOMPONENT9</td><td>1YWB1S~1.WOF|1YwB1sO8YE1Lyjf12WNiUA.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\1YwB1sO8YE1Lyjf12WNiUA.woff2</td><td>1</td><td/></row>
+		<row><td>animate.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>animate.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\animate.css</td><td>1</td><td/></row>
+		<row><td>avatar.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>avatar.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\avatar.png</td><td>1</td><td/></row>
+		<row><td>avatar.png1</td><td>ISX_DEFAULTCOMPONENT11</td><td>avatar.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\avatar.png</td><td>1</td><td/></row>
+		<row><td>back.png</td><td>ISX_DEFAULTCOMPONENT4</td><td>back.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\back.png</td><td>1</td><td/></row>
+		<row><td>back.png1</td><td>ISX_DEFAULTCOMPONENT12</td><td>back.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\back.png</td><td>1</td><td/></row>
+		<row><td>baraja.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>baraja.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\baraja.css</td><td>1</td><td/></row>
+		<row><td>bg.jpg</td><td>ISX_DEFAULTCOMPONENT3</td><td>bg.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\bg.jpg</td><td>1</td><td/></row>
+		<row><td>bg.jpg1</td><td>ISX_DEFAULTCOMPONENT11</td><td>bg.jpg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\bg.jpg</td><td>1</td><td/></row>
+		<row><td>blackjack.client.content_fil</td><td>BlackJack.Client.Content_Files</td><td>BlackJack.Client.Content Files</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.Client&gt;|ContentFiles</td><td>3</td><td/></row>
+		<row><td>blackjack.client.primary_out</td><td>BlackJack.Client.Primary_output</td><td>BlackJack.Client.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.Client&gt;|Built</td><td>3</td><td/></row>
+		<row><td>blackjack.common.primary_out</td><td>BlackJack.Common.Primary_output</td><td>BlackJack.Common.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.Common&gt;|Built</td><td>3</td><td/></row>
+		<row><td>blackjack.infoplugin.primary</td><td>BlackJack.InfoPlugin.Primary_output</td><td>BlackJack.InfoPlugin.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.InfoPlugin&gt;|Built</td><td>3</td><td/></row>
+		<row><td>blackjack.launcher.primary_o</td><td>BlackJack.Launcher.Primary_output</td><td>BlackJack.Launcher.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.Launcher&gt;|Built</td><td>3</td><td/></row>
+		<row><td>blackjack.machineinfoplugin.</td><td>BlackJack.MachineInfoPlugin.Primary_output</td><td>BlackJack.MachineInfoPlugin.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.MachineInfoPlugin&gt;|Built</td><td>3</td><td/></row>
+		<row><td>blackjack.server.primary_out</td><td>BlackJack.Server.Primary_output</td><td>BlackJack.Server.Primary output</td><td>0</td><td/><td/><td/><td>1</td><td>&lt;BlackJack.Server&gt;|Built</td><td>3</td><td/></row>
+		<row><td>bootstrap.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\bootstrap.css</td><td>1</td><td/></row>
+		<row><td>bootstrap.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>BOOTST~1.JS|bootstrap.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\bootstrap.js</td><td>1</td><td/></row>
+		<row><td>bootstrap.min.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap.min.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\bootstrap.min.css</td><td>1</td><td/></row>
+		<row><td>bootstrap.min.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>BOOTST~1.JS|bootstrap.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\bootstrap.min.js</td><td>1</td><td/></row>
+		<row><td>bootstrap.superhero.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap.superhero.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\bootstrap.superhero.css</td><td>1</td><td/></row>
+		<row><td>bootstrap.superhero.min.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap.superhero.min.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\bootstrap.superhero.min.css</td><td>1</td><td/></row>
+		<row><td>bootstrap_dialog.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap-dialog.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\bootstrap-dialog.css</td><td>1</td><td/></row>
+		<row><td>bootstrap_dialog.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>BOOTST~1.JS|bootstrap-dialog.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\bootstrap-dialog.js</td><td>1</td><td/></row>
+		<row><td>bootstrap_dialog.min.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>BOOTST~1.CSS|bootstrap-dialog.min.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\bootstrap-dialog.min.css</td><td>1</td><td/></row>
+		<row><td>bootstrap_dialog.min.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>BOOTST~1.JS|bootstrap-dialog.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\bootstrap-dialog.min.js</td><td>1</td><td/></row>
+		<row><td>bootstrap_notify.min.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>BOOTST~1.JS|bootstrap-notify.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\bootstrap-notify.min.js</td><td>1</td><td/></row>
+		<row><td>cards.png</td><td>ISX_DEFAULTCOMPONENT3</td><td>cards.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\cards.png</td><td>1</td><td/></row>
+		<row><td>cards.png1</td><td>ISX_DEFAULTCOMPONENT11</td><td>cards.png</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\cards.png</td><td>1</td><td/></row>
+		<row><td>custom.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>custom.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\custom.css</td><td>1</td><td/></row>
+		<row><td>demo.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>demo.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\demo.css</td><td>1</td><td/></row>
+		<row><td>dpj5r9gl3kk6ijoep1irsvy6323m</td><td>ISX_DEFAULTCOMPONENT9</td><td>DPJ5R9~1.WOF|dPJ5r9gl3kK6ijoeP1IRsvY6323mHUZFJMgTvxaG2iE.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\dPJ5r9gl3kK6ijoeP1IRsvY6323mHUZFJMgTvxaG2iE.woff2</td><td>1</td><td/></row>
+		<row><td>esvmc5un3kjyuhb9zeppwg.woff2</td><td>ISX_DEFAULTCOMPONENT9</td><td>ESVMC5~1.WOF|EsvMC5un3kjyUhB9ZEPPwg.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\EsvMC5un3kjyUhB9ZEPPwg.woff2</td><td>1</td><td/></row>
+		<row><td>font_awesome.min.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>FONT-A~1.CSS|font-awesome.min.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\font-awesome.min.css</td><td>1</td><td/></row>
+		<row><td>fontawesome.otf</td><td>ISX_DEFAULTCOMPONENT2</td><td>FONTAW~1.OTF|FontAwesome.otf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\fonts\FontAwesome.otf</td><td>1</td><td/></row>
+		<row><td>fontawesome.otf1</td><td>ISX_DEFAULTCOMPONENT10</td><td>FONTAW~1.OTF|FontAwesome.otf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fa-old\FontAwesome.otf</td><td>1</td><td/></row>
+		<row><td>fontawesome.otf2</td><td>ISX_DEFAULTCOMPONENT9</td><td>FONTAW~1.OTF|FontAwesome.otf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\FontAwesome.otf</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.eot</td><td>ISX_DEFAULTCOMPONENT2</td><td>FONTAW~1.EOT|fontawesome-webfont.eot</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\fonts\fontawesome-webfont.eot</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.eot1</td><td>ISX_DEFAULTCOMPONENT10</td><td>FONTAW~1.EOT|fontawesome-webfont.eot</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fa-old\fontawesome-webfont.eot</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.eot2</td><td>ISX_DEFAULTCOMPONENT9</td><td>FONTAW~1.EOT|fontawesome-webfont.eot</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fontawesome-webfont.eot</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.svg</td><td>ISX_DEFAULTCOMPONENT2</td><td>FONTAW~1.SVG|fontawesome-webfont.svg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\fonts\fontawesome-webfont.svg</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.svg1</td><td>ISX_DEFAULTCOMPONENT10</td><td>FONTAW~1.SVG|fontawesome-webfont.svg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fa-old\fontawesome-webfont.svg</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.svg2</td><td>ISX_DEFAULTCOMPONENT9</td><td>FONTAW~1.SVG|fontawesome-webfont.svg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fontawesome-webfont.svg</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.ttf</td><td>ISX_DEFAULTCOMPONENT2</td><td>FONTAW~1.TTF|fontawesome-webfont.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\fonts\fontawesome-webfont.ttf</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.ttf1</td><td>ISX_DEFAULTCOMPONENT10</td><td>FONTAW~1.TTF|fontawesome-webfont.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fa-old\fontawesome-webfont.ttf</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.ttf2</td><td>ISX_DEFAULTCOMPONENT9</td><td>FONTAW~1.TTF|fontawesome-webfont.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fontawesome-webfont.ttf</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.woff</td><td>ISX_DEFAULTCOMPONENT2</td><td>FONTAW~1.WOF|fontawesome-webfont.woff</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\fonts\fontawesome-webfont.woff</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.woff1</td><td>ISX_DEFAULTCOMPONENT10</td><td>FONTAW~1.WOF|fontawesome-webfont.woff</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fa-old\fontawesome-webfont.woff</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.woff2</td><td>ISX_DEFAULTCOMPONENT9</td><td>FONTAW~1.WOF|fontawesome-webfont.woff</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fontawesome-webfont.woff</td><td>1</td><td/></row>
+		<row><td>fontawesome_webfont.woff21</td><td>ISX_DEFAULTCOMPONENT9</td><td>FONTAW~1.WOF|fontawesome-webfont.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\fontawesome-webfont.woff2</td><td>1</td><td/></row>
+		<row><td>game.html</td><td>ISX_DEFAULTCOMPONENT</td><td>GAME~1.HTM|game.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\game.html</td><td>1</td><td/></row>
+		<row><td>game.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>game.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\game.js</td><td>1</td><td/></row>
+		<row><td>glyphicons_halflings_regular</td><td>ISX_DEFAULTCOMPONENT9</td><td>GLYPHI~1.EOT|glyphicons-halflings-regular.eot</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\glyphicons-halflings-regular.eot</td><td>1</td><td/></row>
+		<row><td>glyphicons_halflings_regular1</td><td>ISX_DEFAULTCOMPONENT9</td><td>GLYPHI~1.SVG|glyphicons-halflings-regular.svg</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\glyphicons-halflings-regular.svg</td><td>1</td><td/></row>
+		<row><td>glyphicons_halflings_regular2</td><td>ISX_DEFAULTCOMPONENT9</td><td>GLYPHI~1.TTF|glyphicons-halflings-regular.ttf</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\glyphicons-halflings-regular.ttf</td><td>1</td><td/></row>
+		<row><td>glyphicons_halflings_regular3</td><td>ISX_DEFAULTCOMPONENT9</td><td>GLYPHI~1.WOF|glyphicons-halflings-regular.woff</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\glyphicons-halflings-regular.woff</td><td>1</td><td/></row>
+		<row><td>h2dmvhdlycm56knuatbjya.woff2</td><td>ISX_DEFAULTCOMPONENT9</td><td>H2DMVH~1.WOF|H2DMvhDLycM56KNuAtbJYA.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\H2DMvhDLycM56KNuAtbJYA.woff2</td><td>1</td><td/></row>
+		<row><td>index.html</td><td>ISX_DEFAULTCOMPONENT</td><td>INDEX~1.HTM|index.html</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\index.html</td><td>1</td><td/></row>
+		<row><td>jquery.baraja.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery.baraja.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery.baraja.js</td><td>1</td><td/></row>
+		<row><td>jquery.validate.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery.validate.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery.validate.js</td><td>1</td><td/></row>
+		<row><td>jquery.validate.min.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery.validate.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery.validate.min.js</td><td>1</td><td/></row>
+		<row><td>jquery.validate.unobtrusive.</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery.validate.unobtrusive.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery.validate.unobtrusive.js</td><td>1</td><td/></row>
+		<row><td>jquery.validate.unobtrusive.1</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery.validate.unobtrusive.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery.validate.unobtrusive.min.js</td><td>1</td><td/></row>
+		<row><td>jquery.validate_vsdoc.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery.validate-vsdoc.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery.validate-vsdoc.js</td><td>1</td><td/></row>
+		<row><td>jquery_1.10.2.intellisense.j</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery-1.10.2.intellisense.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery-1.10.2.intellisense.js</td><td>1</td><td/></row>
+		<row><td>jquery_1.10.2.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery-1.10.2.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery-1.10.2.js</td><td>1</td><td/></row>
+		<row><td>jquery_1.10.2.min.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.JS|jquery-1.10.2.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery-1.10.2.min.js</td><td>1</td><td/></row>
+		<row><td>jquery_1.10.2.min.map</td><td>ISX_DEFAULTCOMPONENT17</td><td>JQUERY~1.MAP|jquery-1.10.2.min.map</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\jquery-1.10.2.min.map</td><td>1</td><td/></row>
+		<row><td>main.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>main.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\main.js</td><td>1</td><td/></row>
+		<row><td>modernizr.custom.79639.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>MODERN~1.JS|modernizr.custom.79639.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\modernizr.custom.79639.js</td><td>1</td><td/></row>
+		<row><td>modernizr_2.6.2.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>MODERN~1.JS|modernizr-2.6.2.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\modernizr-2.6.2.js</td><td>1</td><td/></row>
+		<row><td>obqr5xycoh0wbouxiayk3_y6323m</td><td>ISX_DEFAULTCOMPONENT9</td><td>OBQR5X~1.WOF|ObQr5XYcoH0WBoUxiaYK3_Y6323mHUZFJMgTvxaG2iE.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\ObQr5XYcoH0WBoUxiaYK3_Y6323mHUZFJMgTvxaG2iE.woff2</td><td>1</td><td/></row>
+		<row><td>respond.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>respond.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\respond.js</td><td>1</td><td/></row>
+		<row><td>respond.min.js</td><td>ISX_DEFAULTCOMPONENT17</td><td>RESPON~1.JS|respond.min.js</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Scripts\respond.min.js</td><td>1</td><td/></row>
+		<row><td>site.css</td><td>ISX_DEFAULTCOMPONENT1</td><td>Site.css</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Site.css</td><td>1</td><td/></row>
+		<row><td>thumbs.db</td><td>ISX_DEFAULTCOMPONENT6</td><td>Thumbs.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\2\Thumbs.db</td><td>1</td><td/></row>
+		<row><td>thumbs.db1</td><td>ISX_DEFAULTCOMPONENT7</td><td>Thumbs.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\3\Thumbs.db</td><td>1</td><td/></row>
+		<row><td>thumbs.db2</td><td>ISX_DEFAULTCOMPONENT8</td><td>Thumbs.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Content\Images\Cards\4\Thumbs.db</td><td>1</td><td/></row>
+		<row><td>thumbs.db3</td><td>ISX_DEFAULTCOMPONENT14</td><td>Thumbs.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\2\Thumbs.db</td><td>1</td><td/></row>
+		<row><td>thumbs.db4</td><td>ISX_DEFAULTCOMPONENT15</td><td>Thumbs.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\3\Thumbs.db</td><td>1</td><td/></row>
+		<row><td>thumbs.db5</td><td>ISX_DEFAULTCOMPONENT16</td><td>Thumbs.db</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\Images\Cards\4\Thumbs.db</td><td>1</td><td/></row>
+		<row><td>uybmtlshkbkxelqf4x7vrq.woff2</td><td>ISX_DEFAULTCOMPONENT9</td><td>UYBMTL~1.WOF|UyBMtLsHKBKXelqf4x7VRQ.woff2</td><td>0</td><td/><td/><td/><td>1</td><td>D:\Repos\black-jack\pages\fonts\UyBMtLsHKBKXelqf4x7VRQ.woff2</td><td>1</td><td/></row>
 	</table>
 
 	<table name="FileSFPCatalog">
@@ -1873,11 +2161,20 @@
 	<table name="Font">
 		<col key="yes" def="s72">File_</col>
 		<col def="S128">FontTitle</col>
+		<row><td>fontawesome.otf</td><td/></row>
+		<row><td>fontawesome.otf1</td><td/></row>
+		<row><td>fontawesome.otf2</td><td/></row>
+		<row><td>fontawesome_webfont.ttf</td><td/></row>
+		<row><td>fontawesome_webfont.ttf1</td><td/></row>
+		<row><td>fontawesome_webfont.ttf2</td><td/></row>
+		<row><td>glyphicons_halflings_regular2</td><td/></row>
 	</table>
 
 	<table name="ISAssistantTag">
 		<col key="yes" def="s72">Tag</col>
 		<col def="S255">Data</col>
+		<row><td>PROJECT_ASSISTANT_DEFAULT_FEATURE</td><td>AlwaysInstall</td></row>
+		<row><td>PROJECT_ASSISTANT_FEATURES</td><td>NonSelectable</td></row>
 	</table>
 
 	<table name="ISBillBoard">
@@ -2004,6 +2301,31 @@
 		<col def="S0">FTPLocation</col>
 		<col def="S0">HTTPLocation</col>
 		<col def="S0">Miscellaneous</col>
+		<row><td>BlackJack.Client.Content_Files</td><td/><td/><td>_45966DD7_3C1E_4D73_A3B1_A094C1EC72D4_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BlackJack.Client.Primary_output</td><td/><td/><td>_1D60A09C_C006_4A93_B51E_7BD15AEBBAFC_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BlackJack.Common.Primary_output</td><td/><td/><td>_623616BC_9EBA_498A_A388_A2C1706C2692_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BlackJack.InfoPlugin.Primary_output</td><td/><td/><td>_B0DBF54F_A104_4521_907F_45286B486740_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BlackJack.Launcher.Primary_output</td><td/><td/><td>_EC118383_D841_463A_95A1_7447EB25C208_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BlackJack.MachineInfoPlugin.Primary_output</td><td/><td/><td>_3C94D763_055A_4513_81E9_51AA9F03A6FB_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>BlackJack.Server.Primary_output</td><td/><td/><td>_6A21E2ED_A533_4F46_BB9D_8CA457E784DC_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT</td><td/><td/><td>_2739AD5C_F000_4DC7_98EF_EDC4D0B9A92A_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT1</td><td/><td/><td>_C0D99AE4_2028_478D_9C90_06401F979DD1_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT10</td><td/><td/><td>_DFA61449_7EF3_40DE_89F0_2D03B5E486B9_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT11</td><td/><td/><td>_097356D4_7B8B_417F_AE3F_392199157025_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT12</td><td/><td/><td>_BC4F12B3_E695_4BD8_B6BE_D06032731C77_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT13</td><td/><td/><td>_824E549E_D607_402A_8549_B4CA2418C164_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT14</td><td/><td/><td>_6AD78FC6_8247_488A_A2EC_39565A5AE7D7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT15</td><td/><td/><td>_82ACBBAE_3305_4CEA_B6AC_6C6D4792D2D5_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT16</td><td/><td/><td>_A8FB7312_8996_49A3_BB03_FFB4ACE20CA8_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT17</td><td/><td/><td>_D2C13632_E5A3_41AF_B469_540DEC487918_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT2</td><td/><td/><td>_07FA3C2D_380D_45D1_93D9_7CE52BF633BE_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT3</td><td/><td/><td>_DEB1FD32_CC12_47EC_8139_7481E15A07A2_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT4</td><td/><td/><td>_78B14AB0_D45B_4997_80D8_4338539FF724_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT5</td><td/><td/><td>_CADB029F_4F17_4612_8C57_D46C39DD71A5_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT6</td><td/><td/><td>_4D465099_0611_4211_8C4F_38F215554124_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT7</td><td/><td/><td>_9C98C5E8_EE70_4E6B_9AB7_ADF5472A53A7_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT8</td><td/><td/><td>_F4E289A3_E97E_4462_ADC7_872A09863B58_FILTER</td><td/><td/><td/><td/></row>
+		<row><td>ISX_DEFAULTCOMPONENT9</td><td/><td/><td>_901D4485_F247_4239_A34D_78E1EDB5A62D_FILTER</td><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="ISCustomActionReference">
@@ -2304,6 +2626,12 @@
 		<col def="S255">Value</col>
 		<col def="S255">TestValue</col>
 		<col def="i4">Type</col>
+		<row><td>BlackJack.Client</td><td>BlackJack.Client\BlackJack.Client.csproj</td><td/><td>2</td></row>
+		<row><td>BlackJack.Common</td><td>BlackJack.Common\BlackJack.Common.csproj</td><td/><td>2</td></row>
+		<row><td>BlackJack.InfoPlugin</td><td>BlackJack.InfoPlugin\BlackJack.InfoPlugin.csproj</td><td/><td>2</td></row>
+		<row><td>BlackJack.Launcher</td><td>BlackJack.Launcher\BlackJack.Launcher.csproj</td><td/><td>2</td></row>
+		<row><td>BlackJack.MachineInfoPlugin</td><td>BlackJack.MachineInfoPlugin\BlackJack.MachineInfoPlugin.csproj</td><td/><td>2</td></row>
+		<row><td>BlackJack.Server</td><td>BlackJack.Server\BlackJack.Server.csproj</td><td/><td>2</td></row>
 		<row><td>CommonFilesFolder</td><td/><td/><td>1</td></row>
 		<row><td>ISPROJECTDIR</td><td/><td/><td>1</td></row>
 		<row><td>ISProductFolder</td><td/><td/><td>1</td></row>
@@ -2620,9 +2948,10 @@
 		<col def="I2">Encoded</col>
 		<col def="S0">Comment</col>
 		<col def="I4">TimeStamp</col>
-		<row><td>COMPANY_NAME</td><td>1033</td><td>Your Company Name</td><td>0</td><td/><td>-1968976458</td></row>
+		<row><td>COMPANY_NAME</td><td>1033</td><td>BSUIR</td><td>0</td><td/><td>-1969001097</td></row>
 		<row><td>DN_AlwaysInstall</td><td>1033</td><td>Always Install</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_COLOR</td><td>1033</td><td>The color settings of your system are not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
+		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL</td><td>1033</td><td>Microsoft .NET Framework 4.5 Full package or greater needs to be installed for this installation to continue.</td><td>0</td><td/><td>-1968982793</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_OS</td><td>1033</td><td>The operating system is not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDPROP_EXPRESS_LAUNCH_CONDITION_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
@@ -3432,6 +3761,8 @@
 		<row><td>IDS_PROGMSG_XML_UPDATE_FILE</td><td>1033</td><td>Updating XML file %s...</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDS_SETUPEXE_EXPIRE_MSG</td><td>1033</td><td>This setup works until %s. The setup will now exit.</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDS_SETUPEXE_LAUNCH_COND_E</td><td>1033</td><td>This setup was built with an evaluation version of InstallShield and can only be launched from setup.exe.</td><td>0</td><td/><td>-1968976458</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME1</td><td>1033</td><td>Black Jack Launcher</td><td>0</td><td/><td>-1968970377</td></row>
+		<row><td>IDS_SHORTCUT_DISPLAY_NAME2</td><td>1033</td><td>Black Jack Server</td><td>0</td><td/><td>-1969003113</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO</td><td>1033</td><td>From the list of servers below, select the database server you would like to target.</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_DB</td><td>1033</td><td>From the list of catalog names below, select the database catalog you would like to target.</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDS_SQLBROWSE_INTRO_TEMPLATE</td><td>1033</td><td>[IS_SQLBROWSE_INTRO]</td><td>0</td><td/><td>-1968976458</td></row>
@@ -3720,6 +4051,11 @@
 		<row><td>IDS__TargetReq_DESC_PROCESSOR</td><td>1033</td><td>The processor is not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDS__TargetReq_DESC_RAM</td><td>1033</td><td>The amount of RAM is not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
 		<row><td>IDS__TargetReq_DESC_RESOLUTION</td><td>1033</td><td>The screen resolution is not adequate for running [ProductName].</td><td>0</td><td/><td>-1968976458</td></row>
+		<row><td>ID_STRING1</td><td>1033</td><td/><td>0</td><td/><td>-1968976458</td></row>
+		<row><td>ID_STRING2</td><td>1033</td><td>http://www.BSUIR.com</td><td>0</td><td/><td>-1969001097</td></row>
+		<row><td>ID_STRING3</td><td>1033</td><td>BSUIR</td><td>0</td><td/><td>-1969001097</td></row>
+		<row><td>ID_STRING4</td><td>1033</td><td>Black Jack Server</td><td>0</td><td/><td>-1968999017</td></row>
+		<row><td>ID_STRING5</td><td>1033</td><td>Black Jack Launcher</td><td>0</td><td/><td>-1968982249</td></row>
 		<row><td>IIDS_UITEXT_FeatureUninstalled</td><td>1033</td><td>This feature will remain uninstalled.</td><td>0</td><td/><td>-1968976458</td></row>
 	</table>
 
@@ -3870,6 +4206,10 @@
 		<row><td>FindRelatedProducts</td><td>NOT ISSETUPDRIVEN</td><td>420</td><td>FindRelatedProducts</td><td/></row>
 		<row><td>ISPreventDowngrade</td><td>ISFOUNDNEWERPRODUCTVERSION</td><td>450</td><td>ISPreventDowngrade</td><td/></row>
 		<row><td>ISRunSetupTypeAddLocalEvent</td><td>Not Installed And Not ISRUNSETUPTYPEADDLOCALEVENT</td><td>1050</td><td>ISRunSetupTypeAddLocalEvent</td><td/></row>
+		<row><td>ISSelfRegisterCosting</td><td/><td>2201</td><td/><td/></row>
+		<row><td>ISSelfRegisterFiles</td><td/><td>5601</td><td/><td/></row>
+		<row><td>ISSelfRegisterFinalize</td><td/><td>6601</td><td/><td/></row>
+		<row><td>ISUnSelfRegisterFiles</td><td/><td>2202</td><td/><td/></row>
 		<row><td>InstallFiles</td><td/><td>4000</td><td>InstallFiles</td><td/></row>
 		<row><td>InstallFinalize</td><td/><td>6600</td><td>InstallFinalize</td><td/></row>
 		<row><td>InstallInitialize</td><td/><td>1501</td><td>InstallInitialize</td><td/></row>
@@ -3941,6 +4281,7 @@
 		<row><td>CurrentMedia</td><td dt:dt="bin.base64" md5="de9f554a3bc05c12be9c31b998217995">
 UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 			</td></row>
+		<row><td>DefaultProductConfiguration</td><td>Express</td></row>
 		<row><td>EnableSwidtag</td><td>1</td></row>
 		<row><td>ISCompilerOption_CompileBeforeBuild</td><td>1</td></row>
 		<row><td>ISCompilerOption_Debug</td><td>0</td></row>
@@ -3955,6 +4296,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ISTheme</td><td>InstallShield Blue.theme</td></row>
 		<row><td>ISUSLock</td><td>{A2779FA3-37D5-471C-937F-15BE73B870DF}</td></row>
 		<row><td>ISUSSignature</td><td>{BEED346C-E979-465F-B6F2-EAE5D541A2F2}</td></row>
+		<row><td>ISVisitedViews</td><td>viewAssistant,viewRelease,viewDesignPatches</td></row>
 		<row><td>Limited</td><td>1</td></row>
 		<row><td>LockPermissionMode</td><td>1</td></row>
 		<row><td>MsiExecCmdLineOptions</td><td/></row>
@@ -4012,6 +4354,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 	<table name="LaunchCondition">
 		<col key="yes" def="s255">Condition</col>
 		<col def="l255">Description</col>
+		<row><td>DOTNETVERSION45FULL&gt;="#1"</td><td>##IDPROP_EXPRESS_LAUNCH_CONDITION_DOTNETVERSION45FULL##</td></row>
 	</table>
 
 	<table name="ListBox">
@@ -4262,6 +4605,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>ARPINSTALLLOCATION</td><td/><td/></row>
 		<row><td>ARPPRODUCTICON</td><td>ARPPRODUCTICON.exe</td><td/></row>
 		<row><td>ARPSIZE</td><td/><td/></row>
+		<row><td>ARPURLINFOABOUT</td><td>##ID_STRING2##</td><td/></row>
 		<row><td>AgreeToLicense</td><td>No</td><td/></row>
 		<row><td>ApplicationUsers</td><td>AllUsers</td><td/></row>
 		<row><td>DWUSINTERVAL</td><td>30</td><td/></row>
@@ -4275,7 +4619,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>DisplayNameTypical</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>Display_IsBitmapDlg</td><td>1</td><td/></row>
 		<row><td>ErrorDialog</td><td>SetupError</td><td/></row>
-		<row><td>INSTALLLEVEL</td><td>100</td><td/></row>
+		<row><td>INSTALLLEVEL</td><td>200</td><td/></row>
 		<row><td>ISCHECKFORPRODUCTUPDATES</td><td>1</td><td/></row>
 		<row><td>ISENABLEDWUSFINISHDIALOG</td><td/><td/></row>
 		<row><td>ISSHOWMSILOG</td><td/><td/></row>
@@ -4297,7 +4641,6 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>IS_SQLSERVER_SERVER</td><td/><td/></row>
 		<row><td>IS_SQLSERVER_USERNAME</td><td>sa</td><td/></row>
 		<row><td>InstallChoice</td><td>AR</td><td/></row>
-		<row><td>LAUNCHPROGRAM</td><td>1</td><td/></row>
 		<row><td>LAUNCHREADME</td><td>1</td><td/></row>
 		<row><td>Manufacturer</td><td>##COMPANY_NAME##</td><td/></row>
 		<row><td>PIDKEY</td><td/><td/></row>
@@ -4326,7 +4669,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>PROGMSG_IIS_ROLLBACKVROOTS</td><td>##IDS_PROGMSG_IIS_ROLLBACKVROOTS##</td><td/></row>
 		<row><td>PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS</td><td>##IDS_PROGMSG_IIS_ROLLBACKWEBSERVICEEXTENSIONS##</td><td/></row>
 		<row><td>ProductCode</td><td>{0D4180EF-E685-4D31-B225-FD03018889E7}</td><td/></row>
-		<row><td>ProductName</td><td>BlackJack.Setup</td><td/></row>
+		<row><td>ProductName</td><td>BlackJack</td><td/></row>
 		<row><td>ProductVersion</td><td>1.00.0000</td><td/></row>
 		<row><td>ProgressType0</td><td>install</td><td/></row>
 		<row><td>ProgressType1</td><td>Installing</td><td/></row>
@@ -4339,7 +4682,9 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>RestartManagerOption</td><td>CloseRestart</td><td/></row>
 		<row><td>SERIALNUMBER</td><td/><td/></row>
 		<row><td>SERIALNUMVALSUCCESSRETVAL</td><td>1</td><td/></row>
-		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR</td><td/></row>
+		<row><td>SHOWLAUNCHPROGRAM</td><td>0</td><td/></row>
+		<row><td>SecureCustomProperties</td><td>ISFOUNDNEWERPRODUCTVERSION;USERNAME;COMPANYNAME;ISX_SERIALNUM;SUPPORTDIR;DOTNETVERSION45FULL</td><td/></row>
+		<row><td>SelectedSetupType</td><td>##IDS__DisplayName_Typical##</td><td/></row>
 		<row><td>SetupType</td><td>Typical</td><td/></row>
 		<row><td>UpgradeCode</td><td>{6F805FA3-B293-4A85-861E-6C35E8691A21}</td><td/></row>
 		<row><td>_IsMaintenance</td><td>Change</td><td/></row>
@@ -4375,8 +4720,6 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<row><td>_IsMaintenance</td><td>2</td><td>Reinstall</td><td>0</td><td>60</td><td>290</td><td>14</td><td>##IDS__IsMaintenanceDlg_Repair##</td><td/><td/></row>
 		<row><td>_IsMaintenance</td><td>3</td><td>Remove</td><td>0</td><td>120</td><td>290</td><td>14</td><td>##IDS__IsMaintenanceDlg_Remove##</td><td/><td/></row>
 		<row><td>_IsSetupTypeMin</td><td>1</td><td>Typical</td><td>1</td><td>6</td><td>264</td><td>14</td><td>##IDS__IsSetupTypeMinDlg_Typical##</td><td/><td/></row>
-		<row><td>_IsSetupTypeMin</td><td>2</td><td>Minimal</td><td>1</td><td>51</td><td>264</td><td>14</td><td>##IDS__IsSetupTypeMinDlg_Minimal##</td><td/><td/></row>
-		<row><td>_IsSetupTypeMin</td><td>3</td><td>Custom</td><td>1</td><td>98</td><td>264</td><td>14</td><td>##IDS__IsSetupTypeMinDlg_Custom##</td><td/><td/></row>
 	</table>
 
 	<table name="RegLocator">
@@ -4385,6 +4728,7 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="s255">Key</col>
 		<col def="S255">Name</col>
 		<col def="I2">Type</col>
+		<row><td>DotNet45Full</td><td>2</td><td>SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full</td><td>Version</td><td>2</td></row>
 	</table>
 
 	<table name="Registry">
@@ -4403,6 +4747,10 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="L255">FileName</col>
 		<col def="s72">DirProperty</col>
 		<col def="i2">InstallMode</col>
+		<row><td>FileKey1</td><td>BlackJack.Launcher.Primary_output</td><td/><td>bsuir</td><td>2</td></row>
+		<row><td>FileKey2</td><td>BlackJack.Launcher.Primary_output</td><td/><td>blackj_1_blackjack</td><td>2</td></row>
+		<row><td>_Built</td><td>BlackJack.Launcher.Primary_output</td><td/><td>blackj_1_blackjack</td><td>2</td></row>
+		<row><td>_Built1</td><td>BlackJack.Server.Primary_output</td><td/><td>blackj_1_blackjack</td><td>2</td></row>
 	</table>
 
 	<table name="RemoveIniFile">
@@ -4488,6 +4836,10 @@ UwBpAG4AZwBsAGUASQBtAGEAZwBlAAEARQB4AHAAcgBlAHMAcwA=
 		<col def="S255">ISComments</col>
 		<col def="S255">ISShortcutName</col>
 		<col def="I4">ISAttributes</col>
+		<row><td>_Built</td><td>blackj_1_blackjack</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>BlackJack.Launcher.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built1</td><td>blackj_1_blackjack</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>BlackJack.Server.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built11</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME2##</td><td>BlackJack.Server.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
+		<row><td>_Built2</td><td>DesktopFolder</td><td>##IDS_SHORTCUT_DISPLAY_NAME1##</td><td>BlackJack.Launcher.Primary_output</td><td>AlwaysInstall</td><td/><td/><td/><td/><td/><td>1</td><td/><td/><td/><td/><td/><td/><td/><td/></row>
 	</table>
 
 	<table name="Signature">

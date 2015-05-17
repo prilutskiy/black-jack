@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevExpress.XtraPrinting.Native;
@@ -17,7 +18,17 @@ namespace BlackJack.Server
         private readonly ServerManager serverManager = new ServerManager();
         private TcpClient connection_;
         private readonly List<IPlugin> _loadedPluginInstances = new List<IPlugin>();
-        private readonly List<Type> _loadedPluginTypes = new List<Type>(); 
+        private readonly List<Type> _loadedPluginTypes = new List<Type>();
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == (int)Program.BringToFrontMessage)
+            {
+                WinAPI.ShowWindow(Handle, WinAPI.SW_RESTORE);
+                WinAPI.SetForegroundWindow(Handle);
+            }
+
+            base.WndProc(ref m);
+        }
         public MainWindow()
         {
             InitializeComponent();
@@ -52,7 +63,7 @@ namespace BlackJack.Server
         private void LoadPluginsFromDefaultLocation()
         {
             var excList = new List<InvalidOperationException>();
-            var pluginDir = Environment.CurrentDirectory;
+            var pluginDir = Application.StartupPath;
             foreach (var file in Directory.GetFiles(pluginDir, "*.dll"))
             {
                 List<Type> types = LoadTypesFromAssemblyFile(file);
@@ -171,8 +182,11 @@ namespace BlackJack.Server
         {
             try
             {
-                UnloadAllPlugins();
-                LoadPluginsFromDefaultLocation();
+                Task.Run(() =>
+                {
+                    UnloadAllPlugins();
+                    LoadPluginsFromDefaultLocation();
+                });
             }
             catch (AggregateException ex)
             {

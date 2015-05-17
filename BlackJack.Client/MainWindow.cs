@@ -33,13 +33,17 @@ namespace BlackJack.Client
 
         public MainWindow()
         {
+            if (!WebCore.IsRunning)
+                WebCore.Initialize(new WebConfig()
+                {
+                    LogPath = Path.Combine(Application.StartupPath, @"DebugLogs\awesomium.log")
+                });
             InitializeComponent();
 #if DEBUG
             refreshBtn.Visible = true;
 #else
             refreshBtn.Visible = false;
 #endif
-
             webView.DocumentReady += WebViewOnDocumentReady;
             webView.Source = new Uri(Path.Combine(Application.StartupPath, @"pages\index.html"));
         }

@@ -28,4 +28,30 @@
 		</TaggedOutputs> -->
 	</ItemGroup>
 	<Import Project="$(MSBuildExtensionsPath32)\InstallShield\2013Limited\InstallShield.targets"/>
+	<ItemGroup>
+		<ProjectReference Include="..\BlackJack.Client\BlackJack.Client.csproj">
+			<Name>BlackJack.Client</Name>
+			<Project>{C595D83E-AFE5-42E8-B5FB-7DF52911CE9F}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.Common\BlackJack.Common.csproj">
+			<Name>BlackJack.Common</Name>
+			<Project>{90286DAF-0AF9-4206-840F-10A1AAA7AB45}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.InfoPlugin\BlackJack.InfoPlugin.csproj">
+			<Name>BlackJack.InfoPlugin</Name>
+			<Project>{01D86A9C-7C9A-4233-918B-8017818C4324}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.Launcher\BlackJack.Launcher.csproj">
+			<Name>BlackJack.Launcher</Name>
+			<Project>{5621AA5D-6987-4A7A-B57D-4455E1EC1CB0}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.MachineInfoPlugin\BlackJack.MachineInfoPlugin.csproj">
+			<Name>BlackJack.MachineInfoPlugin</Name>
+			<Project>{3C5DC1C5-63E4-41FB-9401-1F270777580F}</Project>
+		</ProjectReference>
+		<ProjectReference Include="..\BlackJack.Server\BlackJack.Server.csproj">
+			<Name>BlackJack.Server</Name>
+			<Project>{972B1973-688E-4F7E-8C7F-C13A236991D2}</Project>
+		</ProjectReference>
+	</ItemGroup>
 </Project>
