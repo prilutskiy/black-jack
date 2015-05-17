@@ -174,10 +174,10 @@ namespace BlackJack.Server
         public void ProcessClientConnection(object clientObj)
         {
             var clientSocket = clientObj as Socket;
+            WriteLog("Client connected", clientSocket);
+            var client = new Connection(clientSocket);
             try
             {
-                WriteLog("Client connected", clientSocket);
-                var client = new Connection(clientSocket);
                 if (!client.SendHandshake()) throw new InvalidOperationException("Handshake error");
 
                 lock (Untrusted)
@@ -282,9 +282,13 @@ namespace BlackJack.Server
                             client.SendResponse(response);
                             break;
                         case ServerMessageType.InGame:
-
                             var game = GetGameByConnection(client);
                             var gameState = ProcessInGameRequest(game, request);
+                            if (request.RequestedMethod.Signature.Name == "Stop")
+                            {
+                                var toRemove = ClassicGames.SingleOrDefault(t => t.Item1 == client.PlayerInstance);
+                                ClassicGames.Remove(toRemove);
+                            }
                             response = new ServerResponse();
                             if (gameState is bool)
                                 response.IsAuthenticated = (bool) gameState;
@@ -328,6 +332,12 @@ namespace BlackJack.Server
                 {
                     runningThreads.Remove(threadInstance);
                 }
+                lock(Trusted)
+                    if (Trusted.Contains(client))
+                        Trusted.Remove(client);
+                lock(Untrusted)
+                    if (Untrusted.Contains(client))
+                        Untrusted.Remove(client);
             }
         }
 
