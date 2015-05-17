@@ -37,6 +37,7 @@
             this.restartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pluginsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loadPluginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.watchThisProjectOnGitHubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -53,11 +54,10 @@
             this.restartToolStripBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.loadPluginsToolStripBtn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.helpToolStripBtn = new System.Windows.Forms.ToolStripButton();
             this.gitToolStripBtn = new System.Windows.Forms.ToolStripButton();
-            this.unloadAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
@@ -73,7 +73,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(707, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(730, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -128,9 +128,16 @@
             // loadPluginToolStripMenuItem
             // 
             this.loadPluginToolStripMenuItem.Name = "loadPluginToolStripMenuItem";
-            this.loadPluginToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.loadPluginToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
             this.loadPluginToolStripMenuItem.Text = "Load all";
             this.loadPluginToolStripMenuItem.Click += new System.EventHandler(this.loadPluginToolStripMenuItem_Click);
+            // 
+            // unloadAllToolStripMenuItem
+            // 
+            this.unloadAllToolStripMenuItem.Name = "unloadAllToolStripMenuItem";
+            this.unloadAllToolStripMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.unloadAllToolStripMenuItem.Text = "Unload all";
+            this.unloadAllToolStripMenuItem.Click += new System.EventHandler(this.unloadAllToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -157,9 +164,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 434);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 459);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(707, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(730, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -173,7 +180,7 @@
             this.tabControl.Location = new System.Drawing.Point(0, 52);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedTabPage = this.serverLogTab;
-            this.tabControl.Size = new System.Drawing.Size(707, 379);
+            this.tabControl.Size = new System.Drawing.Size(730, 404);
             this.tabControl.TabIndex = 2;
             this.tabControl.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
             this.serverLogTab});
@@ -182,7 +189,7 @@
             // 
             this.serverLogTab.Controls.Add(this.logListview);
             this.serverLogTab.Name = "serverLogTab";
-            this.serverLogTab.Size = new System.Drawing.Size(638, 373);
+            this.serverLogTab.Size = new System.Drawing.Size(661, 398);
             this.serverLogTab.Text = "Server log";
             // 
             // logListview
@@ -191,12 +198,13 @@
             this.timeColumn,
             this.messageColumn,
             this.ipColumn});
+            this.logListview.Dock = System.Windows.Forms.DockStyle.Fill;
             this.logListview.FullRowSelect = true;
             this.logListview.GridLines = true;
-            this.logListview.Location = new System.Drawing.Point(3, 3);
+            this.logListview.Location = new System.Drawing.Point(0, 0);
             this.logListview.MultiSelect = false;
             this.logListview.Name = "logListview";
-            this.logListview.Size = new System.Drawing.Size(632, 367);
+            this.logListview.Size = new System.Drawing.Size(661, 398);
             this.logListview.TabIndex = 0;
             this.logListview.UseCompatibleStateImageBehavior = false;
             this.logListview.View = System.Windows.Forms.View.Details;
@@ -230,7 +238,7 @@
             this.gitToolStripBtn});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(707, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(730, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -285,6 +293,16 @@
             this.loadPluginsToolStripBtn.ToolTipText = " Load plugins";
             this.loadPluginsToolStripBtn.Click += new System.EventHandler(this.loadPluginToolStripMenuItem_Click);
             // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton1.Text = "Unload plugins";
+            this.toolStripButton1.Click += new System.EventHandler(this.unloadAllToolStripMenuItem_Click);
+            // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
@@ -311,28 +329,11 @@
             this.gitToolStripBtn.ToolTipText = "Visit GitHub";
             this.gitToolStripBtn.Click += new System.EventHandler(this.watchThisProjectOnGitHubToolStripMenuItem_Click);
             // 
-            // unloadAllToolStripMenuItem
-            // 
-            this.unloadAllToolStripMenuItem.Name = "unloadAllToolStripMenuItem";
-            this.unloadAllToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.unloadAllToolStripMenuItem.Text = "Unload all";
-            this.unloadAllToolStripMenuItem.Click += new System.EventHandler(this.unloadAllToolStripMenuItem_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "Unload plugins";
-            this.toolStripButton1.Click += new System.EventHandler(this.unloadAllToolStripMenuItem_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 456);
+            this.ClientSize = new System.Drawing.Size(730, 481);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.statusStrip1);

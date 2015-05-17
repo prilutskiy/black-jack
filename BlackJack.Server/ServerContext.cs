@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Net;
 using System.Threading;
 using System.Windows.Forms;
@@ -10,6 +11,7 @@ namespace BlackJack.Server
 {
     public class ServerContext
     {
+        public Process CurrentProcess { get; set; }
         public BlackJackRepository AppRepository { get; set; }
         public Queue<Player> ClassicQueue { get; set; }
         public List<Connection> Trusted { get; set; }
