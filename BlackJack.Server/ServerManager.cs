@@ -163,6 +163,7 @@ namespace BlackJack.Server
             context.RunningThreads = runningThreads;
             context.Trusted = Trusted;
             context.Untrusted = Untrusted;
+            context.AppRepository = _repo;
         }
         public void Start()
         {

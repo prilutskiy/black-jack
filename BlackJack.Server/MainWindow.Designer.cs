@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            DevExpress.XtraCharts.SimpleDiagram simpleDiagram3 = new DevExpress.XtraCharts.SimpleDiagram();
-            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
-            DevExpress.XtraCharts.SeriesPoint seriesPoint5 = new DevExpress.XtraCharts.SeriesPoint("Slots occupied", new object[] {
-            ((object)(8D))}, 0);
-            DevExpress.XtraCharts.SeriesPoint seriesPoint6 = new DevExpress.XtraCharts.SeriesPoint("Slots availible", new object[] {
-            ((object)(2D))}, 2);
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView5 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.PieSeriesView pieSeriesView6 = new DevExpress.XtraCharts.PieSeriesView();
-            DevExpress.XtraCharts.ChartTitle chartTitle3 = new DevExpress.XtraCharts.ChartTitle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +67,39 @@
             this.messageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ipColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gameInfoTab = new DevExpress.XtraTab.XtraTabPage();
+            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
+            this.groupControl5 = new DevExpress.XtraEditors.GroupControl();
+            this.xtraTabControl1 = new DevExpress.XtraTab.XtraTabControl();
+            this.xtraTabPage1 = new DevExpress.XtraTab.XtraTabPage();
+            this.onlineListView = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.xtraTabPage2 = new DevExpress.XtraTab.XtraTabPage();
+            this.totalListView = new System.Windows.Forms.ListView();
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupControl4 = new DevExpress.XtraEditors.GroupControl();
+            this.totalPlayersLabel = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.playersOnlineLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupControl3 = new DevExpress.XtraEditors.GroupControl();
+            this.untrustedLabel = new System.Windows.Forms.Label();
+            this.trustedLabel = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.groupControl2 = new DevExpress.XtraEditors.GroupControl();
+            this.availibleConnectionsLabel = new System.Windows.Forms.Label();
+            this.currentConnectionsLabel = new System.Windows.Forms.Label();
+            this.maxConnectionsLabel = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
@@ -89,29 +113,26 @@
             this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.startServerBtn = new System.Windows.Forms.Button();
             this.pluginBtn = new System.Windows.Forms.Button();
-            this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
-            this.gameServerLoadChart = new DevExpress.XtraCharts.ChartControl();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.clientsConnectedLabel = new System.Windows.Forms.Label();
-            this.connectionsAvailibleLabel = new System.Windows.Forms.Label();
-            this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabControl)).BeginInit();
             this.tabControl.SuspendLayout();
             this.serverLogTab.SuspendLayout();
             this.gameInfoTab.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gameServerLoadChart)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(simpleDiagram3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
-            this.panelControl1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).BeginInit();
+            this.groupControl5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).BeginInit();
+            this.xtraTabControl1.SuspendLayout();
+            this.xtraTabPage1.SuspendLayout();
+            this.xtraTabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).BeginInit();
+            this.groupControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).BeginInit();
+            this.groupControl3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).BeginInit();
+            this.groupControl2.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -418,6 +439,301 @@
             this.gameInfoTab.Size = new System.Drawing.Size(638, 343);
             this.gameInfoTab.Text = "Game info";
             // 
+            // groupControl1
+            // 
+            this.groupControl1.Controls.Add(this.groupControl5);
+            this.groupControl1.Controls.Add(this.groupControl4);
+            this.groupControl1.Controls.Add(this.groupControl3);
+            this.groupControl1.Controls.Add(this.groupControl2);
+            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupControl1.Location = new System.Drawing.Point(0, 0);
+            this.groupControl1.Name = "groupControl1";
+            this.groupControl1.Size = new System.Drawing.Size(638, 343);
+            this.groupControl1.TabIndex = 0;
+            this.groupControl1.Text = "Game info";
+            // 
+            // groupControl5
+            // 
+            this.groupControl5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupControl5.Controls.Add(this.xtraTabControl1);
+            this.groupControl5.Location = new System.Drawing.Point(204, 24);
+            this.groupControl5.Name = "groupControl5";
+            this.groupControl5.Size = new System.Drawing.Size(427, 314);
+            this.groupControl5.TabIndex = 2;
+            this.groupControl5.Text = "Detailed player info";
+            // 
+            // xtraTabControl1
+            // 
+            this.xtraTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.xtraTabControl1.Location = new System.Drawing.Point(2, 21);
+            this.xtraTabControl1.Name = "xtraTabControl1";
+            this.xtraTabControl1.SelectedTabPage = this.xtraTabPage1;
+            this.xtraTabControl1.Size = new System.Drawing.Size(423, 291);
+            this.xtraTabControl1.TabIndex = 0;
+            this.xtraTabControl1.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] {
+            this.xtraTabPage1,
+            this.xtraTabPage2});
+            // 
+            // xtraTabPage1
+            // 
+            this.xtraTabPage1.Controls.Add(this.onlineListView);
+            this.xtraTabPage1.Name = "xtraTabPage1";
+            this.xtraTabPage1.Size = new System.Drawing.Size(417, 263);
+            this.xtraTabPage1.Text = "Online";
+            // 
+            // onlineListView
+            // 
+            this.onlineListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.onlineListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.onlineListView.FullRowSelect = true;
+            this.onlineListView.GridLines = true;
+            this.onlineListView.Location = new System.Drawing.Point(0, 0);
+            this.onlineListView.Name = "onlineListView";
+            this.onlineListView.Size = new System.Drawing.Size(417, 263);
+            this.onlineListView.TabIndex = 0;
+            this.onlineListView.UseCompatibleStateImageBehavior = false;
+            this.onlineListView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Player ID";
+            this.columnHeader1.Width = 65;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Username";
+            this.columnHeader2.Width = 92;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Password";
+            this.columnHeader3.Width = 93;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Cash";
+            this.columnHeader4.Width = 54;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "IP address";
+            this.columnHeader5.Width = 94;
+            // 
+            // xtraTabPage2
+            // 
+            this.xtraTabPage2.Controls.Add(this.totalListView);
+            this.xtraTabPage2.Name = "xtraTabPage2";
+            this.xtraTabPage2.Size = new System.Drawing.Size(417, 263);
+            this.xtraTabPage2.Text = "Total";
+            // 
+            // totalListView
+            // 
+            this.totalListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9});
+            this.totalListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.totalListView.FullRowSelect = true;
+            this.totalListView.GridLines = true;
+            this.totalListView.Location = new System.Drawing.Point(0, 0);
+            this.totalListView.Name = "totalListView";
+            this.totalListView.Size = new System.Drawing.Size(417, 263);
+            this.totalListView.TabIndex = 1;
+            this.totalListView.UseCompatibleStateImageBehavior = false;
+            this.totalListView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Player ID";
+            this.columnHeader6.Width = 65;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.Text = "Username";
+            this.columnHeader7.Width = 92;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.Text = "Password";
+            this.columnHeader8.Width = 93;
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.Text = "Cash";
+            this.columnHeader9.Width = 46;
+            // 
+            // groupControl4
+            // 
+            this.groupControl4.Controls.Add(this.totalPlayersLabel);
+            this.groupControl4.Controls.Add(this.label4);
+            this.groupControl4.Controls.Add(this.playersOnlineLabel);
+            this.groupControl4.Controls.Add(this.label5);
+            this.groupControl4.Location = new System.Drawing.Point(5, 236);
+            this.groupControl4.Name = "groupControl4";
+            this.groupControl4.Size = new System.Drawing.Size(193, 102);
+            this.groupControl4.TabIndex = 1;
+            this.groupControl4.Text = "Players";
+            // 
+            // totalPlayersLabel
+            // 
+            this.totalPlayersLabel.AutoSize = true;
+            this.totalPlayersLabel.Location = new System.Drawing.Point(155, 67);
+            this.totalPlayersLabel.Name = "totalPlayersLabel";
+            this.totalPlayersLabel.Size = new System.Drawing.Size(13, 13);
+            this.totalPlayersLabel.TabIndex = 1;
+            this.totalPlayersLabel.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(8, 67);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Players registered: ";
+            // 
+            // playersOnlineLabel
+            // 
+            this.playersOnlineLabel.AutoSize = true;
+            this.playersOnlineLabel.Location = new System.Drawing.Point(155, 42);
+            this.playersOnlineLabel.Name = "playersOnlineLabel";
+            this.playersOnlineLabel.Size = new System.Drawing.Size(13, 13);
+            this.playersOnlineLabel.TabIndex = 1;
+            this.playersOnlineLabel.Text = "0";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(8, 42);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(124, 13);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Players online (in game): ";
+            // 
+            // groupControl3
+            // 
+            this.groupControl3.Controls.Add(this.untrustedLabel);
+            this.groupControl3.Controls.Add(this.trustedLabel);
+            this.groupControl3.Controls.Add(this.label8);
+            this.groupControl3.Controls.Add(this.label9);
+            this.groupControl3.Location = new System.Drawing.Point(5, 145);
+            this.groupControl3.Name = "groupControl3";
+            this.groupControl3.Size = new System.Drawing.Size(193, 85);
+            this.groupControl3.TabIndex = 0;
+            this.groupControl3.Text = "Details";
+            // 
+            // untrustedLabel
+            // 
+            this.untrustedLabel.AutoSize = true;
+            this.untrustedLabel.Location = new System.Drawing.Point(155, 57);
+            this.untrustedLabel.Name = "untrustedLabel";
+            this.untrustedLabel.Size = new System.Drawing.Size(13, 13);
+            this.untrustedLabel.TabIndex = 1;
+            this.untrustedLabel.Text = "0";
+            // 
+            // trustedLabel
+            // 
+            this.trustedLabel.AutoSize = true;
+            this.trustedLabel.Location = new System.Drawing.Point(155, 32);
+            this.trustedLabel.Name = "trustedLabel";
+            this.trustedLabel.Size = new System.Drawing.Size(13, 13);
+            this.trustedLabel.TabIndex = 1;
+            this.trustedLabel.Text = "0";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 32);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(110, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Trusted connections: ";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 57);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(120, 13);
+            this.label9.TabIndex = 0;
+            this.label9.Text = "Untrusted connections: ";
+            // 
+            // groupControl2
+            // 
+            this.groupControl2.Controls.Add(this.availibleConnectionsLabel);
+            this.groupControl2.Controls.Add(this.currentConnectionsLabel);
+            this.groupControl2.Controls.Add(this.maxConnectionsLabel);
+            this.groupControl2.Controls.Add(this.label2);
+            this.groupControl2.Controls.Add(this.label3);
+            this.groupControl2.Controls.Add(this.label1);
+            this.groupControl2.Location = new System.Drawing.Point(5, 24);
+            this.groupControl2.Name = "groupControl2";
+            this.groupControl2.Size = new System.Drawing.Size(193, 115);
+            this.groupControl2.TabIndex = 0;
+            this.groupControl2.Text = "Connections";
+            // 
+            // availibleConnectionsLabel
+            // 
+            this.availibleConnectionsLabel.AutoSize = true;
+            this.availibleConnectionsLabel.Location = new System.Drawing.Point(152, 85);
+            this.availibleConnectionsLabel.Name = "availibleConnectionsLabel";
+            this.availibleConnectionsLabel.Size = new System.Drawing.Size(13, 13);
+            this.availibleConnectionsLabel.TabIndex = 1;
+            this.availibleConnectionsLabel.Text = "0";
+            // 
+            // currentConnectionsLabel
+            // 
+            this.currentConnectionsLabel.AutoSize = true;
+            this.currentConnectionsLabel.Location = new System.Drawing.Point(152, 59);
+            this.currentConnectionsLabel.Name = "currentConnectionsLabel";
+            this.currentConnectionsLabel.Size = new System.Drawing.Size(13, 13);
+            this.currentConnectionsLabel.TabIndex = 1;
+            this.currentConnectionsLabel.Text = "0";
+            // 
+            // maxConnectionsLabel
+            // 
+            this.maxConnectionsLabel.AutoSize = true;
+            this.maxConnectionsLabel.Location = new System.Drawing.Point(152, 34);
+            this.maxConnectionsLabel.Name = "maxConnectionsLabel";
+            this.maxConnectionsLabel.Size = new System.Drawing.Size(13, 13);
+            this.maxConnectionsLabel.TabIndex = 1;
+            this.maxConnectionsLabel.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 85);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(113, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Availible connections: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(5, 34);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(94, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Max connections: ";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 59);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(108, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Current connections: ";
+            // 
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -539,105 +855,6 @@
             this.pluginBtn.UseVisualStyleBackColor = true;
             this.pluginBtn.Click += new System.EventHandler(this.pluginBtn_Click);
             // 
-            // groupControl1
-            // 
-            this.groupControl1.Controls.Add(this.panelControl1);
-            this.groupControl1.Controls.Add(this.gameServerLoadChart);
-            this.groupControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupControl1.Location = new System.Drawing.Point(0, 0);
-            this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(638, 343);
-            this.groupControl1.TabIndex = 0;
-            this.groupControl1.Text = "Game info";
-            // 
-            // gameServerLoadChart
-            // 
-            this.gameServerLoadChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            simpleDiagram3.EqualPieSize = false;
-            this.gameServerLoadChart.Diagram = simpleDiagram3;
-            this.gameServerLoadChart.Legend.EquallySpacedItems = false;
-            this.gameServerLoadChart.Location = new System.Drawing.Point(5, 24);
-            this.gameServerLoadChart.Name = "gameServerLoadChart";
-            this.gameServerLoadChart.PaletteName = "Blue Green";
-            series3.CheckedInLegend = false;
-            series3.Name = "Series 1";
-            series3.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
-            seriesPoint5,
-            seriesPoint6});
-            pieSeriesView5.RuntimeExploding = false;
-            pieSeriesView5.SweepDirection = DevExpress.XtraCharts.PieSweepDirection.Counterclockwise;
-            series3.View = pieSeriesView5;
-            this.gameServerLoadChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series3};
-            pieSeriesView6.RuntimeExploding = false;
-            pieSeriesView6.SweepDirection = DevExpress.XtraCharts.PieSweepDirection.Counterclockwise;
-            this.gameServerLoadChart.SeriesTemplate.View = pieSeriesView6;
-            this.gameServerLoadChart.Size = new System.Drawing.Size(418, 314);
-            this.gameServerLoadChart.TabIndex = 1;
-            chartTitle3.Text = "Game server load";
-            this.gameServerLoadChart.Titles.AddRange(new DevExpress.XtraCharts.ChartTitle[] {
-            chartTitle3});
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(46, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Game server load status";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Clients connected: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(107, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Connections avilible: ";
-            // 
-            // clientsConnectedLabel
-            // 
-            this.clientsConnectedLabel.AutoSize = true;
-            this.clientsConnectedLabel.Location = new System.Drawing.Point(159, 46);
-            this.clientsConnectedLabel.Name = "clientsConnectedLabel";
-            this.clientsConnectedLabel.Size = new System.Drawing.Size(13, 13);
-            this.clientsConnectedLabel.TabIndex = 3;
-            this.clientsConnectedLabel.Text = "0";
-            // 
-            // connectionsAvailibleLabel
-            // 
-            this.connectionsAvailibleLabel.AutoSize = true;
-            this.connectionsAvailibleLabel.Location = new System.Drawing.Point(159, 69);
-            this.connectionsAvailibleLabel.Name = "connectionsAvailibleLabel";
-            this.connectionsAvailibleLabel.Size = new System.Drawing.Size(13, 13);
-            this.connectionsAvailibleLabel.TabIndex = 3;
-            this.connectionsAvailibleLabel.Text = "0";
-            // 
-            // panelControl1
-            // 
-            this.panelControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelControl1.Controls.Add(this.label1);
-            this.panelControl1.Controls.Add(this.connectionsAvailibleLabel);
-            this.panelControl1.Controls.Add(this.label2);
-            this.panelControl1.Controls.Add(this.clientsConnectedLabel);
-            this.panelControl1.Controls.Add(this.label3);
-            this.panelControl1.Location = new System.Drawing.Point(429, 24);
-            this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(202, 96);
-            this.panelControl1.TabIndex = 4;
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -659,18 +876,25 @@
             this.tabControl.ResumeLayout(false);
             this.serverLogTab.ResumeLayout(false);
             this.gameInfoTab.ResumeLayout(false);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(simpleDiagram3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(pieSeriesView6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gameServerLoadChart)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
-            this.panelControl1.ResumeLayout(false);
-            this.panelControl1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl5)).EndInit();
+            this.groupControl5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.xtraTabControl1)).EndInit();
+            this.xtraTabControl1.ResumeLayout(false);
+            this.xtraTabPage1.ResumeLayout(false);
+            this.xtraTabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl4)).EndInit();
+            this.groupControl4.ResumeLayout(false);
+            this.groupControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl3)).EndInit();
+            this.groupControl3.ResumeLayout(false);
+            this.groupControl3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.groupControl2)).EndInit();
+            this.groupControl2.ResumeLayout(false);
+            this.groupControl2.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -730,13 +954,38 @@
         private System.Windows.Forms.Button pluginBtn;
         private DevExpress.XtraTab.XtraTabPage gameInfoTab;
         private DevExpress.XtraEditors.GroupControl groupControl1;
-        private DevExpress.XtraCharts.ChartControl gameServerLoadChart;
-        private System.Windows.Forms.Label connectionsAvailibleLabel;
-        private System.Windows.Forms.Label clientsConnectedLabel;
-        private System.Windows.Forms.Label label3;
+        private DevExpress.XtraEditors.GroupControl groupControl2;
+        private System.Windows.Forms.Label availibleConnectionsLabel;
+        private System.Windows.Forms.Label currentConnectionsLabel;
+        private System.Windows.Forms.Label maxConnectionsLabel;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label1;
-        private DevExpress.XtraEditors.PanelControl panelControl1;
+        private DevExpress.XtraEditors.GroupControl groupControl3;
+        private System.Windows.Forms.Label untrustedLabel;
+        private System.Windows.Forms.Label trustedLabel;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private DevExpress.XtraEditors.GroupControl groupControl4;
+        private System.Windows.Forms.Label totalPlayersLabel;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label playersOnlineLabel;
+        private System.Windows.Forms.Label label5;
+        private DevExpress.XtraEditors.GroupControl groupControl5;
+        private DevExpress.XtraTab.XtraTabControl xtraTabControl1;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage1;
+        private System.Windows.Forms.ListView onlineListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private DevExpress.XtraTab.XtraTabPage xtraTabPage2;
+        private System.Windows.Forms.ListView totalListView;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
     }
 }
 

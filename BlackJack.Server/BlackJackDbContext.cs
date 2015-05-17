@@ -16,7 +16,7 @@ namespace BlackJack.Server
 
         public static String GenerateConnectionString()
         {
-            return String.Format(@"Data Source=(LocalDb)\v11.0;AttachDbFilename={0};Trusted_Connection=True",
+            return String.Format(@"Data Source=(LocalDb)\v11.0;AttachDbFilename={0};Trusted_Connection=True;MultipleActiveResultSets=true;",
                 Path.Combine(Application.StartupPath, "bj.mdf"));
         }
         public DbSet<User> Users { get; set; }

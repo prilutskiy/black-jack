@@ -10,6 +10,7 @@ namespace BlackJack.Server
 {
     public class ServerContext
     {
+        public BlackJackRepository AppRepository { get; set; }
         public Queue<Player> ClassicQueue { get; set; }
         public List<Connection> Trusted { get; set; }
         public List<Connection> Untrusted { get; set; }
