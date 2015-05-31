@@ -18,7 +18,9 @@ namespace BlackJack.Client
     {
         private void MainWindow_Shown(object sender, EventArgs e)
         {
+            webView.DocumentReady += (o, args) =>
             webView.ExecuteJavascript("checkConnection();");
+            Connect();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -36,7 +38,7 @@ namespace BlackJack.Client
             if (!WebCore.IsRunning)
                 WebCore.Initialize(new WebConfig()
                 {
-                    LogPath = Path.Combine(Application.StartupPath, @"DebugLogs\awesomium.log")
+                    LogPath = Path.Combine(Application.StartupPath, @"awesomium.log")
                 });
             InitializeComponent();
 #if DEBUG

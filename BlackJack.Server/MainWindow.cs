@@ -180,6 +180,7 @@ namespace BlackJack.Server
 
         private void loadPluginToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            statusLabel.Text = "Loading plugins...";
             try
             {
                 Task.Run(() =>
@@ -194,6 +195,7 @@ namespace BlackJack.Server
                 excText = excText.Trim('\n');
                 MessageBox.Show(excText);
             }
+            statusLabel.Text = "Ready";
         }
 
         private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)

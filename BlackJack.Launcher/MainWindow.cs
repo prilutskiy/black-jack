@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Sockets;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -74,10 +75,30 @@ namespace BlackJack.Launcher
                     MessageBoxIcon.Information);
                 return;
             }
-
+            if (!CheckServerState(textBox1.Text))
+            {
+                MessageBox.Show(String.Format("{0}: Server unavailible", textBox1.Text));
+                return;
+                
+            }
             var clientAppPath = Path.Combine(Application.StartupPath, "BlackJack.Client.exe");
             Process.Start(clientAppPath);
             this.Close();
+        }
+
+        private bool CheckServerState(string text)
+        {
+            TcpClient tcpClient = new TcpClient();
+
+            try
+            {
+                tcpClient.Connect(text, 777);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

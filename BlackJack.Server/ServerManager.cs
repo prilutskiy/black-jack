@@ -336,6 +336,10 @@ namespace BlackJack.Server
                     }
                 }
             }
+            catch (InvalidOperationException ex)
+            {
+                WriteLog(ex.Message, clientSocket);
+            }
             catch (SerializationException ex)
             {
                 WriteLog(ex.Message, clientSocket);
